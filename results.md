@@ -53,3 +53,5 @@
 | 2026-05-06 | **nba_v42** | **3.0558** | : | **v42 arch (K=2 nearest + NLL) × 250ep : epoch scaling from 100ep (3.2099) → 250ep (3.0558); NEW BEST by 4.6% over v43x100ep** |
 | 2026-05-06 | **nba_v43** | **3.0395** | : | **v42 arch (K=2) + timestep-weighted NLL × 250ep : NEW BEST; timestep weighting pays off at 250ep (3.0395 < v42×250ep 3.0558); beats v42 by 0.5%** |
 | 2026-05-06 | nba_v44 | 3.1177 | : | MoG K=2 output on v43 arch × 100ep : beats v43×100ep (3.1936) by 3.9%; MoG captures bimodal futures; not new best vs v42×250ep (3.0558) |
+| 2026-05-06 | **nba_v44** | **2.8963** | : | **MoG K=2 on v43 arch × 250ep : MASSIVE NEW BEST; MoG captures bimodal futures and benefits from epoch scaling; beats v43×250ep (3.0395) by 4.8%** |
+| 2026-05-06 | **nba_v45** | **3.0177** | : | **v42 arch (K=2 Gaussian NLL) × 300ep T_max=300 : NEW BEST over v43×250ep (3.0395); T_max=300 helps slightly vs T_max=250 at same arch; worse than v44 (MoG wins)** |
