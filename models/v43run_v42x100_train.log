@@ -1,0 +1,302 @@
+Epoch 1/100
+    train loss: -0.4725
+    val loss: 0.1029
+Epoch 2/100
+    train loss: -0.9741
+    val loss: 0.0542
+Epoch 3/100
+    train loss: -1.2757
+    val loss: 0.0338
+Epoch 4/100
+    train loss: -1.5676
+    val loss: 0.0323
+Epoch 5/100
+    train loss: -1.7534
+    val loss: 0.0217
+Epoch 6/100
+    train loss: -1.8966
+    val loss: 0.0188
+Epoch 7/100
+    train loss: -1.8972
+    val loss: 0.0197
+Epoch 8/100
+    train loss: -1.9846
+    val loss: 0.0198
+Epoch 9/100
+    train loss: -2.0417
+    val loss: 0.0179
+Epoch 10/100
+    train loss: -2.0346
+    val loss: 0.0202
+Epoch 11/100
+    train loss: -2.0588
+    val loss: 0.0178
+Epoch 12/100
+    train loss: -2.0720
+    val loss: 0.0181
+Epoch 13/100
+    train loss: -2.0731
+    val loss: 0.0179
+Epoch 14/100
+    train loss: -2.0672
+    val loss: 0.0167
+Epoch 15/100
+    train loss: -2.0964
+    val loss: 0.0165
+Epoch 16/100
+    train loss: -2.0911
+    val loss: 0.0188
+Epoch 17/100
+    train loss: -2.1037
+    val loss: 0.0169
+Epoch 18/100
+    train loss: -2.1015
+    val loss: 0.0526
+Epoch 19/100
+    train loss: -2.0630
+    val loss: 0.0168
+Epoch 20/100
+    train loss: -2.1230
+    val loss: 0.0168
+Epoch 21/100
+    train loss: -2.1330
+    val loss: 0.0172
+Epoch 22/100
+    train loss: -2.1265
+    val loss: 0.0171
+Epoch 23/100
+    train loss: -2.1265
+    val loss: 0.0173
+Epoch 24/100
+    train loss: -2.1379
+    val loss: 0.0165
+Epoch 25/100
+    train loss: -2.1318
+    val loss: 0.0164
+Epoch 26/100
+    train loss: -2.1458
+    val loss: 0.0168
+Epoch 27/100
+    train loss: -2.1423
+    val loss: 0.0163
+Epoch 28/100
+    train loss: -2.1514
+    val loss: 0.0175
+Epoch 29/100
+    train loss: -2.1523
+    val loss: 0.0179
+Epoch 30/100
+    train loss: -2.1512
+    val loss: 0.0160
+Epoch 31/100
+    train loss: -2.1608
+    val loss: 0.0190
+Epoch 32/100
+    train loss: -2.1540
+    val loss: 0.0163
+Epoch 33/100
+    train loss: -2.1567
+    val loss: 0.0160
+Epoch 34/100
+    train loss: -2.1619
+    val loss: 0.0180
+Epoch 35/100
+    train loss: -2.1449
+    val loss: 0.0157
+Epoch 36/100
+    train loss: -2.1592
+    val loss: 0.0182
+Epoch 37/100
+    train loss: -2.1668
+    val loss: 0.0167
+Epoch 38/100
+    train loss: -2.1653
+    val loss: 0.0165
+Epoch 39/100
+    train loss: -2.1644
+    val loss: 0.0156
+Epoch 40/100
+    train loss: -2.1729
+    val loss: 0.0162
+Epoch 41/100
+    train loss: -2.1775
+    val loss: 0.0169
+Epoch 42/100
+    train loss: -2.1758
+    val loss: 0.0155
+Epoch 43/100
+    train loss: -2.1723
+    val loss: 0.0167
+Epoch 44/100
+    train loss: -2.1760
+    val loss: 0.0154
+Epoch 45/100
+    train loss: -2.1850
+    val loss: 0.0160
+Epoch 46/100
+    train loss: -2.1821
+    val loss: 0.0162
+Epoch 47/100
+    train loss: -2.1830
+    val loss: 0.0167
+Epoch 48/100
+    train loss: -2.1850
+    val loss: 0.0158
+Epoch 49/100
+    train loss: -2.1861
+    val loss: 0.0162
+Epoch 50/100
+    train loss: -2.1878
+    val loss: 0.0159
+Epoch 51/100
+    train loss: -2.1915
+    val loss: 0.0153
+Epoch 52/100
+    train loss: -2.1913
+    val loss: 0.0163
+Epoch 53/100
+    train loss: -2.1887
+    val loss: 0.0175
+Epoch 54/100
+    train loss: -2.1910
+    val loss: 0.0157
+Epoch 55/100
+    train loss: -2.1923
+    val loss: 0.0160
+Epoch 56/100
+    train loss: -2.1934
+    val loss: 0.0166
+Epoch 57/100
+    train loss: -2.1965
+    val loss: 0.0154
+Epoch 58/100
+    train loss: -2.1986
+    val loss: 0.0146
+Epoch 59/100
+    train loss: -2.1960
+    val loss: 0.0156
+Epoch 60/100
+    train loss: -2.2044
+    val loss: 0.0155
+Epoch 61/100
+    train loss: -2.2000
+    val loss: 0.0153
+Epoch 62/100
+    train loss: -2.2016
+    val loss: 0.0159
+Epoch 63/100
+    train loss: -2.2064
+    val loss: 0.0157
+Epoch 64/100
+    train loss: -2.2068
+    val loss: 0.0156
+Epoch 65/100
+    train loss: -2.2082
+    val loss: 0.0167
+Epoch 66/100
+    train loss: -2.2063
+    val loss: 0.0150
+Epoch 67/100
+    train loss: -2.2100
+    val loss: 0.0148
+Epoch 68/100
+    train loss: -2.2119
+    val loss: 0.0155
+Epoch 69/100
+    train loss: -2.2144
+    val loss: 0.0153
+Epoch 70/100
+    train loss: -2.2125
+    val loss: 0.0161
+Epoch 71/100
+    train loss: -2.2174
+    val loss: 0.0167
+Epoch 72/100
+    train loss: -2.2198
+    val loss: 0.0161
+Epoch 73/100
+    train loss: -2.2104
+    val loss: 0.0150
+Epoch 74/100
+    train loss: -2.2219
+    val loss: 0.0146
+Epoch 75/100
+    train loss: -2.2201
+    val loss: 0.0151
+Epoch 76/100
+    train loss: -2.2187
+    val loss: 0.0153
+Epoch 77/100
+    train loss: -2.2246
+    val loss: 0.0161
+Epoch 78/100
+    train loss: -2.2192
+    val loss: 0.0152
+Epoch 79/100
+    train loss: -2.2189
+    val loss: 0.0150
+Epoch 80/100
+    train loss: -2.2230
+    val loss: 0.0154
+Epoch 81/100
+    train loss: -2.2207
+    val loss: 0.0156
+Epoch 82/100
+    train loss: -2.2273
+    val loss: 0.0153
+Epoch 83/100
+    train loss: -2.2277
+    val loss: 0.0149
+Epoch 84/100
+    train loss: -2.2263
+    val loss: 0.0151
+Epoch 85/100
+    train loss: -2.2292
+    val loss: 0.0153
+Epoch 86/100
+    train loss: -2.2335
+    val loss: 0.0147
+Epoch 87/100
+    train loss: -2.2330
+    val loss: 0.0158
+Epoch 88/100
+    train loss: -2.2348
+    val loss: 0.0146
+Epoch 89/100
+    train loss: -2.2290
+    val loss: 0.0148
+Epoch 90/100
+    train loss: -2.2310
+    val loss: 0.0154
+Epoch 91/100
+    train loss: -2.2270
+    val loss: 0.0154
+Epoch 92/100
+    train loss: -2.2336
+    val loss: 0.0144
+Epoch 93/100
+    train loss: -2.2357
+    val loss: 0.0151
+Epoch 94/100
+    train loss: -2.2345
+    val loss: 0.0145
+Epoch 95/100
+    train loss: -2.2366
+    val loss: 0.0144
+Epoch 96/100
+    train loss: -2.2349
+    val loss: 0.0144
+Epoch 97/100
+    train loss: -2.2347
+    val loss: 0.0149
+Epoch 98/100
+    train loss: -2.2314
+    val loss: 0.0148
+Epoch 99/100
+    train loss: -2.2373
+    val loss: 0.0145
+Epoch 100/100
+    train loss: -2.2333
+    val loss: 0.0151
+nba_v42: 3.2099
+AGENT_SCORE:3.2099

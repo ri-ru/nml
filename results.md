@@ -44,8 +44,11 @@
 | 2026-05-05 21:36 | nba_v39 | 6.3680 | — | Bigger GRU (192d,3L) + NLL × 35ep — late bloomer |
 | 2026-05-06 | nba_v39 | 3.8514 | — | Bigger GRU (192d,3L) + NLL × 150ep — converged from 6.37 but still worse than v38 (3.4355); larger model underperforms smaller one even at 4× epoch budget |
 | 2026-05-05 21:37 | nba_v40 | 3.9194 | — | Transformer + NLL × 35ep |
-| 2026-05-06 | nba_v40 | **3.4225** | — | **Transformer + NLL × 100ep — NEW BEST LOCAL** |
+| 2026-05-06 | nba_v40 | 3.4225 | — | Transformer + NLL × 100ep |
 | 2026-05-06 09:31 | nba_v41 | 3.4323 | — | v38 arch + timestep-weighted NLL × 35ep |
 | 2026-05-06 09:55 | nba_v42 | 3.4281 | — | v38 arch + K=2 nearest neighbors + NLL × 35ep |
-| 2026-05-06 | nba_v42 | running | — | v42 arch × 100ep — in progress |
-| 2026-05-06 | nba_v43 | running | — | v42 arch (K=2 nearest) + timestep-weighted NLL × 35ep — combines v41 + v42 ideas |
+| 2026-05-06 | **nba_v42** | **3.2099** | — | **v42 arch (K=2 nearest + NLL) × 100ep — NEW BEST by large margin; epoch scaling + K=2 social features compound well** |
+| 2026-05-06 | nba_v43 | 3.4512 | — | v42 arch (K=2) + timestep-weighted NLL × 35ep — worse than v42 35ep (3.4281); timestep weighting hurts at short training budget |
+| 2026-05-06 | nba_v43 | running | — | v42 arch (K=2) + timestep-weighted NLL × 100ep — launching despite weak 35ep screen; v42 showed huge 35→100ep gains so worth checking |
+| 2026-05-06 | nba_v42 | running | — | v42 arch × 250ep — scaling the winner |
+| 2026-05-06 10:59 | nba_v43 | 3.4512 | agent loop (35 epochs) |
