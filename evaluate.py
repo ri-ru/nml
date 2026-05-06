@@ -4,7 +4,7 @@ import torch.nn as nn
 from datetime import datetime
 from torch.utils.data import DataLoader
 
-RESULTS_FILE = os.path.join(os.path.dirname(__file__), 'models', 'results.md')
+RESULTS_FILE = os.path.join(os.path.dirname(__file__), 'results.md')
 
 
 def evaluate_model(model, trainer, val_dl, name: str, notes: str = '') -> float:
