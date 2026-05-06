@@ -57,3 +57,5 @@
 | 2026-05-06 | **nba_v45** | **3.0177** | : | **v42 arch (K=2 Gaussian NLL) × 300ep T_max=300 : NEW BEST over v43×250ep (3.0395); T_max=300 helps slightly vs T_max=250 at same arch; worse than v44 (MoG wins)** |
 | 2026-05-06 | nba_v47 | 3.1210 | : | MoG K=3 on v43 arch × 100ep : 3.1210 vs K=2 (3.1177) — K=3 slightly worse than K=2 at 100ep; not worth scaling |
 | 2026-05-06 | nba_v49 | 3.2040 | : | Goal-conditioned (endpoint-first) × 100ep : 3.2040 vs v44×100ep (3.1177) — worse than MoG at same budget; inductive bias helps but not enough to beat mixture output |
+| 2026-05-06 | nba_v48 | 7.0267 | : | CVAE (Trajectron++-style latent z) × 100ep : 7.03 — dead end at 100ep; prior not converged, inference sampling from p(z|ctx) generates noisy trajectories; would need many more epochs |
+| 2026-05-06 21:29 | nba_v50 | 4.0531 | agent loop (35 epochs) |
