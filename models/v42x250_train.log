@@ -1,0 +1,106 @@
+Epoch 1/250
+    train loss: -0.4728
+    val loss: 0.1028
+Epoch 2/250
+    train loss: -0.9641
+    val loss: 0.0549
+Epoch 3/250
+    train loss: -1.3138
+    val loss: 0.0347
+Epoch 4/250
+    train loss: -1.5654
+    val loss: 0.0247
+Epoch 5/250
+    train loss: -1.7566
+    val loss: 0.0236
+Epoch 6/250
+    train loss: -1.8901
+    val loss: 0.0196
+Epoch 7/250
+    train loss: -1.9348
+    val loss: 0.0195
+Epoch 8/250
+    train loss: -1.9663
+    val loss: 0.0195
+Epoch 9/250
+    train loss: -2.0227
+    val loss: 0.0179
+Epoch 10/250
+    train loss: -2.0345
+    val loss: 0.0185
+Epoch 11/250
+    train loss: -2.0477
+    val loss: 0.0183
+Epoch 12/250
+    train loss: -2.0647
+    val loss: 0.0185
+Epoch 13/250
+    train loss: -2.0705
+    val loss: 0.0178
+Epoch 14/250
+    train loss: -2.0640
+    val loss: 0.0172
+Epoch 15/250
+    train loss: -2.0857
+    val loss: 0.0166
+Epoch 16/250
+    train loss: -2.0936
+    val loss: 0.0199
+Epoch 17/250
+    train loss: -2.0966
+    val loss: 0.0173
+Epoch 18/250
+    train loss: -2.0934
+    val loss: 0.0175
+Epoch 19/250
+    train loss: -2.1171
+    val loss: 0.0171
+Epoch 20/250
+    train loss: -2.1162
+    val loss: 0.0170
+Epoch 21/250
+    train loss: -2.1298
+    val loss: 0.0176
+Epoch 22/250
+    train loss: -2.1246
+    val loss: 0.0173
+Epoch 23/250
+    train loss: -2.1084
+    val loss: 0.0172
+Epoch 24/250
+    train loss: -2.1293
+    val loss: 0.0165
+Epoch 25/250
+    train loss: -2.1264
+    val loss: 0.0168
+Epoch 26/250
+    train loss: -2.1358
+    val loss: 0.0165
+Epoch 27/250
+    train loss: -2.1317
+    val loss: 0.0166
+Epoch 28/250
+    train loss: -2.1442
+    val loss: 0.0170
+Epoch 29/250
+    train loss: -2.1510
+    val loss: 0.0186
+Epoch 30/250
+    train loss: -2.1406
+    val loss: 0.0159
+Epoch 31/250
+    train loss: -2.1431
+    val loss: 0.0187
+Epoch 32/250
+    train loss: -2.1422
+    val loss: 0.0164
+Epoch 33/250
+    train loss: -2.1542
+    val loss: 0.0161
+Epoch 34/250
+    train loss: -2.1570
+    val loss: 0.0187
+Epoch 35/250
+    train loss: -2.1338
+    val loss: 0.0159
+Epoch 36/250
