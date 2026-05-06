@@ -41,10 +41,11 @@
 | 2026-05-05 | nba_v36 | — | — | OBSOLETE — pre-NLL MSE model: v26 arch + timestep-weighted MSE loss; NLL equivalent is v41 (3.4323) which already beats all MSE models; never run, never will |
 | 2026-05-05 20:24 | nba_v37 | 3.8641 | — | Non-autoregressive Transformer + NLL × 35ep |
 | 2026-05-05 20:55 | nba_v38 | 3.4355 | **3.68213** | GRU + Gaussian NLL × 35ep — breakthrough; solo TTA is best Kaggle submission |
-| 2026-05-05 21:36 | nba_v39 | 6.3680 | — | Bigger GRU (192d,3L) + NLL × 35ep — late bloomer; running ×150ep now |
+| 2026-05-05 21:36 | nba_v39 | 6.3680 | — | Bigger GRU (192d,3L) + NLL × 35ep — late bloomer |
+| 2026-05-06 | nba_v39 | 3.8514 | — | Bigger GRU (192d,3L) + NLL × 150ep — converged from 6.37 but still worse than v38 (3.4355); larger model underperforms smaller one even at 4× epoch budget |
 | 2026-05-05 21:37 | nba_v40 | 3.9194 | — | Transformer + NLL × 35ep |
 | 2026-05-06 | nba_v40 | **3.4225** | — | **Transformer + NLL × 100ep — NEW BEST LOCAL** |
 | 2026-05-06 09:31 | nba_v41 | 3.4323 | — | v38 arch + timestep-weighted NLL × 35ep |
 | 2026-05-06 09:55 | nba_v42 | 3.4281 | — | v38 arch + K=2 nearest neighbors + NLL × 35ep |
 | 2026-05-06 | nba_v42 | running | — | v42 arch × 100ep — in progress |
-| 2026-05-06 | nba_v43 | queued | — | v42 arch (K=2 nearest) + timestep-weighted NLL × 35ep — combines v41 + v42 ideas |
+| 2026-05-06 | nba_v43 | running | — | v42 arch (K=2 nearest) + timestep-weighted NLL × 35ep — combines v41 + v42 ideas |
