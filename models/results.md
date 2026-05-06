@@ -41,3 +41,4 @@
 | 2026-05-05 20:55 | nba_v38 | 3.4355 | **3.68213** | GRU + Gaussian NLL × 35ep — BEST MODEL; solo TTA beats all ensembles |
 | 2026-05-05 21:36 | nba_v39 | 6.3680 | — | Bigger GRU (192d,3L) + NLL × 35ep — late bloomer, run 150ep |
 | 2026-05-05 21:37 | nba_v40 | 3.9194 | — | Transformer + NLL × 35ep — run 100ep |
+| 2026-05-06 09:31 | nba_v41 | 3.4323 | agent loop (35 epochs) |
