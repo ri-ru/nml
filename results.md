@@ -49,6 +49,6 @@
 | 2026-05-06 09:55 | nba_v42 | 3.4281 | : | v38 arch + K=2 nearest neighbors + NLL × 35ep |
 | 2026-05-06 | **nba_v42** | **3.2099** | : | **v42 arch (K=2 nearest + NLL) × 100ep : NEW BEST by large margin; epoch scaling + K=2 social features compound well** |
 | 2026-05-06 | nba_v43 | 3.4512 | : | v42 arch (K=2) + timestep-weighted NLL × 35ep : worse than v42 35ep (3.4281); timestep weighting hurts at short training budget |
-| 2026-05-06 | nba_v43 | running | : | v42 arch (K=2) + timestep-weighted NLL × 100ep : launching despite weak 35ep screen; v42 showed huge 35→100ep gains so worth checking |
-| 2026-05-06 | nba_v42 | running | : | v42 arch × 250ep : scaling the winner |
-| 2026-05-06 10:59 | nba_v43 | 3.4512 | agent loop (35 epochs) |
+| 2026-05-06 | **nba_v43** | **3.1936** | : | **v42 arch (K=2) + timestep-weighted NLL × 100ep : NEW BEST; timestep weighting hurts at 35ep but helps at 100ep; beats v42x100ep (3.2099)** |
+| 2026-05-06 | nba_v42 | running | : | v42 arch × 250ep : in progress (118/250) |
+| 2026-05-06 | nba_v43 | running | : | v42 arch (K=2) + timestep-weighted NLL × 250ep : scaling the new best |
