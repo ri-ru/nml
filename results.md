@@ -47,3 +47,4 @@
 | 2026-05-06 09:31 | nba_v41 | 3.4323 | — | v38 arch + timestep-weighted NLL × 35ep |
 | 2026-05-06 09:55 | nba_v42 | 3.4281 | — | v38 arch + K=2 nearest neighbors + NLL × 35ep |
 | 2026-05-06 | nba_v42 | running | — | v42 arch × 100ep — in progress |
+| 2026-05-06 | nba_v43 | queued | — | v42 arch (K=2 nearest) + timestep-weighted NLL × 35ep — combines v41 + v42 ideas |
