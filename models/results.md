@@ -43,3 +43,4 @@
 | 2026-05-05 21:37 | nba_v40 | 3.9194 | — | Transformer + NLL × 35ep — run 100ep |
 | 2026-05-06 09:31 | nba_v41 | 3.4323 | agent loop (35 epochs) |
 | 2026-05-06 09:55 | nba_v42 | 3.4281 | agent loop (35 epochs) |
+| 2026-05-06 10:01 | nba_v40 | 3.4225 | agent loop (100 epochs) |
