@@ -50,6 +50,6 @@
 | 2026-05-06 | **nba_v42** | **3.2099** | : | **v42 arch (K=2 nearest + NLL) × 100ep : NEW BEST by large margin; epoch scaling + K=2 social features compound well** |
 | 2026-05-06 | nba_v43 | 3.4512 | : | v42 arch (K=2) + timestep-weighted NLL × 35ep : worse than v42 35ep (3.4281); timestep weighting hurts at short training budget |
 | 2026-05-06 | **nba_v43** | **3.1936** | : | **v42 arch (K=2) + timestep-weighted NLL × 100ep : NEW BEST; timestep weighting hurts at 35ep but helps at 100ep; beats v42x100ep (3.2099)** |
-| 2026-05-06 | nba_v42 | running | : | v42 arch × 250ep : in progress |
+| 2026-05-06 | **nba_v42** | **3.0558** | : | **v42 arch (K=2 nearest + NLL) × 250ep : epoch scaling from 100ep (3.2099) → 250ep (3.0558); NEW BEST by 4.6% over v43x100ep** |
 | 2026-05-06 | nba_v43 | running | : | v42 arch (K=2) + timestep-weighted NLL × 250ep : scaling the new best |
-| 2026-05-06 | nba_v44 | queued | : | MoG K=2 output on v43 arch : 2 Gaussian components per player per step; MoGNLL+timestep weights; weighted mean at inference : queued for when v42x250ep slot frees |
+| 2026-05-06 | nba_v44 | queued | : | MoG K=2 output on v43 arch : 2 Gaussian components per player per step; MoGNLL+timestep weights; weighted mean at inference |
