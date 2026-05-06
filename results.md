@@ -61,3 +61,4 @@
 | 2026-05-06 | nba_v50 | 4.0531 | : | Space-Time Transformer (88 tokens, full cross-time attn) × 35ep : late bloomer likely; worse than GRU NLL at 35ep (3.4355); worth 100ep to confirm |
 | 2026-05-06 | nba_v51 | 14.4528 | : | Diffusion DDPM (T=100, cosine schedule) × 35ep : expected failure; denoiser not converged at 35ep, needs many more epochs |
 | 2026-05-06 | **nba_v46** | **2.8628** | : | **MoG K=2 on v43 arch × 300ep T_max=300 : NEW BEST; 300ep beats 250ep (2.8963) by 1.2%; same MoG arch, epoch scaling still helping** |
+| 2026-05-06 | nba_v52 | 3.8710 | : | Occupancy heatmap (32×32 grid, cross-entropy, expected position) × 35ep : 3.87 — reasonable for 35ep, on par with v37 (3.86); discrete grid loses sub-cell precision; worth 100ep to confirm |
