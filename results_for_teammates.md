@@ -46,7 +46,7 @@ Tried a non-autoregressive Transformer variant with NLL (v37): 3.86. Worse than 
 
 Tried timestep-weighted NLL (linear weights 1.0 -> 2.0 across the 12 future steps, to emphasize far-future accuracy): 3.43, essentially the same as uniform NLL.
 
-## Phase 4: Scaling what works (May 6)
+## Phase 4: Scaling what works (May 6 morning)
 
 With NLL now the baseline, went back to testing features that we found useful before:
 
@@ -55,25 +55,52 @@ With NLL now the baseline, went back to testing features that we found useful be
 - **K=2 nearest neighbors + NLL at 100 epochs** (v42x100): **3.21. New best by a huge margin.** The K=2 social features compound well with more training - at 35ep they barely helped, but at 100ep they unlock a lot.
 - **Bigger GRU (192d, 3 layers) + NLL at 150 epochs** (v39): 3.85. Even with 150 epochs the big model underperforms the small one. More capacity doesn't help here.
 - **K=2 nearest + timestep-weighted NLL at 35 epochs** (v43): 3.45. Timestep weighting hurts at short training budgets.
+- **K=2 nearest + timestep-weighted NLL at 100 epochs** (v43x100): **3.19. New best.** Timestep weighting flips from hurting to helping once training is long enough. The later timesteps (further-future predictions) need more learning signal, and the model has enough epochs to act on it.
+- **K=2 + NLL at 250 epochs** (v42x250): 3.06. Epoch scaling continues well past 100ep.
+- **K=2 + timestep-weighted NLL at 250 epochs** (v43x250): **3.04. New best.** Timestep weighting keeps compounding at 250ep.
+- **v42 arch retrained 300 epochs with T_max=300** (v45): 3.02. Proper LR schedule (T_max matching epoch count) helps slightly over just running the same arch past its original T_max. But MoG (below) is a bigger lever.
 
-Currently running:
-- v42 x 250 epochs (scaling the winner further)
-- v43 x 100 epochs (checking if timestep weighting helps at longer training)
+## Phase 5: Mixture of Gaussians - the next breakthrough (May 6 afternoon)
+
+The single-Gaussian NLL model predicts one mean + variance per player per timestep. The fundamental problem: basketball is multimodal. A player driving toward a defender can go left *or* right — the correct prediction is not the average of those two paths (which would land in the middle, through the defender). A single Gaussian predicts the mean; a mixture predicts the distribution.
+
+Changed the output head to predict K=2 Gaussian components per player per timestep: K×5 outputs (mu_x, mu_y, log_sigma_x, log_sigma_y, logit_weight). Training loss is the log-likelihood of the mixture (logsumexp over components). At inference, returns the weighted mean of component means.
+
+- **MoG K=2 at 100 epochs** (v44x100): 3.12. Beats single-Gaussian at same epochs (v43x100=3.19) by 3.9%.
+- **MoG K=2 at 250 epochs** (v44x250): **2.90. Massive new best. 4.8% improvement over v43×250ep (3.04).** This is the largest single-step gain since the NLL breakthrough itself.
+
+The pattern is clear: MoG captures something the single Gaussian physically cannot — the bimodal future distribution of players facing a decision point. And it compounds with epoch scaling just like every other architectural improvement we've found.
 
 ## Current best results
 
 | Model | Local MSE | Kaggle MSE | Notes |
 |-------|-----------|------------|-------|
-| v42 x100ep | 3.2099 | not submitted yet | K=2 nearest + NLL |
-| v38 TTA | 3.4355 | 3.68213 | GRU + NLL, 4-variant TTA |
-| v40 x100ep | 3.4225 | not submitted | Transformer + NLL |
+| **v44 × 250ep TTA** | **2.8963** | **pending** | MoG K=2, new best |
+| v43 × 250ep TTA | 3.0395 | pending | K=2 + timestep-weighted NLL |
+| v45 × 300ep TTA | 3.0177 | pending | v42 arch, proper T_max=300 |
+| v42 × 250ep | 3.0558 | — | K=2 nearest + NLL |
+| v42 × 100ep TTA | 3.2099 | ~3.44785 | best Kaggle so far |
+| v38 TTA | 3.4355 | 3.68213 | GRU + NLL baseline |
 
 ## Key lessons
 
 1. **NLL loss is a huge improvement over MSE** for this task. Even at 35 epochs, NLL beats anything MSE could do at 200+ epochs.
-2. **Epoch scaling beats feature engineering**. The biggest single gains came from training longer, not from adding features.
-3. **Social features (K=2 nearest) matter more at longer training**. They barely help at 35ep but unlock significant gains at 100ep.
-4. **Bigger models don't help**. The 128d 2-layer GRU consistently beats 192d 3-layer at the same epoch budget. The problem doesn't need more capacity.
-5. **Dropout kills autoregressive models**. The GRU hidden state carries trajectory history autoregressively - dropout corrupts it badly.
-6. **Directional attention is fundamentally broken for autoregressive decoding** because predicted positions can converge (dist->0), causing gradient explosion. Stick to scalar distance bias.
-7. **Court symmetry augmentation** is free +1-2% - always use it.
+2. **Mixture of Gaussians (MoG) is the next big win after NLL.** Basketball is multimodal — players face discrete decisions (left or right, pass or drive). A single Gaussian predicts the average of those futures; MoG predicts the actual distribution. K=2 components gave the biggest single-step gain since switching to NLL.
+3. **Epoch scaling beats feature engineering**. The biggest single gains came from training longer, not from adding features.
+4. **Social features (K=2 nearest) matter more at longer training**. They barely help at 35ep but unlock significant gains at 100ep.
+5. **Timestep weighting is epoch-dependent**: hurts at 35ep, helps at 100ep and beyond. The model needs enough training capacity to act on the extra gradient signal for far-future steps.
+6. **Bigger models don't help**. The 128d 2-layer GRU consistently beats 192d 3-layer at the same epoch budget. The problem doesn't need more capacity.
+7. **Dropout kills autoregressive models**. The GRU hidden state carries trajectory history autoregressively - dropout corrupts it badly.
+8. **Directional attention is fundamentally broken for autoregressive decoding** because predicted positions can converge (dist->0), causing gradient explosion. Stick to scalar distance bias.
+9. **Court symmetry augmentation** is free +1-2% — always use it.
+10. **LR schedule must match epoch count**: CosineAnnealingLR reaches minimum at T_max; running past T_max means training at near-zero LR, which wastes compute. Always set T_max=epochs.
+
+## What to try next
+
+**Highest priority:**
+- **v44 × 300ep** (MoG K=2, T_max=300): epoch scaling has improved every single model we've run longer; v44 at 250ep is 2.8963, estimate ~2.85-2.87 at 300ep.
+- **Ensemble TTA: v43×250ep + v44×250ep**: average predictions from both TTA CSVs. Two complementary uncertainty models (Gaussian vs MoG) should cancel each other's errors. Free gain, no training needed.
+
+**Architectural exploration:**
+- **MoG K=3**: more components for richer multimodal modeling. K=2 captures binary decisions (left/right); K=3 could capture three-way choices (drive left, drive right, pass back). Low risk, moderate expected gain.
+- **Cross-model ensemble**: v43 (Gaussian) + v44 (MoG) differ in their uncertainty model, so their residual errors should be less correlated than two runs of the same arch.

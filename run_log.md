@@ -78,4 +78,16 @@ v42 : v38 arch + K=2 nearest neighbors + NLL, 35 epochs. Score: 3.43. Marginal. 
 
 v43 : v42 arch + timestep:weighted NLL, 35 epochs. Score: 3.45. Worse. Running to 100 epochs now.
 
-v42 x250ep : running now.
+v42 x100ep : Score: 3.21. Big gain. K=2 social + epoch scaling compound.
+
+v43 x100ep : Score: 3.19. New best. Timestep weighting helps at 100ep even though it hurt at 35ep.
+
+v42 x250ep : Score: 3.06. Epoch scaling continues. New best.
+
+v43 x250ep : Score: 3.04. New best. Timestep weighting keeps helping at 250ep.
+
+v44 : MoG K=2 output on v43 arch. Instead of predicting one Gaussian per player, predict a mixture of 2. Loss is log-likelihood of mixture. Inference uses weighted mean of component means. 100 epochs: 3.12. Promising.
+
+v44 x250ep : Score: 2.90. Massive jump. MoG captures bimodal futures better than a single Gaussian. New best by 4.8%.
+
+v45 : v42 arch retrained from scratch for 300 epochs with T_max=300. Hypothesis: proper LR schedule helps over just running v42 past 250ep. Score: 3.02. Beats v43x250ep but trails v44. MoG is the better bet.

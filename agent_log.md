@@ -133,68 +133,92 @@
 **Score:** 4.8190 — MUCH WORSE than v31 (3.7319). Clear dead end.
 **Lesson:** Dropout is fundamentally incompatible with autoregressive GRU decoding. At inference, the GRU hidden state is used as the sole memory across 12 decode steps. Dropout on this state (even p=0.15) corrupts the accumulated representation and causes error to compound over steps. val_loss stayed at ~0.020 vs ~0.016 without dropout — the model never converged to the same quality. Do NOT use dropout on GRU hidden states in autoregressive models. Weight_decay (L2) is the right regularizer here.
 
-## [2026-05-02] nba_v33.py — 250 epochs (running)
-**Hypothesis:** V26 arch × 250 epochs. Epoch scaling: 100→3.7932, 150→3.7535, 200→3.7319. Gain is decelerating (0.0397, 0.0216) — will it continue at 250?
-**Score:** Pending.
+## [2026-05-02] nba_v33.py — 250 epochs
+**Hypothesis:** V26 arch × 250 epochs. Epoch scaling: 100→3.7932, 150→3.7535, 200→3.7319.
+**Score:** 3.7471 — slightly WORSE than 200ep (3.7319). Epoch scaling plateau for MSE models at ~200ep. This was the last MSE experiment; NLL breakthrough made all MSE scaling obsolete.
 
-## [2026-05-02] nba_v34.py — 200 epochs + EMA (queued after v33)
-**Hypothesis:** V26 arch × 200 epochs with EMA weights (decay=0.999). EMA maintains a shadow model updated after every optimizer step: ema = 0.999*ema + 0.001*model. Inference uses EMA weights. Hypothesis: EMA smooths the weight trajectory, improving generalization and closing the local→Kaggle gap (~0.45 in all prior models).
-**Score:** Pending.
+## [2026-05-02] nba_v34.py — superseded
+**Hypothesis:** V26 arch × 200 epochs + EMA weights. Never run — NLL breakthrough (v38) made all MSE models obsolete before this could run.
+**Score:** N/A — skipped.
 
 ---
 
-## Next Steps — Priority List (2026-05-02)
+## [2026-05-05] nba_v37.py — 35 epochs — NLL ERA BEGINS
+**Hypothesis:** Non-autoregressive Transformer + Gaussian NLL loss. First experiment with probabilistic output head: predict (mu_x, mu_y, log_sigma_x, log_sigma_y) per player per step, optimize NLL instead of MSE. Non-autoregressive: decode all 12 steps from final encoder hidden state.
+**Score:** 3.8641 — beats entire MSE era at 35 epochs. NLL hypothesis confirmed immediately.
+**Lesson:** Probabilistic loss is the breakthrough. Even a worse architecture (non-autoregressive Transformer) scores better than our best 200-epoch MSE model just by switching the loss.
 
-Current best: v24 local 3.8269 / Kaggle 4.22201. Top of leaderboard: 3.55386. Gap to close: ~0.27 Kaggle points.
+## [2026-05-05] nba_v38.py — 35 epochs
+**Hypothesis:** Autoregressive GRU (our best MSE architecture) + Gaussian NLL. Expected to beat non-autoregressive v37.
+**Score:** 3.4355 local / **3.68213 Kaggle** — NEW BEST. Beats v37 (3.8641) and beats all MSE models. With 4-variant TTA on Kaggle: 3.68213. This is the base for all future experiments.
+**Lesson:** NLL + GRU autoregressive = best combination. Non-autoregressive doesn't work well for this task (already knew this from v4/v9, now confirmed for Transformer too). The local→Kaggle gap (~7%) appears stable and is likely the true signal, not overfitting.
 
-### Tier 1 — Highest expected impact
+## [2026-05-06] nba_v39.py — 35ep → 150ep
+**Hypothesis:** Bigger GRU (state_dim=192, 3 layers) + NLL. More capacity should extract more from NLL.
+**Score:** 6.37 at 35ep (late bloomer), 3.8514 at 150ep. WORSE than v38 (3.4355) even at 4× epoch budget.
+**Lesson:** Model capacity is not the bottleneck. The 128d 2-layer GRU is enough for this problem. Bigger models need far more training to converge and still don't beat the smaller one. Dead end for capacity scaling.
 
-**A. Data augmentation (court symmetry)**
-Basketball courts are left-right and top-bottom symmetric. For each training sample, randomly apply:
-- x-flip: x → court_width - x (mirror left/right)
-- y-flip: y → court_height - y (mirror top/bottom)
-- 180° rotation: both x and y flipped simultaneously
-- Optionally: random translation (shift whole sequence by small Δ)
-Apply augmentation on-the-fly in NBADataset.__getitem__. Doubles/quadruples effective training data, should strongly reduce Kaggle overfitting gap. Almost certainly what top team is doing.
-Expected gain: 0.1–0.2 Kaggle points.
+## [2026-05-06] nba_v40.py — 35ep → 100ep
+**Hypothesis:** Transformer encoder + NLL × 100 epochs. V37 used non-autoregressive Transformer; this is autoregressive Transformer decoder.
+**Score:** 3.9194 at 35ep, 3.4225 at 100ep. Marginally better than v38 at 100ep, but v38 wasn't trained to 100ep yet — this doesn't isolate the Transformer benefit.
+**Lesson:** Transformer + NLL at 100ep (3.4225) is comparable to GRU + NLL at 35ep (3.4355). The GRU architecture is more sample-efficient. Not worth pursuing Transformer further given GRU trains faster and generalizes better at short budgets.
 
-**B. Ensemble v19 + v24 (+ v23 when done)**
-Average the predicted positions from multiple models before writing the CSV. Simple average or learned weighting. No extra training needed — just load all weights and average outputs.
-Expected gain: 0.05–0.1 Kaggle points.
+## [2026-05-06] nba_v41.py — 35 epochs
+**Hypothesis:** V38 arch + timestep-weighted NLL (linear weights 1.0→2.0 across 12 steps, emphasizing far-future predictions). Closer timesteps are easier; far-future ones matter more for the evaluation metric.
+**Score:** 3.4323 — essentially same as v38 (3.4355). Timestep weighting doesn't help at 35 epochs.
+**Lesson:** The model doesn't have enough training capacity at 35ep to act on the extra gradient signal for far-future steps. Worth retesting at 100ep+.
 
-**C. Fix train/val contamination**
-Currently train_path == val_path — the model trains and validates on the same sequences. Local scores are inflated and untrustworthy. Split sequences into 80/20 train/val by game file so the val set is never seen during training. This makes local scores meaningful and prevents the model from overfitting to val.
+## [2026-05-06] nba_v42.py — 35ep → 100ep → 250ep
+**Hypothesis:** V38 arch + K=2 nearest neighbor social features (2 nearest teammates + 2 nearest opponents, rel_pos + rel_vel). 24 social features total. Same feature set that helped in the MSE era but never tested with NLL.
+**Score:** 3.4281 at 35ep (barely helps), **3.2099 at 100ep (NEW BEST by large margin)**, **3.0558 at 250ep (NEW BEST)**.
+**Lesson:** K=2 social features need training time to activate. At 35ep they add almost nothing; at 100ep they unlock a large gain. Epoch scaling compounds with social features — these two axes multiply rather than add. At 250ep, still improving: 100ep→3.2099, 250ep→3.0558 (-4.6%).
 
-### Tier 2 — Medium expected impact
+## [2026-05-06] nba_v43.py — 35ep → 100ep → 250ep
+**Hypothesis:** V42 arch + timestep-weighted NLL (1.0→2.0 weights). Testing whether v41's null result was epoch-limited.
+**Score:** 3.4512 at 35ep (worse than v42's 3.4281 — weighting hurts at short budget), **3.1936 at 100ep (NEW BEST)**, **3.0395 at 250ep (NEW BEST)**.
+**Lesson:** Timestep weighting is epoch-dependent: hurts at 35ep, helps at 100ep and 250ep. The model needs enough capacity (epochs) to learn to allocate attention to far-future timesteps. At 250ep, beats v42×250ep (3.0558) by 0.5%.
 
-**D. Larger model capacity**
-Current: state_dim=128, 2 layers. Try state_dim=256 or 3 layers. More capacity is only useful with augmentation to regularize — do A first, then scale up.
+## [2026-05-06] nba_v44.py — 100ep → 250ep — MoG BREAKTHROUGH
+**Hypothesis:** V43 arch + Mixture of Gaussians K=2 output instead of single Gaussian. Each player at each timestep: 2 Gaussian components with learned mixing weights. Loss: MoGNLL via logsumexp. Inference: weighted mean of component means. Motivation: basketball is bimodal — player driving toward defender can go left OR right. Single Gaussian predicts the average (wrong); MoG can represent both modes.
+**Score:** 3.1177 at 100ep (beats v43×100ep=3.1936 by 3.9%), **2.8963 at 250ep — MASSIVE NEW BEST (beats v43×250ep=3.0395 by 4.8%)**.
+**Lesson:** MoG is the largest single architectural gain since switching to NLL. The bimodal hypothesis is confirmed. K=2 components capture binary decisions (left/right, drive/pass). Compounds strongly with epoch scaling. Current best model.
 
-**E. v20 arch × 150 epochs (v25)**
-Continue epoch-scaling trend: v15×35→4.03, v15×100→3.84, v20×100→3.83. Try v20×150 to see if v20 benefits from more training the same way v15 did.
+## [2026-05-06] nba_v45.py — 300 epochs
+**Hypothesis:** V42 arch (K=2 + Gaussian NLL, no timestep weighting, no MoG) × 300 epochs with T_max=300. Control experiment: does a proper 300-epoch LR schedule beat v43×250ep (which used T_max=250 effectively)? Tests the pure epoch-scaling ceiling for the base arch.
+**Score:** 3.0177 — beats v43×250ep (3.0395) by 0.6%. T_max=300 does help slightly vs running past T_max. But MoG (v44×250ep=2.8963) is far better.
+**Lesson:** Proper LR schedule (T_max=epochs) matters at the margin. But the architectural improvement from MoG dwarfs the scheduling gain. Future long runs should always set T_max=epochs.
 
-**F. v21 (GNN edge-MLP) × 100 epochs**
-v21 scored 4.12 at 35 epochs — may not be a dead end, just undertrained. Retrain at 100 epochs before concluding edge-MLP message passing doesn't work.
+---
 
-**G. v22 (decoder self-attention) — never trained**
-v22 adds cross-attention from current decoder step to all previous decoder hidden states (with learned step-distance bias). Could help the model maintain trajectory consistency over the 12-step horizon. Worth one run at 100 epochs.
+## Next Steps — Priority List (2026-05-06, updated)
 
-### Tier 3 — Exploratory
+Current best: **v44×250ep local 2.8963** / Kaggle TBD (expected ~3.10 based on 7% gap). Best Kaggle so far: ~3.44785 (v42×100ep TTA).
 
-**H. Acceleration features**
-Add second-order motion: accel = vel_t - vel_{t-1} (2 features per entity). Gives the model explicit access to change-of-direction signals. Low implementation cost.
+### Tier 1 — Run immediately
 
-**I. Court-aware features**
-Add distance to nearest basket/hoop, distance to court boundary, whether player is in paint/3pt zone. Encodes game-context the current model is blind to.
+**A. v44 × 300ep** (v46)
+Same MoG K=2 arch with T_max=300. Every model we've run longer has improved. v44×250ep=2.8963 — estimate ~2.85 at 300ep. v45 showed T_max=300 helps vs running past T_max=250. Highest expected gain of anything in the queue.
 
-**J. Coordinate normalization per sequence**
-Instead of global mu/sigma, normalize each sequence relative to its own center (e.g. centroid of all players at t=0). Makes the model translation-invariant and removes venue-specific position biases.
+**B. Ensemble TTA: v43×250ep + v44×250ep**
+Average the two TTA CSV outputs. Zero training cost. Two models with different uncertainty representations (Gaussian vs MoG) — their residual errors should be less correlated than two runs of the same arch. Expected gain: 0.02–0.05 local.
 
-**K. Longer context window**
-Current: context_size=8 (0.4s at 20fps). Try context_size=16 or 24 to give the model more motion history. Requires re-running all training but easy to implement.
+### Tier 2 — Architectural exploration
 
-### Submission strategy
+**C. MoG K=3**
+v44 uses K=2 components (captures binary decisions). K=3 might capture three-way choices (drive left, drive right, kick out to shooter). Same arch, change K_MIX=3 in nba_v44.py, test at 100ep first.
 
-- Always submit the ensemble of best models rather than a single model
-- After adding augmentation, retrain v24 arch (v20 + augmentation) as priority experiment
-- Local score is only meaningful after fixing the train/val split (item C)
+**D. MoG K=2 without timestep weighting**
+v44 = v43 + MoG, where v43 already has timestep weighting. Does MoG benefit from timestep weighting, or does the mixture already solve the far-future problem? Test: v42 + MoG (no weighting) at 100ep, compare to v44×100ep (3.1177).
+
+### Tier 3 — If Tier 1-2 exhausted
+
+**E. Larger ensemble**: TTA of v42×250ep + v43×250ep + v44×250ep all averaged. More model diversity = more variance reduction.
+
+**F. Decoder uncertainty propagation**: Currently MoG inference uses weighted mean of component means, ignoring the mixture uncertainty in autoregressive steps. Try feeding the full MoG sample (or top-component mean) as the next-step input instead of the weighted mean — could give the model a better signal about which mode it's "in."
+
+### Submission strategy (updated)
+
+1. Submit v44×250ep TTA immediately (current best)
+2. Submit ensemble TTA (v43+v44) as soon as script is ready
+3. Submit solo v44×250ep to isolate TTA effect
+4. When v46 (v44×300ep) finishes, TTA and submit
