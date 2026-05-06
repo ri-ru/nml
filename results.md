@@ -27,6 +27,7 @@
 | 2026-05-02 16:55 | nba_v22 | 4.3494 | — | Decoder self-attention over previous decode steps (cross-attend h_d1..h_{t-1}) on v20 features — dead end; GRU hidden state already captures trajectory history implicitly |
 | 2026-05-02 13:30 | **nba_v23** | **3.7724** | — | **v15 arch (K=2 social + ball-rel) × 150 epochs, CosineAnnealingLR(T_max=150), lr=1e-3 — 150ep beats 100ep (3.8371); epoch scaling still improving; NEW BEST** |
 | 2026-05-02 13:10 | **nba_v24** | **3.8269** | — | **v20 arch (K=1 hard + soft global social attention, learned temperature) × 100 epochs, CosineAnnealingLR(T_max=100), lr=1e-3 — soft global attention beats v15 hard K=2 at same epoch budget; NEW BEST** |
+| — | nba_v25 | — | — | DOES NOT EXIST — numbering gap; development went v24 → v26, v25 was never created |
 | 2026-05-02 17:25 | **nba_v26** | **3.7932** | — | **v24 arch + court symmetry augmentation (x-flip p=0.5, y-flip p=0.5) × 100 epochs — beats v24 (3.8269) by 0.9% at same epoch count; augmentation helps** |
 | 2026-05-02 17:25 | nba_v27 | 6.9413 | — | v24 arch scaled to state_dim=256, 3 layers × 35 epochs — dead end at 35ep; large model stuck at loss~0.55 for 17 epochs (late bloomer), only 17 useful learning epochs; needs 100+ epochs |
 | 2026-05-02 17:45 | nba_v28 | 4.0908 | — | v24 arch + acceleration features (accel=vel_t-vel_{t-1}, 2 extra features) × 35 epochs — no gain; GRU implicitly differentiates velocity, explicit accel redundant |
@@ -36,8 +37,8 @@
 | 2026-05-02 23:41 | nba_v32 | 4.8190 | — | v26 arch + dropout(p=0.15) × 150 epochs — DEAD END: dropout corrupts GRU hidden state for autoregressive rollout; val_loss stayed ~0.020 vs 0.016 without dropout; 29% regression |
 | 2026-05-02 23:45 | nba_v33 | 3.7471 | — | v26 arch × 250 epochs — epoch scaling plateau (200ep→3.7319, 250ep→3.7471, got worse) |
 | 2026-05-02 23:45 | nba_v34 | — | — | v26 arch × 200 epochs + EMA — superseded by NLL breakthrough, never evaluated |
-| 2026-05-05 | nba_v35 | — | — | experiment file exists, never run |
-| 2026-05-05 | nba_v36 | — | — | experiment file exists, never run |
+| 2026-05-05 | nba_v35 | — | — | OBSOLETE — pre-NLL MSE model: scale v26 arch (state_dim=192, 3L, 300ep); even at full training can't beat v38 NLL (3.4355); late bloomer would score ~6+ at 35ep — never run, never will |
+| 2026-05-05 | nba_v36 | — | — | OBSOLETE — pre-NLL MSE model: v26 arch + timestep-weighted MSE loss; NLL equivalent is v41 (3.4323) which already beats all MSE models; never run, never will |
 | 2026-05-05 20:24 | nba_v37 | 3.8641 | — | Non-autoregressive Transformer + NLL × 35ep |
 | 2026-05-05 20:55 | nba_v38 | 3.4355 | **3.68213** | GRU + Gaussian NLL × 35ep — breakthrough; solo TTA is best Kaggle submission |
 | 2026-05-05 21:36 | nba_v39 | 6.3680 | — | Bigger GRU (192d,3L) + NLL × 35ep — late bloomer; running ×150ep now |
