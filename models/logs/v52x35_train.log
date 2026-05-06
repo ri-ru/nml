@@ -1,0 +1,108 @@
+Epoch 1/35
+    train loss: 4.6785
+    val loss: 0.4251
+Epoch 2/35
+    train loss: 3.6735
+    val loss: 0.0994
+Epoch 3/35
+    train loss: 2.5931
+    val loss: 0.0337
+Epoch 4/35
+    train loss: 2.1108
+    val loss: 0.0432
+Epoch 5/35
+    train loss: 1.8650
+    val loss: 0.0247
+Epoch 6/35
+    train loss: 1.6761
+    val loss: 0.0217
+Epoch 7/35
+    train loss: 1.5873
+    val loss: 0.0192
+Epoch 8/35
+    train loss: 1.5069
+    val loss: 0.0203
+Epoch 9/35
+    train loss: 1.4511
+    val loss: 0.0189
+Epoch 10/35
+    train loss: 1.4233
+    val loss: 0.0216
+Epoch 11/35
+    train loss: 1.4037
+    val loss: 0.0186
+Epoch 12/35
+    train loss: 1.3758
+    val loss: 0.0184
+Epoch 13/35
+    train loss: 1.3509
+    val loss: 0.0187
+Epoch 14/35
+    train loss: 1.3400
+    val loss: 0.0175
+Epoch 15/35
+    train loss: 1.3213
+    val loss: 0.0170
+Epoch 16/35
+    train loss: 1.3127
+    val loss: 0.0183
+Epoch 17/35
+    train loss: 1.2937
+    val loss: 0.0173
+Epoch 18/35
+    train loss: 1.2918
+    val loss: 0.0174
+Epoch 19/35
+    train loss: 1.2719
+    val loss: 0.0171
+Epoch 20/35
+    train loss: 1.2648
+    val loss: 0.0177
+Epoch 21/35
+    train loss: 1.2458
+    val loss: 0.0171
+Epoch 22/35
+    train loss: 1.2396
+    val loss: 0.0171
+Epoch 23/35
+    train loss: 1.2363
+    val loss: 0.0175
+Epoch 24/35
+    train loss: 1.2263
+    val loss: 0.0165
+Epoch 25/35
+    train loss: 1.2194
+    val loss: 0.0165
+Epoch 26/35
+    train loss: 1.2069
+    val loss: 0.0165
+Epoch 27/35
+    train loss: 1.2007
+    val loss: 0.0165
+Epoch 28/35
+    train loss: 1.2039
+    val loss: 0.0166
+Epoch 29/35
+    train loss: 1.1881
+    val loss: 0.0173
+Epoch 30/35
+    train loss: 1.1883
+    val loss: 0.0160
+Epoch 31/35
+    train loss: 1.1801
+    val loss: 0.0186
+Epoch 32/35
+    train loss: 1.1798
+    val loss: 0.0161
+Epoch 33/35
+    train loss: 1.1773
+    val loss: 0.0160
+Epoch 34/35
+    train loss: 1.1759
+    val loss: 0.0177
+Epoch 35/35
+    train loss: 1.1729
+    val loss: 0.0156
+Saved tagged weights: C:\Users\jan\Downloads\nml_project_proposal\nml_project_proposal\models\weights\model_v52_35ep.pth
+nba_v52: 3.8710
+AGENT_SCORE:3.8710
