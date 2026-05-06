@@ -28,12 +28,15 @@ def run(model_path: str, epochs: int = 30, batch_size: int = 32) -> float:
     )
     trainer.train()
 
-    # Save a epoch-tagged copy so reruns don't overwrite previous checkpoints
+    # Save epoch-tagged copy — never overwrites previous checkpoints
     import torch
     weights_dir = path.parent / 'weights'
     weights_dir.mkdir(parents=True, exist_ok=True)
-    tagged_path = weights_dir / f'{path.stem}_{epochs}ep.pth'
+    # e.g. models/weights/model_v43_250ep.pth
+    version = path.stem.replace('nba_', '')  # nba_v43 -> v43
+    tagged_path = weights_dir / f'model_{version}_{epochs}ep.pth'
     torch.save(trainer.model.state_dict(), tagged_path)
+    print(f"Saved tagged weights: {tagged_path}")
 
     val_dl = make_val_dl(trainer)
     score = evaluate_model(
