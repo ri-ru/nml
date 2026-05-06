@@ -58,4 +58,6 @@
 | 2026-05-06 | nba_v47 | 3.1210 | : | MoG K=3 on v43 arch × 100ep : 3.1210 vs K=2 (3.1177) — K=3 slightly worse than K=2 at 100ep; not worth scaling |
 | 2026-05-06 | nba_v49 | 3.2040 | : | Goal-conditioned (endpoint-first) × 100ep : 3.2040 vs v44×100ep (3.1177) — worse than MoG at same budget; inductive bias helps but not enough to beat mixture output |
 | 2026-05-06 | nba_v48 | 7.0267 | : | CVAE (Trajectron++-style latent z) × 100ep : 7.03 — dead end at 100ep; prior not converged, inference sampling from p(z|ctx) generates noisy trajectories; would need many more epochs |
-| 2026-05-06 21:29 | nba_v50 | 4.0531 | agent loop (35 epochs) |
+| 2026-05-06 | nba_v50 | 4.0531 | : | Space-Time Transformer (88 tokens, full cross-time attn) × 35ep : late bloomer likely; worse than GRU NLL at 35ep (3.4355); worth 100ep to confirm |
+| 2026-05-06 | nba_v51 | 14.4528 | : | Diffusion DDPM (T=100, cosine schedule) × 35ep : expected failure; denoiser not converged at 35ep, needs many more epochs |
+| 2026-05-06 | **nba_v46** | **2.8628** | : | **MoG K=2 on v43 arch × 300ep T_max=300 : NEW BEST; 300ep beats 250ep (2.8963) by 1.2%; same MoG arch, epoch scaling still helping** |
