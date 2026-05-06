@@ -1,0 +1,352 @@
+Epoch 1/35
+    train loss: 0.1755
+    val loss: 0.0917
+Epoch 2/35
+    train loss: 0.0761
+    val loss: 0.0675
+Epoch 3/35
+    train loss: 0.0556
+    val loss: 0.0515
+Epoch 4/35
+    train loss: 0.0492
+    val loss: 0.0470
+Epoch 5/35
+    train loss: 0.0421
+    val loss: 0.0394
+Epoch 6/35
+    train loss: 0.0402
+    val loss: 0.0359
+Epoch 7/35
+    train loss: 0.0355
+    val loss: 0.0357
+Epoch 8/35
+    train loss: 0.0318
+    val loss: 0.0273
+Epoch 9/35
+    train loss: 0.0277
+    val loss: 0.0271
+Epoch 10/35
+    train loss: 0.0254
+    val loss: 0.0228
+Epoch 11/35
+    train loss: 0.0240
+    val loss: 0.0238
+Epoch 12/35
+    train loss: 0.0226
+    val loss: 0.0226
+Epoch 13/35
+    train loss: 0.0225
+    val loss: 0.0242
+Epoch 14/35
+    train loss: 0.0220
+    val loss: 0.0212
+Epoch 15/35
+    train loss: 0.0211
+    val loss: 0.0230
+Epoch 16/35
+    train loss: 0.0205
+    val loss: 0.0217
+Epoch 17/35
+    train loss: 0.0208
+    val loss: 0.0202
+Epoch 18/35
+    train loss: 0.0200
+    val loss: 0.0240
+Epoch 19/35
+    train loss: 0.0200
+    val loss: 0.0196
+Epoch 20/35
+    train loss: 0.0195
+    val loss: 0.0198
+Epoch 21/35
+    train loss: 0.0196
+    val loss: 0.0190
+Epoch 22/35
+    train loss: 0.0188
+    val loss: 0.0191
+Epoch 23/35
+    train loss: 0.0192
+    val loss: 0.0185
+Epoch 24/35
+    train loss: 0.0183
+    val loss: 0.0195
+Epoch 25/35
+    train loss: 0.0184
+    val loss: 0.0183
+Epoch 26/35
+    train loss: 0.0179
+    val loss: 0.0179
+Epoch 27/35
+    train loss: 0.0180
+    val loss: 0.0182
+Epoch 28/35
+    train loss: 0.0179
+    val loss: 0.0177
+Epoch 29/35
+    train loss: 0.0180
+    val loss: 0.0174
+Epoch 30/35
+    train loss: 0.0177
+    val loss: 0.0179
+Epoch 31/35
+    train loss: 0.0173
+    val loss: 0.0176
+Epoch 32/35
+    train loss: 0.0175
+    val loss: 0.0172
+Epoch 33/35
+    train loss: 0.0173
+    val loss: 0.0172
+Epoch 34/35
+    train loss: 0.0173
+    val loss: 0.0175
+Epoch 35/35
+    train loss: 0.0174
+    val loss: 0.0172
+nba_v22: 4.3494
+AGENT_SCORE:4.3494
+Epoch 1/35
+    train loss: 0.6016
+    val loss: 0.5721
+Epoch 2/35
+    train loss: 0.5609
+    val loss: 0.5467
+Epoch 3/35
+    train loss: 0.5587
+    val loss: 0.5961
+Epoch 4/35
+    train loss: 0.5636
+    val loss: 0.5495
+Epoch 5/35
+    train loss: 0.5495
+    val loss: 0.5529
+Epoch 6/35
+    train loss: 0.5538
+    val loss: 0.5529
+Epoch 7/35
+    train loss: 0.5970
+    val loss: 0.5660
+Epoch 8/35
+    train loss: 0.5609
+    val loss: 0.5636
+Epoch 9/35
+    train loss: 0.5720
+    val loss: 0.5995
+Epoch 10/35
+    train loss: 0.5977
+    val loss: 0.5647
+Epoch 11/35
+    train loss: 0.5588
+    val loss: 0.5587
+Epoch 12/35
+    train loss: 0.5592
+    val loss: 0.5858
+Epoch 13/35
+    train loss: 0.5866
+    val loss: 0.5894
+Epoch 14/35
+    train loss: 0.5718
+    val loss: 0.5690
+Epoch 15/35
+    train loss: 0.5699
+    val loss: 0.5608
+Epoch 16/35
+    train loss: 0.5563
+    val loss: 0.5550
+Epoch 17/35
+    train loss: 0.5576
+    val loss: 0.5310
+Epoch 18/35
+    train loss: 0.4101
+    val loss: 0.2422
+Epoch 19/35
+    train loss: 0.1316
+    val loss: 0.1044
+Epoch 20/35
+    train loss: 0.0713
+    val loss: 0.0608
+Epoch 21/35
+    train loss: 0.0509
+    val loss: 0.0535
+Epoch 22/35
+    train loss: 0.0420
+    val loss: 0.0415
+Epoch 23/35
+    train loss: 0.0370
+    val loss: 0.0336
+Epoch 24/35
+    train loss: 0.0324
+    val loss: 0.0320
+Epoch 25/35
+    train loss: 0.0314
+    val loss: 0.0307
+Epoch 26/35
+    train loss: 0.0292
+    val loss: 0.0310
+Epoch 27/35
+    train loss: 0.0283
+    val loss: 0.0274
+Epoch 28/35
+    train loss: 0.0270
+    val loss: 0.0258
+Epoch 29/35
+    train loss: 0.0267
+    val loss: 0.0263
+Epoch 30/35
+    train loss: 0.0256
+    val loss: 0.0258
+Epoch 31/35
+    train loss: 0.0252
+    val loss: 0.0253
+Epoch 32/35
+    train loss: 0.0249
+    val loss: 0.0244
+Epoch 33/35
+    train loss: 0.0245
+    val loss: 0.0244
+Epoch 34/35
+    train loss: 0.0245
+    val loss: 0.0248
+Epoch 35/35
+    train loss: 0.0245
+    val loss: 0.0246
+nba_v27: 6.9413
+AGENT_SCORE:6.9413
+Epoch 1/35
+    train loss: 0.1787
+    val loss: 0.0821
+Epoch 2/35
+    train loss: 0.0623
+    val loss: 0.0454
+Epoch 3/35
+    train loss: 0.0408
+    val loss: 0.0368
+Epoch 4/35
+    train loss: 0.0341
+    val loss: 0.0323
+Epoch 5/35
+    train loss: 0.0279
+    val loss: 0.0342
+Epoch 6/35
+    train loss: 0.0257
+    val loss: 0.0251
+Epoch 7/35
+    train loss: 0.0240
+    val loss: 0.0230
+Epoch 8/35
+    train loss: 0.0222
+    val loss: 0.0222
+Epoch 9/35
+    train loss: 0.0217
+    val loss: 0.0226
+Epoch 10/35
+    train loss: 0.0215
+    val loss: 0.0222
+Epoch 11/35
+    train loss: 0.0207
+    val loss: 0.0238
+Epoch 12/35
+    train loss: 0.0203
+    val loss: 0.0221
+Epoch 13/35
+    train loss: 0.0203
+    val loss: 0.0216
+Epoch 14/35
+    train loss: 0.0202
+    val loss: 0.0214
+Epoch 15/35
+    train loss: 0.0201
+    val loss: 0.0198
+Epoch 16/35
+    train loss: 0.0193
+    val loss: 0.0243
+Epoch 17/35
+    train loss: 0.0200
+    val loss: 0.0193
+Epoch 18/35
+    train loss: 0.0194
+    val loss: 0.0229
+Epoch 19/35
+    train loss: 0.0196
+    val loss: 0.0194
+Epoch 20/35
+    train loss: 0.0190
+    val loss: 0.0201
+Epoch 21/35
+    train loss: 0.0193
+    val loss: 0.0183
+Epoch 22/35
+    train loss: 0.0183
+    val loss: 0.0182
+Epoch 23/35
+    train loss: 0.0187
+    val loss: 0.0186
+Epoch 24/35
+    train loss: 0.0178
+    val loss: 0.0189
+Epoch 25/35
+    train loss: 0.0180
+    val loss: 0.0186
+Epoch 26/35
+    train loss: 0.0177
+    val loss: 0.0177
+Epoch 27/35
+    train loss: 0.0177
+    val loss: 0.0180
+Epoch 28/35
+    train loss: 0.0176
+    val loss: 0.0174
+Epoch 29/35
+    train loss: 0.0178
+    val loss: 0.0175
+Epoch 30/35
+    train loss: 0.0174
+    val loss: 0.0176
+Epoch 31/35
+    train loss: 0.0170
+    val loss: 0.0173
+Epoch 32/35
+    train loss: 0.0173
+    val loss: 0.0170
+Epoch 33/35
+    train loss: 0.0171
+    val loss: 0.0168
+Epoch 34/35
+    train loss: 0.0171
+    val loss: 0.0173
+Epoch 35/35
+    train loss: 0.0171
+    val loss: 0.0170
+nba_v28: 4.0908
+AGENT_SCORE:4.0908
+Epoch 1/35
+
+============================================================
+STARTING: nba_v22.py (35 epochs)
+============================================================
+
+
+DONE: nba_v22.py — exit code 0
+
+============================================================
+STARTING: nba_v27.py (35 epochs)
+============================================================
+
+
+DONE: nba_v27.py — exit code 0
+
+============================================================
+STARTING: nba_v28.py (35 epochs)
+============================================================
+
+
+DONE: nba_v28.py — exit code 0
+
+============================================================
+STARTING: nba_v29.py (35 epochs)
+============================================================
+
+
+DONE: nba_v29.py — exit code 1
+
+All exploration runs complete.

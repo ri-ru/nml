@@ -1,25 +1,13 @@
 # Python
 __pycache__/
 *.py[cod]
-*.pth
 *.onnx
-
-# Data and weights (large files)
-models/weights/
-models/solutions/
-wandb/
-data/
-*.csv
 
 # Virtual environment
 .venv/
 
 # Jupyter checkpoints
 .ipynb_checkpoints/
-*.ipynb
-
-# Logs
-*.log
 
 # OS
 .DS_Store

@@ -1,0 +1,19 @@
+{"time":"2026-05-01T11:43:37.6944615+02:00","level":"INFO","msg":"wandb-core"}
+{"time":"2026-05-01T11:43:37.6949619+02:00","level":"INFO","msg":"stream: starting","core version":"0.26.1"}
+{"time":"2026-05-01T11:43:38.2979715+02:00","level":"INFO","msg":"stream: created new stream","id":"w8rk1fae"}
+{"time":"2026-05-01T11:43:38.2979715+02:00","level":"INFO","msg":"handler: started"}
+{"time":"2026-05-01T11:43:38.2984714+02:00","level":"INFO","msg":"stream: started"}
+{"time":"2026-05-01T11:43:38.2984714+02:00","level":"INFO","msg":"sender: started"}
+{"time":"2026-05-01T11:43:38.2984714+02:00","level":"INFO","msg":"writer: started","stream_id":"w8rk1fae"}
+{"time":"2026-05-01T11:43:42.4398933+02:00","level":"INFO","msg":"filestream: sending request","total_files":1}
+{"time":"2026-05-01T11:43:42.8274634+02:00","level":"INFO","msg":"filestream: request sent","status":"200 OK"}
+{"time":"2026-05-01T11:43:57.4401258+02:00","level":"INFO","msg":"filestream: sending request","total_files":2,"history_offset":0,"history_lines":8,"uploaded_len":1}
+{"time":"2026-05-01T11:43:57.8926838+02:00","level":"INFO","msg":"filestream: request sent","status":"200 OK"}
+{"time":"2026-05-01T11:44:12.4402579+02:00","level":"INFO","msg":"filestream: sending request","total_files":2,"history_offset":8,"history_lines":7}
+{"time":"2026-05-01T11:44:12.7934871+02:00","level":"INFO","msg":"filestream: request sent","status":"200 OK"}
+{"time":"2026-05-01T11:44:27.439942+02:00","level":"INFO","msg":"filestream: sending request","total_files":2,"history_offset":15,"history_lines":7}
+{"time":"2026-05-01T11:44:27.9495071+02:00","level":"INFO","msg":"filestream: request sent","status":"200 OK"}
+{"time":"2026-05-01T11:44:42.4402827+02:00","level":"INFO","msg":"filestream: sending request","total_files":2,"history_offset":22,"history_lines":7}
+{"time":"2026-05-01T11:44:42.8564817+02:00","level":"INFO","msg":"filestream: request sent","status":"200 OK"}
+{"time":"2026-05-01T11:44:57.4400327+02:00","level":"INFO","msg":"filestream: sending request","total_files":2,"history_offset":29,"history_lines":7}
+{"time":"2026-05-01T11:44:57.6832048+02:00","level":"INFO","msg":"filestream: request sent","status":"200 OK"}

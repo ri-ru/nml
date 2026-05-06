@@ -1,0 +1,30 @@
+2026-05-01 11:54:57,557 INFO    Thread-12 (_run_job):19216 [wandb_setup.py:_flush():81] Current SDK version is 0.26.1
+2026-05-01 11:54:57,557 INFO    Thread-12 (_run_job):19216 [wandb_setup.py:_flush():81] Configure stats pid to 19216
+2026-05-01 11:54:57,557 INFO    Thread-12 (_run_job):19216 [wandb_setup.py:_flush():81] Loading settings from environment variables
+2026-05-01 11:54:57,557 INFO    Thread-12 (_run_job):19216 [wandb_init.py:setup_run_log_directory():723] Logging user logs to c:\Users\jan\Downloads\nml_project_proposal\nml_project_proposal\wandb\run-20260501_115457-iqh5ivbe\logs\debug.log
+2026-05-01 11:54:57,558 INFO    Thread-12 (_run_job):19216 [wandb_init.py:setup_run_log_directory():724] Logging internal logs to c:\Users\jan\Downloads\nml_project_proposal\nml_project_proposal\wandb\run-20260501_115457-iqh5ivbe\logs\debug-internal.log
+2026-05-01 11:54:57,558 INFO    Thread-12 (_run_job):19216 [wandb_init.py:monkeypatch_ipython():642] configuring jupyter hooks <wandb.sdk.wandb_init._WandbInit object at 0x000001E399288E10>
+2026-05-01 11:54:57,558 INFO    Thread-12 (_run_job):19216 [wandb_init.py:init():850] calling init triggers
+2026-05-01 11:54:57,558 INFO    Thread-12 (_run_job):19216 [wandb_init.py:init():855] wandb.init called with sweep_config: {'batch_size': 64, 'epochs': 100}
+config: {'_wandb': {}}
+2026-05-01 11:54:57,558 INFO    Thread-12 (_run_job):19216 [wandb_init.py:init():898] starting backend
+2026-05-01 11:54:59,853 INFO    Thread-12 (_run_job):19216 [wandb_init.py:init():913] sending inform_init request
+2026-05-01 11:55:00,129 INFO    Thread-12 (_run_job):19216 [wandb_init.py:init():918] backend started and connected
+2026-05-01 11:55:00,129 INFO    Thread-12 (_run_job):19216 [wandb_run.py:_config_callback():1415] config_cb None None {'batch_size': 64, 'epochs': 100}
+2026-05-01 11:55:00,130 INFO    Thread-12 (_run_job):19216 [wandb_run.py:_label_probe_notebook():1345] probe notebook
+2026-05-01 11:55:00,130 INFO    Thread-12 (_run_job):19216 [wandb_run.py:_label_probe_notebook():1355] Unable to probe notebook: 'charmap' codec can't decode byte 0x81 in position 37860: character maps to <undefined>
+2026-05-01 11:55:00,130 INFO    Thread-12 (_run_job):19216 [wandb_init.py:init():988] updated telemetry
+2026-05-01 11:55:00,132 INFO    Thread-12 (_run_job):19216 [wandb_init.py:init():1011] communicating run to backend with 90.0 second timeout
+2026-05-01 11:55:00,534 INFO    Thread-12 (_run_job):19216 [wandb_init.py:init():1056] starting run threads in backend
+2026-05-01 11:55:00,572 INFO    Thread-12 (_run_job):19216 [wandb_run.py:_console_start():2554] atexit reg
+2026-05-01 11:55:00,572 INFO    Thread-12 (_run_job):19216 [wandb_run.py:_redirect():2403] redirect: wrap_raw
+2026-05-01 11:55:00,572 INFO    Thread-12 (_run_job):19216 [wandb_run.py:_redirect():2472] Wrapping output streams.
+2026-05-01 11:55:00,572 INFO    Thread-12 (_run_job):19216 [wandb_run.py:_redirect():2495] Redirects installed.
+2026-05-01 11:55:00,573 INFO    Thread-12 (_run_job):19216 [wandb_init.py:init():1094] run started, returning control to user process
+2026-05-01 12:11:03,114 INFO    Thread-12 (_run_job):19216 [wandb_run.py:_finish():2321] finishing run ri-ru-epfl/NML_v2/iqh5ivbe
+2026-05-01 12:11:03,115 INFO    Thread-12 (_run_job):19216 [jupyter.py:save_ipynb():362] not saving jupyter notebook
+2026-05-01 12:11:03,115 INFO    Thread-12 (_run_job):19216 [wandb_init.py:_jupyter_teardown():627] cleaning up jupyter logic
+2026-05-01 12:11:03,115 INFO    Thread-12 (_run_job):19216 [wandb_run.py:_atexit_cleanup():2520] got exitcode: 0
+2026-05-01 12:11:03,116 INFO    Thread-12 (_run_job):19216 [wandb_run.py:_restore():2502] restore
+2026-05-01 12:11:03,116 INFO    Thread-12 (_run_job):19216 [wandb_run.py:_restore():2508] restore done
+2026-05-01 12:11:05,186 INFO    Thread-12 (_run_job):19216 [wandb_run.py:_footer_sync_info():3889] logging synced files

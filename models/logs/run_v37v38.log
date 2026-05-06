@@ -1,0 +1,219 @@
+=== Starting nba_v37.py (35 epochs) ===
+Epoch 1/35
+    train loss: 0.1184
+    val loss: 0.0420
+Epoch 2/35
+    train loss: 0.0391
+    val loss: 0.0389
+Epoch 3/35
+    train loss: 0.0335
+    val loss: 0.0268
+Epoch 4/35
+    train loss: 0.0272
+    val loss: 0.0291
+Epoch 5/35
+    train loss: 0.0236
+    val loss: 0.0218
+Epoch 6/35
+    train loss: 0.0222
+    val loss: 0.0206
+Epoch 7/35
+    train loss: 0.0221
+    val loss: 0.0201
+Epoch 8/35
+    train loss: 0.0203
+    val loss: 0.0207
+Epoch 9/35
+    train loss: 0.0204
+    val loss: 0.0204
+Epoch 10/35
+    train loss: 0.0205
+    val loss: 0.0233
+Epoch 11/35
+    train loss: 0.0199
+    val loss: 0.0197
+Epoch 12/35
+    train loss: 0.0200
+    val loss: 0.0202
+Epoch 13/35
+    train loss: 0.0199
+    val loss: 0.0206
+Epoch 14/35
+    train loss: 0.0194
+    val loss: 0.0193
+Epoch 15/35
+    train loss: 0.0195
+    val loss: 0.0187
+Epoch 16/35
+    train loss: 0.0188
+    val loss: 0.0215
+Epoch 17/35
+    train loss: 0.0184
+    val loss: 0.0179
+Epoch 18/35
+    train loss: 0.0183
+    val loss: 0.0207
+Epoch 19/35
+    train loss: 0.0182
+    val loss: 0.0182
+Epoch 20/35
+    train loss: 0.0186
+    val loss: 0.0182
+Epoch 21/35
+    train loss: 0.0176
+    val loss: 0.0187
+Epoch 22/35
+    train loss: 0.0174
+    val loss: 0.0185
+Epoch 23/35
+    train loss: 0.0178
+    val loss: 0.0178
+Epoch 24/35
+    train loss: 0.0172
+    val loss: 0.0188
+Epoch 25/35
+    train loss: 0.0175
+    val loss: 0.0179
+Epoch 26/35
+    train loss: 0.0175
+    val loss: 0.0172
+Epoch 27/35
+    train loss: 0.0168
+    val loss: 0.0170
+Epoch 28/35
+    train loss: 0.0171
+    val loss: 0.0173
+Epoch 29/35
+    train loss: 0.0171
+    val loss: 0.0175
+Epoch 30/35
+    train loss: 0.0167
+    val loss: 0.0163
+Epoch 31/35
+    train loss: 0.0164
+    val loss: 0.0189
+Epoch 32/35
+    train loss: 0.0168
+    val loss: 0.0166
+Epoch 33/35
+    train loss: 0.0167
+    val loss: 0.0167
+Epoch 34/35
+    train loss: 0.0164
+    val loss: 0.0180
+Epoch 35/35
+    train loss: 0.0163
+    val loss: 0.0160
+nba_v37: 3.8641
+AGENT_SCORE:3.8641
+=== nba_v37.py finished: OK ===
+=== Starting nba_v38.py (35 epochs) ===
+Epoch 1/35
+    train loss: -0.4556
+    val loss: 0.0911
+Epoch 2/35
+    train loss: -0.9773
+    val loss: 0.0545
+Epoch 3/35
+    train loss: -1.2486
+    val loss: 0.0423
+Epoch 4/35
+    train loss: -1.4746
+    val loss: 0.0280
+Epoch 5/35
+    train loss: -1.7464
+    val loss: 0.0233
+Epoch 6/35
+    train loss: -1.8750
+    val loss: 0.0196
+Epoch 7/35
+    train loss: -1.9401
+    val loss: 0.0188
+Epoch 8/35
+    train loss: -1.9814
+    val loss: 0.0205
+Epoch 9/35
+    train loss: -2.0262
+    val loss: 0.0181
+Epoch 10/35
+    train loss: -2.0483
+    val loss: 0.0193
+Epoch 11/35
+    train loss: -2.0491
+    val loss: 0.0176
+Epoch 12/35
+    train loss: -2.0860
+    val loss: 0.0182
+Epoch 13/35
+    train loss: -2.0812
+    val loss: 0.0183
+Epoch 14/35
+    train loss: -2.0886
+    val loss: 0.0166
+Epoch 15/35
+    train loss: -2.1088
+    val loss: 0.0170
+Epoch 16/35
+    train loss: -2.1134
+    val loss: 0.0190
+Epoch 17/35
+    train loss: -2.1250
+    val loss: 0.0162
+Epoch 18/35
+    train loss: -2.1271
+    val loss: 0.0173
+Epoch 19/35
+    train loss: -2.1378
+    val loss: 0.0166
+Epoch 20/35
+    train loss: -2.1400
+    val loss: 0.0169
+Epoch 21/35
+    train loss: -2.1564
+    val loss: 0.0171
+Epoch 22/35
+    train loss: -2.1606
+    val loss: 0.0165
+Epoch 23/35
+    train loss: -2.1607
+    val loss: 0.0169
+Epoch 24/35
+    train loss: -2.1667
+    val loss: 0.0162
+Epoch 25/35
+    train loss: -2.1661
+    val loss: 0.0162
+Epoch 26/35
+    train loss: -2.1770
+    val loss: 0.0159
+Epoch 27/35
+    train loss: -2.1843
+    val loss: 0.0158
+Epoch 28/35
+    train loss: -2.1789
+    val loss: 0.0159
+Epoch 29/35
+    train loss: -2.1860
+    val loss: 0.0165
+Epoch 30/35
+    train loss: -2.1853
+    val loss: 0.0154
+Epoch 31/35
+    train loss: -2.1920
+    val loss: 0.0180
+Epoch 32/35
+    train loss: -2.1931
+    val loss: 0.0156
+Epoch 33/35
+    train loss: -2.1944
+    val loss: 0.0155
+Epoch 34/35
+    train loss: -2.1935
+    val loss: 0.0171
+Epoch 35/35
+    train loss: -2.1952
+    val loss: 0.0152
+nba_v38: 3.4355
+AGENT_SCORE:3.4355
+=== nba_v38.py finished: OK ===
+v37+v38 queue done.
