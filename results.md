@@ -62,17 +62,18 @@
 | 2026-05-06 | nba_v51 | 14.4528 | : | Diffusion DDPM (T=100, cosine schedule) × 35ep : expected failure; denoiser not converged at 35ep, needs many more epochs |
 | 2026-05-06 | **nba_v46** | **2.8628** | : | **MoG K=2 on v43 arch × 300ep T_max=300 : NEW BEST; 300ep beats 250ep (2.8963) by 1.2%; same MoG arch, epoch scaling still helping** |
 | 2026-05-06 | nba_v52 | 3.8710 | : | Occupancy heatmap (32×32 grid, cross-entropy, expected position) × 35ep : 3.87 — reasonable for 35ep, on par with v37 (3.86); discrete grid loses sub-cell precision; worth 100ep to confirm |
-| 2026-05-07 01:46 | nba_v50 | 3.8099 | agent loop (250 epochs) |
-| 2026-05-07 02:58 | nba_v51 | 28.6832 | agent loop (250 epochs) |
-| 2026-05-07 06:50 | nba_v52 | 3.7680 | agent loop (250 epochs) |
-| 2026-05-07 07:06 | nba_v53 | 2.9450 | agent loop (250 epochs) |
-| 2026-05-07 07:13 | nba_v55 | 2.9212 | agent loop (250 epochs) |
-| 2026-05-07 07:27 | nba_v56 | 2.9206 | agent loop (250 epochs) |
-| 2026-05-07 07:29 | nba_v54 | 2.9235 | agent loop (250 epochs) |
-| 2026-05-07 08:04 | nba_v46 | 2.8802 | agent loop (400 epochs) |
-| 2026-05-07 10:42 | nba_v57 | 3.8587 | agent loop (250 epochs) |
-| 2026-05-07 16:20 | nba_v46_s1 | 2.8894 | agent loop (300 epochs) |
-| 2026-05-07 16:20 | nba_v46_s2 | 2.8977 | agent loop (300 epochs) |
-| 2026-05-07 16:20 | nba_v59 | 2.9353 | agent loop (300 epochs) |
-| 2026-05-07 16:20 | nba_v46_s3 | 2.8488 | agent loop (300 epochs) |
-| 2026-05-07 16:48 | nba_v58 | 2.8426 | agent loop (300 epochs) |
+| 2026-05-07 01:46 | nba_v50 | 3.8099 | : | Space-Time Transformer + Gaussian NLL × 250ep : 4.05 → 3.81 with 7× epochs; still well below GRU+MoG family; Transformer late bloomer confirmed but ceiling is the architecture |
+| 2026-05-07 02:58 | nba_v51 | 28.6832 | : | Diffusion DDPM (T_diff=100) × 250ep : train MSE 0.36→0.05 but reverse-sampling chain doesn't reconstruct trajectories; denoiser MLP too simple; dead end |
+| 2026-05-07 06:50 | nba_v52 | 3.7680 | : | Occupancy heatmap 32×32 × 250ep : 3.87 → 3.77 with epoch scaling; grid quantization is a hard ceiling, can't beat continuous output |
+| 2026-05-07 07:06 | nba_v53 | 2.9450 | : | v46 arch + state_dim=192 (vs 128) × 250ep : bigger model overfits; +0.082 vs v46 (2.8628); capacity is not the bottleneck |
+| 2026-05-07 07:13 | nba_v55 | 2.9212 | : | v46 arch + acceleration features × 250ep : counter-test of v28's 35ep finding; acceleration still hurts at 250ep with NLL/MoG |
+| 2026-05-07 07:27 | nba_v56 | 2.9206 | : | v46 arch + temporal cross-attention for mixture weights × 250ep : current h already encodes context history; no win |
+| 2026-05-07 07:29 | nba_v54 | 2.9235 | : | v46 arch + K=3 nearest neighbors × 250ep : counter-test of v17 K=3 hurting; confirms K=2 is the sweet spot even at 250ep with NLL |
+| 2026-05-07 08:04 | nba_v46 | 2.8802 | : | v46 architecture × 400ep T_max=400 : epoch scaling REGRESSED past 300; train val_loss kept dipping (0.013) but eval got worse (overfit) |
+| 2026-05-07 10:42 | nba_v57 | 3.8587 | : | Space-Time Transformer + MoG K=2 × 250ep : combination broke; worse than v50 alone (3.81); MoG head + Transformer features don't compose well |
+| 2026-05-07 16:20 | nba_v46_s1 | 2.8894 | : | v46 architecture, seed=1 × 300ep + SWA ckpts at 280/285/290/295 : worse than baseline seed=0 (2.8628); seed variance is real |
+| 2026-05-07 16:20 | nba_v46_s2 | 2.8977 | : | v46 architecture, seed=2 × 300ep + SWA ckpts : worse than baseline seed=0 |
+| 2026-05-07 16:20 | nba_v59 | 2.9353 | : | v46 arch + Laplace MoG (vs Gaussian) × 300ep : heavier tails didn't help; trajectories aren't outlier-heavy; Gaussian is correct prior |
+| 2026-05-07 16:20 | **nba_v46_s3** | **2.8488** | : | **v46 architecture, seed=3 × 300ep + SWA ckpts : NEW BEST seed; lucky basin, 0.5% better than baseline seed=0 (2.8628)** |
+| 2026-05-07 16:48 | **nba_v58** | **2.8426** | : | **v46 arch trained on real (3974) + pseudo-labeled test (1243) × 300ep : NEW BEST single model; pseudo-labels work, didn't amplify bias as feared; 0.7% over v46 baseline** |
+| 2026-05-07 19:44 | **ensemble_top5** | **2.7905** | : | **5-model TTA ensemble: v46 + v58 + v46_s1 + v46_s3 + v46_s3_swa, greedy-selected; NEW OVERALL BEST; 2.5% over v46×300; CSV saved as solution_tta_ensemble_top5_v46_v58_v46s1_v46s3_v46s3swa.csv (TO SUBMIT)** |
