@@ -342,6 +342,7 @@ class Trainer:
         optimizer = torch.optim.Adam(model.parameters(), lr=1e-3, weight_decay=5e-4)
         scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=self.epochs)
 
+        SWA_EPOCHS = {280, 285, 290, 295}  # save extra checkpoints for SWA averaging (final 300 saved below)
         for epoch in range(self.epochs):
             print(f'Epoch {epoch + 1}/{self.epochs}')
             model.train()
@@ -352,6 +353,8 @@ class Trainer:
             train_sampler.set_epoch(epoch)
             val_sampler.set_epoch(epoch)
             scheduler.step()
+            if (epoch + 1) in SWA_EPOCHS:
+                torch.save(model.state_dict(), WEIGHTS_DIR / f'model_v46_s2_ep{epoch + 1}.pth')
 
         torch.save(model.state_dict(), WEIGHTS_DIR / 'model_v46_s2.pth')
         self.model = model
