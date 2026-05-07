@@ -62,3 +62,17 @@
 | 2026-05-06 | nba_v51 | 14.4528 | : | Diffusion DDPM (T=100, cosine schedule) × 35ep : expected failure; denoiser not converged at 35ep, needs many more epochs |
 | 2026-05-06 | **nba_v46** | **2.8628** | : | **MoG K=2 on v43 arch × 300ep T_max=300 : NEW BEST; 300ep beats 250ep (2.8963) by 1.2%; same MoG arch, epoch scaling still helping** |
 | 2026-05-06 | nba_v52 | 3.8710 | : | Occupancy heatmap (32×32 grid, cross-entropy, expected position) × 35ep : 3.87 — reasonable for 35ep, on par with v37 (3.86); discrete grid loses sub-cell precision; worth 100ep to confirm |
+| 2026-05-07 01:46 | nba_v50 | 3.8099 | agent loop (250 epochs) |
+| 2026-05-07 02:58 | nba_v51 | 28.6832 | agent loop (250 epochs) |
+| 2026-05-07 06:50 | nba_v52 | 3.7680 | agent loop (250 epochs) |
+| 2026-05-07 07:06 | nba_v53 | 2.9450 | agent loop (250 epochs) |
+| 2026-05-07 07:13 | nba_v55 | 2.9212 | agent loop (250 epochs) |
+| 2026-05-07 07:27 | nba_v56 | 2.9206 | agent loop (250 epochs) |
+| 2026-05-07 07:29 | nba_v54 | 2.9235 | agent loop (250 epochs) |
+| 2026-05-07 08:04 | nba_v46 | 2.8802 | agent loop (400 epochs) |
+| 2026-05-07 10:42 | nba_v57 | 3.8587 | agent loop (250 epochs) |
+| 2026-05-07 16:20 | nba_v46_s1 | 2.8894 | agent loop (300 epochs) |
+| 2026-05-07 16:20 | nba_v46_s2 | 2.8977 | agent loop (300 epochs) |
+| 2026-05-07 16:20 | nba_v59 | 2.9353 | agent loop (300 epochs) |
+| 2026-05-07 16:20 | nba_v46_s3 | 2.8488 | agent loop (300 epochs) |
+| 2026-05-07 16:48 | nba_v58 | 2.8426 | agent loop (300 epochs) |
