@@ -1,0 +1,31 @@
+Loading v46×300ep + val...
+Total samples: 2982
+  batch 1/47
+  batch 11/47
+  batch 21/47
+  batch 31/47
+  batch 41/47
+
+=== TTA config sweep on val (MSE in feet) ===
+config                                 score
+4_flips_baseline                      2.8161
+4_rot_only                            8.8096
+4_noise_only                          5.3435
+8_flips_plus_rot                      4.3298
+8_flips_plus_noise                    3.4671
+8_rot_plus_noise                      5.1005
+12_all                                3.8467
+
+=== Per-variant individual scores ===
+flip_00                2.8628
+flip_01                2.8612
+flip_10                2.8755
+flip_11                2.8684
+rot_00                10.1647
+rot_01                10.2020
+rot_10                10.0777
+rot_11                10.1255
+noise_0                8.9781
+noise_1                9.0535
+noise_2                8.9482
+noise_3                9.2600

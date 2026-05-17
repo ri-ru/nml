@@ -1,0 +1,19 @@
+Loading val + train file lists...
+Computing normalization from train_files.txt (matches training)...
+  mu=[-0.011526551097631454, 0.025393251329660416]  sigma=[29.656959533691406, 11.547430038452148]
+Loading 4 models...
+  loaded: ['v46', 'v54', 'v55', 'v56']
+Loading 994 val sequences...
+Total samples: 2982
+  batch 1/47
+  batch 11/47
+  batch 21/47
+  batch 31/47
+  batch 41/47
+
+=== TTA Local Scores (val set, MSE in feet) ===
+  v46       : 2.8161
+  v54       : 2.8629
+  v55       : 2.8666
+  v56       : 2.8733
+  ensemble  : 2.8254
