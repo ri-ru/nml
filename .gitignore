@@ -20,3 +20,7 @@ Thumbs.db
 
 # Pytest
 .pytest_cache/
+
+# Intermediate per-model TTA tensors (regenerable from weights via save_*_tta_preds.py)
+models/val_preds/
+models/test_preds/

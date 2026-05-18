@@ -1,0 +1,903 @@
+Epoch 1/300
+    train loss: 1.3300
+    val loss: 0.1297
+Epoch 2/300
+    train loss: 0.0401
+    val loss: 0.0536
+Epoch 3/300
+    train loss: -0.5647
+    val loss: 0.0337
+Epoch 4/300
+    train loss: -1.1127
+    val loss: 0.0235
+Epoch 5/300
+    train loss: -1.4513
+    val loss: 0.0263
+Epoch 6/300
+    train loss: -1.6766
+    val loss: 0.0190
+Epoch 7/300
+    train loss: -1.8059
+    val loss: 0.0236
+Epoch 8/300
+    train loss: -1.8849
+    val loss: 0.0189
+Epoch 9/300
+    train loss: -1.9519
+    val loss: 0.0181
+Epoch 10/300
+    train loss: -2.0262
+    val loss: 0.0178
+Epoch 11/300
+    train loss: -2.0872
+    val loss: 0.0181
+Epoch 12/300
+    train loss: -2.0848
+    val loss: 0.0170
+Epoch 13/300
+    train loss: -2.0767
+    val loss: 0.0205
+Epoch 14/300
+    train loss: -2.1295
+    val loss: 0.0174
+Epoch 15/300
+    train loss: -2.1562
+    val loss: 0.0170
+Epoch 16/300
+    train loss: -2.1897
+    val loss: 0.0175
+Epoch 17/300
+    train loss: -2.1640
+    val loss: 0.0175
+Epoch 18/300
+    train loss: -2.1893
+    val loss: 0.0176
+Epoch 19/300
+    train loss: -2.2120
+    val loss: 0.0167
+Epoch 20/300
+    train loss: -2.2165
+    val loss: 0.0168
+Epoch 21/300
+    train loss: -2.2374
+    val loss: 0.0177
+Epoch 22/300
+    train loss: -2.2083
+    val loss: 0.0168
+Epoch 23/300
+    train loss: -2.2302
+    val loss: 0.0174
+Epoch 24/300
+    train loss: -2.2463
+    val loss: 0.0169
+Epoch 25/300
+    train loss: -2.2424
+    val loss: 0.0156
+Epoch 26/300
+    train loss: -2.2765
+    val loss: 0.0191
+Epoch 27/300
+    train loss: -2.2710
+    val loss: 0.0161
+Epoch 28/300
+    train loss: -2.2778
+    val loss: 0.0162
+Epoch 29/300
+    train loss: -2.2654
+    val loss: 0.0189
+Epoch 30/300
+    train loss: -2.2818
+    val loss: 0.0165
+Epoch 31/300
+    train loss: -2.2749
+    val loss: 0.0183
+Epoch 32/300
+    train loss: -2.2892
+    val loss: 0.0171
+Epoch 33/300
+    train loss: -2.2941
+    val loss: 0.0166
+Epoch 34/300
+    train loss: -2.3076
+    val loss: 0.0155
+Epoch 35/300
+    train loss: -2.3060
+    val loss: 0.0176
+Epoch 36/300
+    train loss: -2.3256
+    val loss: 0.0172
+Epoch 37/300
+    train loss: -2.3143
+    val loss: 0.0158
+Epoch 38/300
+    train loss: -2.3138
+    val loss: 0.0162
+Epoch 39/300
+    train loss: -2.3183
+    val loss: 0.0158
+Epoch 40/300
+    train loss: -2.3329
+    val loss: 0.0160
+Epoch 41/300
+    train loss: -2.3329
+    val loss: 0.0162
+Epoch 42/300
+    train loss: -2.3366
+    val loss: 0.0169
+Epoch 43/300
+    train loss: -2.3410
+    val loss: 0.0153
+Epoch 44/300
+    train loss: -2.3406
+    val loss: 0.0163
+Epoch 45/300
+    train loss: -2.3469
+    val loss: 0.0158
+Epoch 46/300
+    train loss: -2.3552
+    val loss: 0.0150
+Epoch 47/300
+    train loss: -2.3596
+    val loss: 0.0159
+Epoch 48/300
+    train loss: -2.3522
+    val loss: 0.0170
+Epoch 49/300
+    train loss: -2.3460
+    val loss: 0.0158
+Epoch 50/300
+    train loss: -2.3488
+    val loss: 0.0159
+Epoch 51/300
+    train loss: -2.3525
+    val loss: 0.0161
+Epoch 52/300
+    train loss: -2.3557
+    val loss: 0.0159
+Epoch 53/300
+    train loss: -2.3697
+    val loss: 0.0156
+Epoch 54/300
+    train loss: -2.3506
+    val loss: 0.0158
+Epoch 55/300
+    train loss: -2.3701
+    val loss: 0.0155
+Epoch 56/300
+    train loss: -2.3724
+    val loss: 0.0151
+Epoch 57/300
+    train loss: -2.3787
+    val loss: 0.0155
+Epoch 58/300
+    train loss: -2.3691
+    val loss: 0.0155
+Epoch 59/300
+    train loss: -2.3751
+    val loss: 0.0157
+Epoch 60/300
+    train loss: -2.3833
+    val loss: 0.0164
+Epoch 61/300
+    train loss: -2.3755
+    val loss: 0.0145
+Epoch 62/300
+    train loss: -2.3794
+    val loss: 0.0148
+Epoch 63/300
+    train loss: -2.3855
+    val loss: 0.0157
+Epoch 64/300
+    train loss: -2.3925
+    val loss: 0.0154
+Epoch 65/300
+    train loss: -2.3794
+    val loss: 0.0160
+Epoch 66/300
+    train loss: -2.3976
+    val loss: 0.0170
+Epoch 67/300
+    train loss: -2.4028
+    val loss: 0.0162
+Epoch 68/300
+    train loss: -2.3815
+    val loss: 0.0151
+Epoch 69/300
+    train loss: -2.4001
+    val loss: 0.0144
+Epoch 70/300
+    train loss: -2.3841
+    val loss: 0.0152
+Epoch 71/300
+    train loss: -2.3920
+    val loss: 0.0153
+Epoch 72/300
+    train loss: -2.4052
+    val loss: 0.0162
+Epoch 73/300
+    train loss: -2.3827
+    val loss: 0.0152
+Epoch 74/300
+    train loss: -2.4006
+    val loss: 0.0150
+Epoch 75/300
+    train loss: -2.3996
+    val loss: 0.0154
+Epoch 76/300
+    train loss: -2.3980
+    val loss: 0.0159
+Epoch 77/300
+    train loss: -2.4080
+    val loss: 0.0157
+Epoch 78/300
+    train loss: -2.4092
+    val loss: 0.0147
+Epoch 79/300
+    train loss: -2.4130
+    val loss: 0.0147
+Epoch 80/300
+    train loss: -2.4182
+    val loss: 0.0155
+Epoch 81/300
+    train loss: -2.4179
+    val loss: 0.0148
+Epoch 82/300
+    train loss: -2.4153
+    val loss: 0.0156
+Epoch 83/300
+    train loss: -2.4246
+    val loss: 0.0147
+Epoch 84/300
+    train loss: -2.4181
+    val loss: 0.0145
+Epoch 85/300
+    train loss: -2.4088
+    val loss: 0.0156
+Epoch 86/300
+    train loss: -2.4085
+    val loss: 0.0158
+Epoch 87/300
+    train loss: -2.4195
+    val loss: 0.0142
+Epoch 88/300
+    train loss: -2.4271
+    val loss: 0.0154
+Epoch 89/300
+    train loss: -2.4251
+    val loss: 0.0144
+Epoch 90/300
+    train loss: -2.4379
+    val loss: 0.0141
+Epoch 91/300
+    train loss: -2.4334
+    val loss: 0.0145
+Epoch 92/300
+    train loss: -2.4347
+    val loss: 0.0145
+Epoch 93/300
+    train loss: -2.4285
+    val loss: 0.0151
+Epoch 94/300
+    train loss: -2.4411
+    val loss: 0.0141
+Epoch 95/300
+    train loss: -2.4253
+    val loss: 0.0149
+Epoch 96/300
+    train loss: -2.4429
+    val loss: 0.0139
+Epoch 97/300
+    train loss: -2.4443
+    val loss: 0.0151
+Epoch 98/300
+    train loss: -2.4546
+    val loss: 0.0151
+Epoch 99/300
+    train loss: -2.4381
+    val loss: 0.0149
+Epoch 100/300
+    train loss: -2.4441
+    val loss: 0.0148
+Epoch 101/300
+    train loss: -2.4538
+    val loss: 0.0137
+Epoch 102/300
+    train loss: -2.4401
+    val loss: 0.0144
+Epoch 103/300
+    train loss: -2.4613
+    val loss: 0.0142
+Epoch 104/300
+    train loss: -2.4478
+    val loss: 0.0142
+Epoch 105/300
+    train loss: -2.4432
+    val loss: 0.0169
+Epoch 106/300
+    train loss: -2.4401
+    val loss: 0.0147
+Epoch 107/300
+    train loss: -2.4504
+    val loss: 0.0147
+Epoch 108/300
+    train loss: -2.4489
+    val loss: 0.0137
+Epoch 109/300
+    train loss: -2.4595
+    val loss: 0.0156
+Epoch 110/300
+    train loss: -2.4568
+    val loss: 0.0147
+Epoch 111/300
+    train loss: -2.4519
+    val loss: 0.0143
+Epoch 112/300
+    train loss: -2.4679
+    val loss: 0.0141
+Epoch 113/300
+    train loss: -2.4637
+    val loss: 0.0143
+Epoch 114/300
+    train loss: -2.4708
+    val loss: 0.0164
+Epoch 115/300
+    train loss: -2.4675
+    val loss: 0.0138
+Epoch 116/300
+    train loss: -2.4632
+    val loss: 0.0143
+Epoch 117/300
+    train loss: -2.4604
+    val loss: 0.0147
+Epoch 118/300
+    train loss: -2.4640
+    val loss: 0.0145
+Epoch 119/300
+    train loss: -2.4654
+    val loss: 0.0150
+Epoch 120/300
+    train loss: -2.4670
+    val loss: 0.0143
+Epoch 121/300
+    train loss: -2.4655
+    val loss: 0.0152
+Epoch 122/300
+    train loss: -2.4748
+    val loss: 0.0161
+Epoch 123/300
+    train loss: -2.4678
+    val loss: 0.0145
+Epoch 124/300
+    train loss: -2.4750
+    val loss: 0.0141
+Epoch 125/300
+    train loss: -2.4920
+    val loss: 0.0139
+Epoch 126/300
+    train loss: -2.4765
+    val loss: 0.0133
+Epoch 127/300
+    train loss: -2.4833
+    val loss: 0.0136
+Epoch 128/300
+    train loss: -2.4728
+    val loss: 0.0139
+Epoch 129/300
+    train loss: -2.4827
+    val loss: 0.0147
+Epoch 130/300
+    train loss: -2.4729
+    val loss: 0.0137
+Epoch 131/300
+    train loss: -2.4852
+    val loss: 0.0139
+Epoch 132/300
+    train loss: -2.4883
+    val loss: 0.0139
+Epoch 133/300
+    train loss: -2.4806
+    val loss: 0.0147
+Epoch 134/300
+    train loss: -2.4747
+    val loss: 0.0145
+Epoch 135/300
+    train loss: -2.4861
+    val loss: 0.0145
+Epoch 136/300
+    train loss: -2.4814
+    val loss: 0.0152
+Epoch 137/300
+    train loss: -2.4836
+    val loss: 0.0144
+Epoch 138/300
+    train loss: -2.4826
+    val loss: 0.0137
+Epoch 139/300
+    train loss: -2.4841
+    val loss: 0.0134
+Epoch 140/300
+    train loss: -2.4843
+    val loss: 0.0139
+Epoch 141/300
+    train loss: -2.4970
+    val loss: 0.0150
+Epoch 142/300
+    train loss: -2.4938
+    val loss: 0.0147
+Epoch 143/300
+    train loss: -2.4898
+    val loss: 0.0139
+Epoch 144/300
+    train loss: -2.4957
+    val loss: 0.0141
+Epoch 145/300
+    train loss: -2.4925
+    val loss: 0.0139
+Epoch 146/300
+    train loss: -2.4856
+    val loss: 0.0140
+Epoch 147/300
+    train loss: -2.5023
+    val loss: 0.0142
+Epoch 148/300
+    train loss: -2.4934
+    val loss: 0.0143
+Epoch 149/300
+    train loss: -2.4913
+    val loss: 0.0142
+Epoch 150/300
+    train loss: -2.5010
+    val loss: 0.0159
+Epoch 151/300
+    train loss: -2.4997
+    val loss: 0.0137
+Epoch 152/300
+    train loss: -2.5054
+    val loss: 0.0139
+Epoch 153/300
+    train loss: -2.5066
+    val loss: 0.0136
+Epoch 154/300
+    train loss: -2.5188
+    val loss: 0.0138
+Epoch 155/300
+    train loss: -2.5016
+    val loss: 0.0134
+Epoch 156/300
+    train loss: -2.5053
+    val loss: 0.0142
+Epoch 157/300
+    train loss: -2.5071
+    val loss: 0.0131
+Epoch 158/300
+    train loss: -2.5142
+    val loss: 0.0137
+Epoch 159/300
+    train loss: -2.4930
+    val loss: 0.0151
+Epoch 160/300
+    train loss: -2.5133
+    val loss: 0.0137
+Epoch 161/300
+    train loss: -2.5136
+    val loss: 0.0139
+Epoch 162/300
+    train loss: -2.5067
+    val loss: 0.0135
+Epoch 163/300
+    train loss: -2.5132
+    val loss: 0.0136
+Epoch 164/300
+    train loss: -2.5100
+    val loss: 0.0138
+Epoch 165/300
+    train loss: -2.5178
+    val loss: 0.0139
+Epoch 166/300
+    train loss: -2.5051
+    val loss: 0.0137
+Epoch 167/300
+    train loss: -2.5187
+    val loss: 0.0135
+Epoch 168/300
+    train loss: -2.5180
+    val loss: 0.0141
+Epoch 169/300
+    train loss: -2.5208
+    val loss: 0.0139
+Epoch 170/300
+    train loss: -2.5230
+    val loss: 0.0136
+Epoch 171/300
+    train loss: -2.5200
+    val loss: 0.0139
+Epoch 172/300
+    train loss: -2.5213
+    val loss: 0.0154
+Epoch 173/300
+    train loss: -2.5207
+    val loss: 0.0138
+Epoch 174/300
+    train loss: -2.5286
+    val loss: 0.0146
+Epoch 175/300
+    train loss: -2.5185
+    val loss: 0.0135
+Epoch 176/300
+    train loss: -2.5249
+    val loss: 0.0143
+Epoch 177/300
+    train loss: -2.5261
+    val loss: 0.0143
+Epoch 178/300
+    train loss: -2.5219
+    val loss: 0.0146
+Epoch 179/300
+    train loss: -2.5326
+    val loss: 0.0132
+Epoch 180/300
+    train loss: -2.5307
+    val loss: 0.0137
+Epoch 181/300
+    train loss: -2.5347
+    val loss: 0.0137
+Epoch 182/300
+    train loss: -2.5226
+    val loss: 0.0132
+Epoch 183/300
+    train loss: -2.5232
+    val loss: 0.0145
+Epoch 184/300
+    train loss: -2.5346
+    val loss: 0.0134
+Epoch 185/300
+    train loss: -2.5406
+    val loss: 0.0143
+Epoch 186/300
+    train loss: -2.5263
+    val loss: 0.0136
+Epoch 187/300
+    train loss: -2.5310
+    val loss: 0.0135
+Epoch 188/300
+    train loss: -2.5316
+    val loss: 0.0135
+Epoch 189/300
+    train loss: -2.5344
+    val loss: 0.0132
+Epoch 190/300
+    train loss: -2.5334
+    val loss: 0.0132
+Epoch 191/300
+    train loss: -2.5409
+    val loss: 0.0139
+Epoch 192/300
+    train loss: -2.5360
+    val loss: 0.0143
+Epoch 193/300
+    train loss: -2.5430
+    val loss: 0.0137
+Epoch 194/300
+    train loss: -2.5352
+    val loss: 0.0131
+Epoch 195/300
+    train loss: -2.5407
+    val loss: 0.0127
+Epoch 196/300
+    train loss: -2.5383
+    val loss: 0.0130
+Epoch 197/300
+    train loss: -2.5387
+    val loss: 0.0138
+Epoch 198/300
+    train loss: -2.5394
+    val loss: 0.0143
+Epoch 199/300
+    train loss: -2.5354
+    val loss: 0.0132
+Epoch 200/300
+    train loss: -2.5478
+    val loss: 0.0140
+Epoch 201/300
+    train loss: -2.5484
+    val loss: 0.0143
+Epoch 202/300
+    train loss: -2.5378
+    val loss: 0.0135
+Epoch 203/300
+    train loss: -2.5431
+    val loss: 0.0137
+Epoch 204/300
+    train loss: -2.5412
+    val loss: 0.0134
+Epoch 205/300
+    train loss: -2.5551
+    val loss: 0.0155
+Epoch 206/300
+    train loss: -2.5405
+    val loss: 0.0136
+Epoch 207/300
+    train loss: -2.5515
+    val loss: 0.0136
+Epoch 208/300
+    train loss: -2.5473
+    val loss: 0.0139
+Epoch 209/300
+    train loss: -2.5457
+    val loss: 0.0136
+Epoch 210/300
+    train loss: -2.5500
+    val loss: 0.0132
+Epoch 211/300
+    train loss: -2.5550
+    val loss: 0.0138
+Epoch 212/300
+    train loss: -2.5590
+    val loss: 0.0156
+Epoch 213/300
+    train loss: -2.5587
+    val loss: 0.0132
+Epoch 214/300
+    train loss: -2.5524
+    val loss: 0.0136
+Epoch 215/300
+    train loss: -2.5549
+    val loss: 0.0131
+Epoch 216/300
+    train loss: -2.5563
+    val loss: 0.0144
+Epoch 217/300
+    train loss: -2.5604
+    val loss: 0.0138
+Epoch 218/300
+    train loss: -2.5541
+    val loss: 0.0129
+Epoch 219/300
+    train loss: -2.5460
+    val loss: 0.0131
+Epoch 220/300
+    train loss: -2.5447
+    val loss: 0.0136
+Epoch 221/300
+    train loss: -2.5549
+    val loss: 0.0134
+Epoch 222/300
+    train loss: -2.5635
+    val loss: 0.0156
+Epoch 223/300
+    train loss: -2.5589
+    val loss: 0.0135
+Epoch 224/300
+    train loss: -2.5584
+    val loss: 0.0131
+Epoch 225/300
+    train loss: -2.5631
+    val loss: 0.0135
+Epoch 226/300
+    train loss: -2.5607
+    val loss: 0.0148
+Epoch 227/300
+    train loss: -2.5628
+    val loss: 0.0131
+Epoch 228/300
+    train loss: -2.5614
+    val loss: 0.0143
+Epoch 229/300
+    train loss: -2.5636
+    val loss: 0.0130
+Epoch 230/300
+    train loss: -2.5600
+    val loss: 0.0136
+Epoch 231/300
+    train loss: -2.5602
+    val loss: 0.0134
+Epoch 232/300
+    train loss: -2.5717
+    val loss: 0.0130
+Epoch 233/300
+    train loss: -2.5629
+    val loss: 0.0130
+Epoch 234/300
+    train loss: -2.5621
+    val loss: 0.0132
+Epoch 235/300
+    train loss: -2.5599
+    val loss: 0.0146
+Epoch 236/300
+    train loss: -2.5760
+    val loss: 0.0132
+Epoch 237/300
+    train loss: -2.5644
+    val loss: 0.0135
+Epoch 238/300
+    train loss: -2.5717
+    val loss: 0.0131
+Epoch 239/300
+    train loss: -2.5603
+    val loss: 0.0133
+Epoch 240/300
+    train loss: -2.5726
+    val loss: 0.0128
+Epoch 241/300
+    train loss: -2.5759
+    val loss: 0.0143
+Epoch 242/300
+    train loss: -2.5656
+    val loss: 0.0134
+Epoch 243/300
+    train loss: -2.5742
+    val loss: 0.0132
+Epoch 244/300
+    train loss: -2.5698
+    val loss: 0.0129
+Epoch 245/300
+    train loss: -2.5774
+    val loss: 0.0136
+Epoch 246/300
+    train loss: -2.5702
+    val loss: 0.0131
+Epoch 247/300
+    train loss: -2.5748
+    val loss: 0.0131
+Epoch 248/300
+    train loss: -2.5743
+    val loss: 0.0133
+Epoch 249/300
+    train loss: -2.5731
+    val loss: 0.0131
+Epoch 250/300
+    train loss: -2.5704
+    val loss: 0.0129
+Epoch 251/300
+    train loss: -2.5780
+    val loss: 0.0133
+Epoch 252/300
+    train loss: -2.5799
+    val loss: 0.0131
+Epoch 253/300
+    train loss: -2.5802
+    val loss: 0.0157
+Epoch 254/300
+    train loss: -2.5742
+    val loss: 0.0137
+Epoch 255/300
+    train loss: -2.5783
+    val loss: 0.0127
+Epoch 256/300
+    train loss: -2.5811
+    val loss: 0.0127
+Epoch 257/300
+    train loss: -2.5821
+    val loss: 0.0130
+Epoch 258/300
+    train loss: -2.5754
+    val loss: 0.0129
+Epoch 259/300
+    train loss: -2.5882
+    val loss: 0.0135
+Epoch 260/300
+    train loss: -2.5818
+    val loss: 0.0130
+Epoch 261/300
+    train loss: -2.5778
+    val loss: 0.0135
+Epoch 262/300
+    train loss: -2.5892
+    val loss: 0.0137
+Epoch 263/300
+    train loss: -2.5809
+    val loss: 0.0134
+Epoch 264/300
+    train loss: -2.5845
+    val loss: 0.0132
+Epoch 265/300
+    train loss: -2.5864
+    val loss: 0.0147
+Epoch 266/300
+    train loss: -2.5877
+    val loss: 0.0135
+Epoch 267/300
+    train loss: -2.5774
+    val loss: 0.0135
+Epoch 268/300
+    train loss: -2.5835
+    val loss: 0.0131
+Epoch 269/300
+    train loss: -2.5713
+    val loss: 0.0135
+Epoch 270/300
+    train loss: -2.5849
+    val loss: 0.0137
+Epoch 271/300
+    train loss: -2.5926
+    val loss: 0.0138
+Epoch 272/300
+    train loss: -2.5895
+    val loss: 0.0138
+Epoch 273/300
+    train loss: -2.5865
+    val loss: 0.0145
+Epoch 274/300
+    train loss: -2.5845
+    val loss: 0.0134
+Epoch 275/300
+    train loss: -2.5863
+    val loss: 0.0128
+Epoch 276/300
+    train loss: -2.5851
+    val loss: 0.0132
+Epoch 277/300
+    train loss: -2.5871
+    val loss: 0.0134
+Epoch 278/300
+    train loss: -2.5873
+    val loss: 0.0128
+Epoch 279/300
+    train loss: -2.5925
+    val loss: 0.0135
+Epoch 280/300
+    train loss: -2.5769
+    val loss: 0.0134
+Epoch 281/300
+    train loss: -2.5962
+    val loss: 0.0130
+Epoch 282/300
+    train loss: -2.5956
+    val loss: 0.0130
+Epoch 283/300
+    train loss: -2.5833
+    val loss: 0.0133
+Epoch 284/300
+    train loss: -2.5862
+    val loss: 0.0136
+Epoch 285/300
+    train loss: -2.5848
+    val loss: 0.0129
+Epoch 286/300
+    train loss: -2.5873
+    val loss: 0.0152
+Epoch 287/300
+    train loss: -2.5873
+    val loss: 0.0133
+Epoch 288/300
+    train loss: -2.5908
+    val loss: 0.0132
+Epoch 289/300
+    train loss: -2.5913
+    val loss: 0.0129
+Epoch 290/300
+    train loss: -2.5924
+    val loss: 0.0131
+Epoch 291/300
+    train loss: -2.5830
+    val loss: 0.0131
+Epoch 292/300
+    train loss: -2.5880
+    val loss: 0.0138
+Epoch 293/300
+    train loss: -2.5850
+    val loss: 0.0131
+Epoch 294/300
+    train loss: -2.5860
+    val loss: 0.0131
+Epoch 295/300
+    train loss: -2.5878
+    val loss: 0.0135
+Epoch 296/300
+    train loss: -2.5906
+    val loss: 0.0128
+Epoch 297/300
+    train loss: -2.5808
+    val loss: 0.0126
+Epoch 298/300
+    train loss: -2.5906
+    val loss: 0.0132
+Epoch 299/300
+    train loss: -2.5887
+    val loss: 0.0131
+Epoch 300/300
+    train loss: -2.5825
+    val loss: 0.0136
+Saved tagged weights: C:\Users\jan\Downloads\nml_project_proposal\nml_project_proposal\models\weights\model_v46_s5_300ep.pth
+nba_v46_s5: 2.8692
+AGENT_SCORE:2.8692

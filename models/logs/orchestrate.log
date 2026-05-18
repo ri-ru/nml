@@ -1,0 +1,584 @@
+[2026-05-18 14:33:14] ==== orchestrate.ps1 starting ====
+[2026-05-18 14:33:14] Waiting for all nba_v*_s* python training processes to finish...
+[2026-05-18 14:33:14]   14 jobs still running: nba_v58_s1,nba_v58_s2,nba_v58_s3,nba_v58_s1,nba_v58_s2,nba_v58_s3,nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 14:34:14]   14 jobs still running: nba_v58_s1,nba_v58_s2,nba_v58_s3,nba_v58_s1,nba_v58_s2,nba_v58_s3,nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 14:35:14]   14 jobs still running: nba_v58_s1,nba_v58_s2,nba_v58_s3,nba_v58_s1,nba_v58_s2,nba_v58_s3,nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 14:36:14]   14 jobs still running: nba_v58_s1,nba_v58_s2,nba_v58_s3,nba_v58_s1,nba_v58_s2,nba_v58_s3,nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 14:37:14]   14 jobs still running: nba_v58_s1,nba_v58_s2,nba_v58_s3,nba_v58_s1,nba_v58_s2,nba_v58_s3,nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 14:38:14]   14 jobs still running: nba_v58_s1,nba_v58_s2,nba_v58_s3,nba_v58_s1,nba_v58_s2,nba_v58_s3,nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 14:39:14]   14 jobs still running: nba_v58_s1,nba_v58_s2,nba_v58_s3,nba_v58_s1,nba_v58_s2,nba_v58_s3,nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 14:40:14]   14 jobs still running: nba_v58_s1,nba_v58_s2,nba_v58_s3,nba_v58_s1,nba_v58_s2,nba_v58_s3,nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 14:41:14]   14 jobs still running: nba_v58_s1,nba_v58_s2,nba_v58_s3,nba_v58_s1,nba_v58_s2,nba_v58_s3,nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 14:42:14]   14 jobs still running: nba_v58_s1,nba_v58_s2,nba_v58_s3,nba_v58_s1,nba_v58_s2,nba_v58_s3,nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 14:43:14]   14 jobs still running: nba_v58_s1,nba_v58_s2,nba_v58_s3,nba_v58_s1,nba_v58_s2,nba_v58_s3,nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 14:44:14]   14 jobs still running: nba_v58_s1,nba_v58_s2,nba_v58_s3,nba_v58_s1,nba_v58_s2,nba_v58_s3,nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 14:45:14]   14 jobs still running: nba_v58_s1,nba_v58_s2,nba_v58_s3,nba_v58_s1,nba_v58_s2,nba_v58_s3,nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 14:46:14]   14 jobs still running: nba_v58_s1,nba_v58_s2,nba_v58_s3,nba_v58_s1,nba_v58_s2,nba_v58_s3,nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 14:47:14]   14 jobs still running: nba_v58_s1,nba_v58_s2,nba_v58_s3,nba_v58_s1,nba_v58_s2,nba_v58_s3,nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 14:48:15]   14 jobs still running: nba_v58_s1,nba_v58_s2,nba_v58_s3,nba_v58_s1,nba_v58_s2,nba_v58_s3,nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 14:49:15]   14 jobs still running: nba_v58_s1,nba_v58_s2,nba_v58_s3,nba_v58_s1,nba_v58_s2,nba_v58_s3,nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 14:50:15]   14 jobs still running: nba_v58_s1,nba_v58_s2,nba_v58_s3,nba_v58_s1,nba_v58_s2,nba_v58_s3,nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 14:51:15]   14 jobs still running: nba_v58_s1,nba_v58_s2,nba_v58_s3,nba_v58_s1,nba_v58_s2,nba_v58_s3,nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 14:52:15]   14 jobs still running: nba_v58_s1,nba_v58_s2,nba_v58_s3,nba_v58_s1,nba_v58_s2,nba_v58_s3,nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 14:53:15]   14 jobs still running: nba_v58_s1,nba_v58_s2,nba_v58_s3,nba_v58_s1,nba_v58_s2,nba_v58_s3,nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 14:54:15]   14 jobs still running: nba_v58_s1,nba_v58_s2,nba_v58_s3,nba_v58_s1,nba_v58_s2,nba_v58_s3,nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 14:55:15]   14 jobs still running: nba_v58_s1,nba_v58_s2,nba_v58_s3,nba_v58_s1,nba_v58_s2,nba_v58_s3,nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 14:56:15]   14 jobs still running: nba_v58_s1,nba_v58_s2,nba_v58_s3,nba_v58_s1,nba_v58_s2,nba_v58_s3,nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 14:57:15]   14 jobs still running: nba_v58_s1,nba_v58_s2,nba_v58_s3,nba_v58_s1,nba_v58_s2,nba_v58_s3,nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 14:58:15]   14 jobs still running: nba_v58_s1,nba_v58_s2,nba_v58_s3,nba_v58_s1,nba_v58_s2,nba_v58_s3,nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 14:59:15]   14 jobs still running: nba_v58_s1,nba_v58_s2,nba_v58_s3,nba_v58_s1,nba_v58_s2,nba_v58_s3,nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 15:00:15]   14 jobs still running: nba_v58_s1,nba_v58_s2,nba_v58_s3,nba_v58_s1,nba_v58_s2,nba_v58_s3,nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 15:01:15]   14 jobs still running: nba_v58_s1,nba_v58_s2,nba_v58_s3,nba_v58_s1,nba_v58_s2,nba_v58_s3,nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 15:02:15]   14 jobs still running: nba_v58_s1,nba_v58_s2,nba_v58_s3,nba_v58_s1,nba_v58_s2,nba_v58_s3,nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 15:03:15]   14 jobs still running: nba_v58_s1,nba_v58_s2,nba_v58_s3,nba_v58_s1,nba_v58_s2,nba_v58_s3,nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 15:04:15]   14 jobs still running: nba_v58_s1,nba_v58_s2,nba_v58_s3,nba_v58_s1,nba_v58_s2,nba_v58_s3,nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 15:05:15]   14 jobs still running: nba_v58_s1,nba_v58_s2,nba_v58_s3,nba_v58_s1,nba_v58_s2,nba_v58_s3,nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 15:06:15]   14 jobs still running: nba_v58_s1,nba_v58_s2,nba_v58_s3,nba_v58_s1,nba_v58_s2,nba_v58_s3,nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 15:07:16]   14 jobs still running: nba_v58_s1,nba_v58_s2,nba_v58_s3,nba_v58_s1,nba_v58_s2,nba_v58_s3,nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 15:08:16]   14 jobs still running: nba_v58_s1,nba_v58_s2,nba_v58_s3,nba_v58_s1,nba_v58_s2,nba_v58_s3,nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 15:09:16]   14 jobs still running: nba_v58_s1,nba_v58_s2,nba_v58_s3,nba_v58_s1,nba_v58_s2,nba_v58_s3,nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 15:10:16]   14 jobs still running: nba_v58_s1,nba_v58_s2,nba_v58_s3,nba_v58_s1,nba_v58_s2,nba_v58_s3,nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 15:11:16]   14 jobs still running: nba_v58_s1,nba_v58_s2,nba_v58_s3,nba_v58_s1,nba_v58_s2,nba_v58_s3,nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 15:12:16]   14 jobs still running: nba_v58_s1,nba_v58_s2,nba_v58_s3,nba_v58_s1,nba_v58_s2,nba_v58_s3,nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 15:13:16]   14 jobs still running: nba_v58_s1,nba_v58_s2,nba_v58_s3,nba_v58_s1,nba_v58_s2,nba_v58_s3,nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 15:14:16]   14 jobs still running: nba_v58_s1,nba_v58_s2,nba_v58_s3,nba_v58_s1,nba_v58_s2,nba_v58_s3,nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 15:15:16]   14 jobs still running: nba_v58_s1,nba_v58_s2,nba_v58_s3,nba_v58_s1,nba_v58_s2,nba_v58_s3,nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 15:16:16]   14 jobs still running: nba_v58_s1,nba_v58_s2,nba_v58_s3,nba_v58_s1,nba_v58_s2,nba_v58_s3,nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 15:17:16]   14 jobs still running: nba_v58_s1,nba_v58_s2,nba_v58_s3,nba_v58_s1,nba_v58_s2,nba_v58_s3,nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 15:18:16]   14 jobs still running: nba_v58_s1,nba_v58_s2,nba_v58_s3,nba_v58_s1,nba_v58_s2,nba_v58_s3,nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 15:19:16]   14 jobs still running: nba_v58_s1,nba_v58_s2,nba_v58_s3,nba_v58_s1,nba_v58_s2,nba_v58_s3,nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 15:20:16]   14 jobs still running: nba_v58_s1,nba_v58_s2,nba_v58_s3,nba_v58_s1,nba_v58_s2,nba_v58_s3,nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 15:21:16]   14 jobs still running: nba_v58_s1,nba_v58_s2,nba_v58_s3,nba_v58_s1,nba_v58_s2,nba_v58_s3,nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 15:22:16]   14 jobs still running: nba_v58_s1,nba_v58_s2,nba_v58_s3,nba_v58_s1,nba_v58_s2,nba_v58_s3,nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 15:23:16]   14 jobs still running: nba_v58_s1,nba_v58_s2,nba_v58_s3,nba_v58_s1,nba_v58_s2,nba_v58_s3,nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 15:24:16]   14 jobs still running: nba_v58_s1,nba_v58_s2,nba_v58_s3,nba_v58_s1,nba_v58_s2,nba_v58_s3,nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 15:25:16]   14 jobs still running: nba_v58_s1,nba_v58_s2,nba_v58_s3,nba_v58_s1,nba_v58_s2,nba_v58_s3,nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 15:26:16]   14 jobs still running: nba_v58_s1,nba_v58_s2,nba_v58_s3,nba_v58_s1,nba_v58_s2,nba_v58_s3,nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 15:27:17]   14 jobs still running: nba_v58_s1,nba_v58_s2,nba_v58_s3,nba_v58_s1,nba_v58_s2,nba_v58_s3,nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 15:28:17]   14 jobs still running: nba_v58_s1,nba_v58_s2,nba_v58_s3,nba_v58_s1,nba_v58_s2,nba_v58_s3,nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 15:29:17]   14 jobs still running: nba_v58_s1,nba_v58_s2,nba_v58_s3,nba_v58_s1,nba_v58_s2,nba_v58_s3,nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 15:30:17]   14 jobs still running: nba_v58_s1,nba_v58_s2,nba_v58_s3,nba_v58_s1,nba_v58_s2,nba_v58_s3,nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 15:31:17]   14 jobs still running: nba_v58_s1,nba_v58_s2,nba_v58_s3,nba_v58_s1,nba_v58_s2,nba_v58_s3,nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 15:32:17]   14 jobs still running: nba_v58_s1,nba_v58_s2,nba_v58_s3,nba_v58_s1,nba_v58_s2,nba_v58_s3,nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 15:33:17]   14 jobs still running: nba_v58_s1,nba_v58_s2,nba_v58_s3,nba_v58_s1,nba_v58_s2,nba_v58_s3,nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 15:34:17]   14 jobs still running: nba_v58_s1,nba_v58_s2,nba_v58_s3,nba_v58_s1,nba_v58_s2,nba_v58_s3,nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 15:35:17]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 15:36:17]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 15:37:17]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 15:38:17]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 15:39:17]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 15:40:17]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 15:41:17]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 15:42:17]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 15:43:17]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 15:44:17]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 15:45:17]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 15:46:17]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 15:47:17]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 15:48:17]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 15:49:18]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 15:50:18]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 15:51:18]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 15:52:18]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 15:53:18]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 15:54:18]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 15:55:18]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 15:56:18]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 15:57:18]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 15:58:18]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 15:59:18]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 16:00:18]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 16:01:18]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 16:02:18]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 16:03:18]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 16:04:18]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 16:05:18]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 16:06:18]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 16:07:18]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 16:08:18]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 16:09:18]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 16:10:18]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 16:11:19]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 16:12:19]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 16:13:19]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 16:14:19]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 16:15:19]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 16:16:19]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 16:17:19]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 16:18:19]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 16:19:19]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 16:20:19]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 16:21:19]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 16:22:19]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 16:23:19]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 16:24:19]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 16:25:19]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 16:26:19]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 16:27:19]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 16:28:19]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 16:29:19]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 16:30:19]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 16:31:19]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 16:32:19]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 16:33:19]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 16:34:20]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 16:35:20]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 16:36:20]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 16:37:20]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 16:38:20]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 16:39:20]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 16:40:20]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 16:41:20]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 16:42:20]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 16:43:20]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 16:44:20]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 16:45:20]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 16:46:20]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 16:47:20]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 16:48:20]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 16:49:20]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 16:50:20]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 16:51:20]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 16:52:20]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 16:53:20]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 16:54:20]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 16:55:20]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 16:56:21]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 16:57:21]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 16:58:21]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 16:59:21]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 17:00:21]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 17:01:21]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 17:02:21]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 17:03:21]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 17:04:21]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 17:05:21]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 17:06:21]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 17:07:21]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 17:08:21]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 17:09:21]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 17:10:21]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 17:11:21]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 17:12:21]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 17:13:21]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 17:14:21]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 17:15:21]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 17:16:21]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 17:17:21]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 17:18:21]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 17:19:22]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 17:20:22]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 17:21:22]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 17:22:22]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 17:23:22]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 17:24:22]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 17:25:22]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 17:26:22]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 17:27:22]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 17:28:22]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 17:29:22]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 17:30:22]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 17:31:22]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 17:32:22]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 17:33:22]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 17:34:22]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 17:35:22]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 17:36:22]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 17:37:22]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 17:38:22]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 17:39:22]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 17:40:23]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 17:41:23]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 17:42:23]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 17:43:23]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 17:44:23]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 17:45:23]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 17:46:23]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 17:47:23]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 17:48:23]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 17:49:23]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 17:50:23]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 17:51:23]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 17:52:23]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 17:53:23]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 17:54:23]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 17:55:23]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 17:56:23]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 17:57:23]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 17:58:23]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 17:59:23]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 18:00:23]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 18:01:23]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 18:02:23]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 18:03:24]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 18:04:24]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 18:05:24]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 18:06:24]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 18:07:24]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 18:08:24]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 18:09:24]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 18:10:24]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 18:11:24]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 18:12:24]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 18:13:24]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 18:14:24]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 18:15:24]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 18:16:24]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 18:17:24]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 18:18:24]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 18:19:24]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 18:20:24]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 18:21:24]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 18:22:24]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 18:23:24]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 18:24:24]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 18:25:25]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 18:26:25]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 18:27:25]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 18:28:25]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 18:29:25]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 18:30:25]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 18:31:25]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 18:32:25]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 18:33:25]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 18:34:25]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 18:35:25]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 18:36:25]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 18:37:25]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 18:38:25]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 18:39:25]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 18:40:25]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 18:41:25]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 18:42:25]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 18:43:25]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 18:44:25]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 18:45:25]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 18:46:25]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 18:47:25]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 18:48:26]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 18:49:26]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 18:50:26]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 18:51:26]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 18:52:26]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 18:53:26]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 18:54:26]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 18:55:26]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 18:56:26]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 18:57:26]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 18:58:26]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 18:59:26]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 19:00:26]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 19:01:26]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 19:02:26]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 19:03:26]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 19:04:26]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 19:05:26]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 19:06:26]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 19:07:26]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 19:08:26]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 19:09:26]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 19:10:26]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 19:11:27]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 19:12:27]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 19:13:27]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 19:14:27]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 19:15:27]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 19:16:27]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 19:17:27]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 19:18:27]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 19:19:27]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 19:20:27]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 19:21:27]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 19:22:27]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 19:23:27]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 19:24:27]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 19:25:27]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 19:26:27]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 19:27:27]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 19:28:27]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 19:29:27]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 19:30:27]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 19:31:27]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 19:32:27]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 19:33:28]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 19:34:28]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 19:35:28]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 19:36:28]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 19:37:28]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 19:38:28]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 19:39:28]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 19:40:28]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 19:41:28]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 19:42:28]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 19:43:28]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 19:44:28]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 19:45:28]   8 jobs still running: nba_v46_s5,nba_v46_s6,nba_v46_s7,nba_v46_s8,nba_v46_s5,nba_v46_s7,nba_v46_s8,nba_v46_s6
+[2026-05-18 19:46:28] All training jobs finished.
+[2026-05-18 19:46:28] ---- Running make_all_swa.py ----
+v46_s1: swa already exists, skipping
+v46_s2: swa already exists, skipping
+v46_s3: swa already exists, skipping
+v46_s4: averaging 5 checkpoints...
+  -> model_v46_s4_swa.pth
+v46_s5: averaging 5 checkpoints...
+  -> model_v46_s5_swa.pth
+v46_s6: averaging 5 checkpoints...
+  -> model_v46_s6_swa.pth
+v46_s7: averaging 5 checkpoints...
+  -> model_v46_s7_swa.pth
+v46_s8: averaging 5 checkpoints...
+  -> model_v46_s8_swa.pth
+v58: missing model_v58_ep280.pth ù skip
+v58_s1: missing model_v58_s1_ep280.pth ù skip
+v58_s2: missing model_v58_s2_ep280.pth ù skip
+v58_s3: missing model_v58_s3_ep280.pth ù skip
+[2026-05-18 19:46:29] ---- Done make_all_swa.py ----
+[2026-05-18 19:46:29] ---- Running save_val_tta_preds.py ----
+Loading splits + computing normalization...
+Val windows: 2982
+Saved Y_real.pt  shape=(2982, 12, 11, 2)
+  predicting v46...
+    -> C:\Users\jan\Downloads\nml_project_proposal\nml_project_proposal\models\val_preds\v46.pt  shape=(2982, 12, 11, 2)
+  predicting v58...
+    -> C:\Users\jan\Downloads\nml_project_proposal\nml_project_proposal\models\val_preds\v58.pt  shape=(2982, 12, 11, 2)
+  MISSING weights for v58_swa: model_v58_swa.pth ù skipping
+  predicting v46_s1...
+    -> C:\Users\jan\Downloads\nml_project_proposal\nml_project_proposal\models\val_preds\v46_s1.pt  shape=(2982, 12, 11, 2)
+  predicting v46_s2...
+    -> C:\Users\jan\Downloads\nml_project_proposal\nml_project_proposal\models\val_preds\v46_s2.pt  shape=(2982, 12, 11, 2)
+  predicting v46_s3...
+    -> C:\Users\jan\Downloads\nml_project_proposal\nml_project_proposal\models\val_preds\v46_s3.pt  shape=(2982, 12, 11, 2)
+  predicting v46_s4...
+    -> C:\Users\jan\Downloads\nml_project_proposal\nml_project_proposal\models\val_preds\v46_s4.pt  shape=(2982, 12, 11, 2)
+  predicting v46_s5...
+    -> C:\Users\jan\Downloads\nml_project_proposal\nml_project_proposal\models\val_preds\v46_s5.pt  shape=(2982, 12, 11, 2)
+  predicting v46_s6...
+    -> C:\Users\jan\Downloads\nml_project_proposal\nml_project_proposal\models\val_preds\v46_s6.pt  shape=(2982, 12, 11, 2)
+  predicting v46_s7...
+    -> C:\Users\jan\Downloads\nml_project_proposal\nml_project_proposal\models\val_preds\v46_s7.pt  shape=(2982, 12, 11, 2)
+  predicting v46_s8...
+    -> C:\Users\jan\Downloads\nml_project_proposal\nml_project_proposal\models\val_preds\v46_s8.pt  shape=(2982, 12, 11, 2)
+  predicting v46_s1_swa...
+    -> C:\Users\jan\Downloads\nml_project_proposal\nml_project_proposal\models\val_preds\v46_s1_swa.pt  shape=(2982, 12, 11, 2)
+  predicting v46_s2_swa...
+    -> C:\Users\jan\Downloads\nml_project_proposal\nml_project_proposal\models\val_preds\v46_s2_swa.pt  shape=(2982, 12, 11, 2)
+  predicting v46_s3_swa...
+    -> C:\Users\jan\Downloads\nml_project_proposal\nml_project_proposal\models\val_preds\v46_s3_swa.pt  shape=(2982, 12, 11, 2)
+  predicting v46_s4_swa...
+    -> C:\Users\jan\Downloads\nml_project_proposal\nml_project_proposal\models\val_preds\v46_s4_swa.pt  shape=(2982, 12, 11, 2)
+  predicting v46_s5_swa...
+    -> C:\Users\jan\Downloads\nml_project_proposal\nml_project_proposal\models\val_preds\v46_s5_swa.pt  shape=(2982, 12, 11, 2)
+  predicting v46_s6_swa...
+    -> C:\Users\jan\Downloads\nml_project_proposal\nml_project_proposal\models\val_preds\v46_s6_swa.pt  shape=(2982, 12, 11, 2)
+  predicting v46_s7_swa...
+    -> C:\Users\jan\Downloads\nml_project_proposal\nml_project_proposal\models\val_preds\v46_s7_swa.pt  shape=(2982, 12, 11, 2)
+  predicting v46_s8_swa...
+    -> C:\Users\jan\Downloads\nml_project_proposal\nml_project_proposal\models\val_preds\v46_s8_swa.pt  shape=(2982, 12, 11, 2)
+  predicting v58_s1...
+    -> C:\Users\jan\Downloads\nml_project_proposal\nml_project_proposal\models\val_preds\v58_s1.pt  shape=(2982, 12, 11, 2)
+  predicting v58_s2...
+    -> C:\Users\jan\Downloads\nml_project_proposal\nml_project_proposal\models\val_preds\v58_s2.pt  shape=(2982, 12, 11, 2)
+  predicting v58_s3...
+    -> C:\Users\jan\Downloads\nml_project_proposal\nml_project_proposal\models\val_preds\v58_s3.pt  shape=(2982, 12, 11, 2)
+  MISSING weights for v58_s1_swa: model_v58_s1_swa.pth ù skipping
+  MISSING weights for v58_s2_swa: model_v58_s2_swa.pth ù skipping
+  MISSING weights for v58_s3_swa: model_v58_s3_swa.pth ù skipping
+Done.
+[2026-05-18 19:50:12] ---- Done save_val_tta_preds.py ----
+[2026-05-18 19:50:12] ---- Running save_test_tta_preds.py ----
+Computing normalization...
+Test files: 1243
+  predicting v46...
+    0/1243
+    500/1243
+    1000/1243
+    -> C:\Users\jan\Downloads\nml_project_proposal\nml_project_proposal\models\test_preds\v46.pt ((1243, 12, 11, 2))
+    -> C:\Users\jan\Downloads\nml_project_proposal\nml_project_proposal\models\solutions\solution_tta_v46.csv
+  predicting v58...
+    0/1243
+    500/1243
+    1000/1243
+    -> C:\Users\jan\Downloads\nml_project_proposal\nml_project_proposal\models\test_preds\v58.pt ((1243, 12, 11, 2))
+    -> C:\Users\jan\Downloads\nml_project_proposal\nml_project_proposal\models\solutions\solution_tta_v58.csv
+  MISSING weights for v58_swa: model_v58_swa.pth ù skipping
+  predicting v46_s1...
+    0/1243
+    500/1243
+    1000/1243
+    -> C:\Users\jan\Downloads\nml_project_proposal\nml_project_proposal\models\test_preds\v46_s1.pt ((1243, 12, 11, 2))
+    -> C:\Users\jan\Downloads\nml_project_proposal\nml_project_proposal\models\solutions\solution_tta_v46_s1.csv
+  predicting v46_s2...
+    0/1243
+    500/1243
+    1000/1243
+    -> C:\Users\jan\Downloads\nml_project_proposal\nml_project_proposal\models\test_preds\v46_s2.pt ((1243, 12, 11, 2))
+    -> C:\Users\jan\Downloads\nml_project_proposal\nml_project_proposal\models\solutions\solution_tta_v46_s2.csv
+  predicting v46_s3...
+    0/1243
+    500/1243
+    1000/1243
+    -> C:\Users\jan\Downloads\nml_project_proposal\nml_project_proposal\models\test_preds\v46_s3.pt ((1243, 12, 11, 2))
+    -> C:\Users\jan\Downloads\nml_project_proposal\nml_project_proposal\models\solutions\solution_tta_v46_s3.csv
+  predicting v46_s4...
+    0/1243
+    500/1243
+    1000/1243
+    -> C:\Users\jan\Downloads\nml_project_proposal\nml_project_proposal\models\test_preds\v46_s4.pt ((1243, 12, 11, 2))
+    -> C:\Users\jan\Downloads\nml_project_proposal\nml_project_proposal\models\solutions\solution_tta_v46_s4.csv
+  predicting v46_s5...
+    0/1243
+    500/1243
+    1000/1243
+    -> C:\Users\jan\Downloads\nml_project_proposal\nml_project_proposal\models\test_preds\v46_s5.pt ((1243, 12, 11, 2))
+    -> C:\Users\jan\Downloads\nml_project_proposal\nml_project_proposal\models\solutions\solution_tta_v46_s5.csv
+  predicting v46_s6...
+    0/1243
+    500/1243
+    1000/1243
+    -> C:\Users\jan\Downloads\nml_project_proposal\nml_project_proposal\models\test_preds\v46_s6.pt ((1243, 12, 11, 2))
+    -> C:\Users\jan\Downloads\nml_project_proposal\nml_project_proposal\models\solutions\solution_tta_v46_s6.csv
+  predicting v46_s7...
+    0/1243
+    500/1243
+    1000/1243
+    -> C:\Users\jan\Downloads\nml_project_proposal\nml_project_proposal\models\test_preds\v46_s7.pt ((1243, 12, 11, 2))
+    -> C:\Users\jan\Downloads\nml_project_proposal\nml_project_proposal\models\solutions\solution_tta_v46_s7.csv
+  predicting v46_s8...
+    0/1243
+    500/1243
+    1000/1243
+    -> C:\Users\jan\Downloads\nml_project_proposal\nml_project_proposal\models\test_preds\v46_s8.pt ((1243, 12, 11, 2))
+    -> C:\Users\jan\Downloads\nml_project_proposal\nml_project_proposal\models\solutions\solution_tta_v46_s8.csv
+  predicting v46_s1_swa...
+    0/1243
+    500/1243
+    1000/1243
+    -> C:\Users\jan\Downloads\nml_project_proposal\nml_project_proposal\models\test_preds\v46_s1_swa.pt ((1243, 12, 11, 2))
+    -> C:\Users\jan\Downloads\nml_project_proposal\nml_project_proposal\models\solutions\solution_tta_v46_s1_swa.csv
+  predicting v46_s2_swa...
+    0/1243
+    500/1243
+    1000/1243
+    -> C:\Users\jan\Downloads\nml_project_proposal\nml_project_proposal\models\test_preds\v46_s2_swa.pt ((1243, 12, 11, 2))
+    -> C:\Users\jan\Downloads\nml_project_proposal\nml_project_proposal\models\solutions\solution_tta_v46_s2_swa.csv
+  predicting v46_s3_swa...
+    0/1243
+    500/1243
+    1000/1243
+    -> C:\Users\jan\Downloads\nml_project_proposal\nml_project_proposal\models\test_preds\v46_s3_swa.pt ((1243, 12, 11, 2))
+    -> C:\Users\jan\Downloads\nml_project_proposal\nml_project_proposal\models\solutions\solution_tta_v46_s3_swa.csv
+  predicting v46_s4_swa...
+    0/1243
+    500/1243
+    1000/1243
+    -> C:\Users\jan\Downloads\nml_project_proposal\nml_project_proposal\models\test_preds\v46_s4_swa.pt ((1243, 12, 11, 2))
+    -> C:\Users\jan\Downloads\nml_project_proposal\nml_project_proposal\models\solutions\solution_tta_v46_s4_swa.csv
+  predicting v46_s5_swa...
+    0/1243
+    500/1243
+    1000/1243
+    -> C:\Users\jan\Downloads\nml_project_proposal\nml_project_proposal\models\test_preds\v46_s5_swa.pt ((1243, 12, 11, 2))
+    -> C:\Users\jan\Downloads\nml_project_proposal\nml_project_proposal\models\solutions\solution_tta_v46_s5_swa.csv
+  predicting v46_s6_swa...
+    0/1243
+    500/1243
+    1000/1243
+    -> C:\Users\jan\Downloads\nml_project_proposal\nml_project_proposal\models\test_preds\v46_s6_swa.pt ((1243, 12, 11, 2))
+    -> C:\Users\jan\Downloads\nml_project_proposal\nml_project_proposal\models\solutions\solution_tta_v46_s6_swa.csv
+  predicting v46_s7_swa...
+    0/1243
+    500/1243
+    1000/1243
+    -> C:\Users\jan\Downloads\nml_project_proposal\nml_project_proposal\models\test_preds\v46_s7_swa.pt ((1243, 12, 11, 2))
+    -> C:\Users\jan\Downloads\nml_project_proposal\nml_project_proposal\models\solutions\solution_tta_v46_s7_swa.csv
+  predicting v46_s8_swa...
+    0/1243
+    500/1243
+    1000/1243
+    -> C:\Users\jan\Downloads\nml_project_proposal\nml_project_proposal\models\test_preds\v46_s8_swa.pt ((1243, 12, 11, 2))
+    -> C:\Users\jan\Downloads\nml_project_proposal\nml_project_proposal\models\solutions\solution_tta_v46_s8_swa.csv
+  predicting v58_s1...
+    0/1243
+    500/1243
+    1000/1243
+    -> C:\Users\jan\Downloads\nml_project_proposal\nml_project_proposal\models\test_preds\v58_s1.pt ((1243, 12, 11, 2))
+    -> C:\Users\jan\Downloads\nml_project_proposal\nml_project_proposal\models\solutions\solution_tta_v58_s1.csv
+  predicting v58_s2...
+    0/1243
+    500/1243
+    1000/1243
+    -> C:\Users\jan\Downloads\nml_project_proposal\nml_project_proposal\models\test_preds\v58_s2.pt ((1243, 12, 11, 2))
+    -> C:\Users\jan\Downloads\nml_project_proposal\nml_project_proposal\models\solutions\solution_tta_v58_s2.csv
+  predicting v58_s3...
+    0/1243
+    500/1243
+    1000/1243
+    -> C:\Users\jan\Downloads\nml_project_proposal\nml_project_proposal\models\test_preds\v58_s3.pt ((1243, 12, 11, 2))
+    -> C:\Users\jan\Downloads\nml_project_proposal\nml_project_proposal\models\solutions\solution_tta_v58_s3.csv
+  MISSING weights for v58_s1_swa: model_v58_s1_swa.pth ù skipping
+  MISSING weights for v58_s2_swa: model_v58_s2_swa.pth ù skipping
+  MISSING weights for v58_s3_swa: model_v58_s3_swa.pth ù skipping
+Done.
+[2026-05-18 21:22:51] ---- Done save_test_tta_preds.py ----
+[2026-05-18 21:22:51] ---- Running weighted_ensemble.py ----
+Y_real: (2982, 12, 11, 2)
+  loaded v46  val=(2982, 12, 11, 2)  test=(1243, 12, 11, 2)
+  loaded v58  val=(2982, 12, 11, 2)  test=(1243, 12, 11, 2)
+  loaded v46_s1  val=(2982, 12, 11, 2)  test=(1243, 12, 11, 2)
+  loaded v46_s2  val=(2982, 12, 11, 2)  test=(1243, 12, 11, 2)
+  loaded v46_s3  val=(2982, 12, 11, 2)  test=(1243, 12, 11, 2)
+  loaded v46_s1_swa  val=(2982, 12, 11, 2)  test=(1243, 12, 11, 2)
+  loaded v46_s2_swa  val=(2982, 12, 11, 2)  test=(1243, 12, 11, 2)
+  loaded v46_s3_swa  val=(2982, 12, 11, 2)  test=(1243, 12, 11, 2)
+  loaded v46_s4  val=(2982, 12, 11, 2)  test=(1243, 12, 11, 2)
+  loaded v58_s1  val=(2982, 12, 11, 2)  test=(1243, 12, 11, 2)
+  loaded v58_s2  val=(2982, 12, 11, 2)  test=(1243, 12, 11, 2)
+  loaded v58_s3  val=(2982, 12, 11, 2)  test=(1243, 12, 11, 2)
+
+Solo val MSE (feet^2):
+  v46            2.8180
+  v58            2.8113
+  v46_s1         2.8421
+  v46_s2         2.8481
+  v46_s3         2.8115
+  v46_s1_swa     2.8424
+  v46_s2_swa     2.8480
+  v46_s3_swa     2.8114
+  v46_s4         2.8633
+  v58_s1         2.8236
+  v58_s2         2.8292
+  v58_s3         2.8207
+
+Equal-weight ensemble val MSE: 2.7961
+
+Free-weight least-squares val MSE: 2.7898
+  weights: {'v46': 0.176, 'v58': 0.274, 'v46_s1': 3.396, 'v46_s2': -1.748, 'v46_s3': -0.766, 'v46_s1_swa': -3.269, 'v46_s2_swa': 1.739, 'v46_s3_swa': 1.113, 'v46_s4': 0.075, 'v58_s1': 0.043, 'v58_s2': -0.107, 'v58_s3': 0.074}
+  sum=1.001
+
+Constrained-weight (full pool) val MSE: 2.7914
+  non-zero weights: {'v46': 0.171, 'v58': 0.241, 'v46_s1': 0.128, 'v46_s3_swa': 0.341, 'v46_s4': 0.064, 'v58_s1': 0.011, 'v58_s3': 0.044}
+
+Greedy forward selection (equal-weight subset):
+  start: v58 solo = 2.8113
+  +v46_s3_swa -> 2.7962
+  +v46 -> 2.7943
+  +v46_s1 -> 2.7928
+  +v46_s3 -> 2.7921
+  no improvement; stop
+
+Greedy subset re-weighted val MSE: 2.7918
+  subset weights: {'v58': 0.274, 'v46_s3_swa': 0.365, 'v46': 0.195, 'v46_s1': 0.167, 'v46_s3': 0.0}
+
+=== Summary ===
+  free      M=12  val MSE=2.7898
+  cons      M=12  val MSE=2.7914
+  greedyEq  M= 5  val MSE=2.7921
+  greedyW   M= 5  val MSE=2.7918
+
+Using strategy "free" with 12 models, val MSE 2.7898
+
+Wrote C:\Users\jan\Downloads\nml_project_proposal\nml_project_proposal\models\solutions\solution_weighted_free_12m.csv
+Models used: ['v46', 'v58', 'v46_s1', 'v46_s2', 'v46_s3', 'v46_s1_swa', 'v46_s2_swa', 'v46_s3_swa', 'v46_s4', 'v58_s1', 'v58_s2', 'v58_s3']
+Weights:     [0.176, 0.274, 3.396, -1.748, -0.766, -3.269, 1.739, 1.113, 0.075, 0.043, -0.107, 0.074]
+[2026-05-18 21:23:01] ---- Done weighted_ensemble.py ----
+[2026-05-18 21:23:01] ==== orchestrate.ps1 complete ====

@@ -77,3 +77,11 @@
 | 2026-05-07 16:20 | **nba_v46_s3** | **2.8488** | : | **v46 architecture, seed=3 × 300ep + SWA ckpts : NEW BEST seed; lucky basin, 0.5% better than baseline seed=0 (2.8628)** |
 | 2026-05-07 16:48 | **nba_v58** | **2.8426** | : | **v46 arch trained on real (3974) + pseudo-labeled test (1243) × 300ep : NEW BEST single model; pseudo-labels work, didn't amplify bias as feared; 0.7% over v46 baseline** |
 | 2026-05-07 19:44 | **ensemble_top5** | **2.7905** | : | **5-model TTA ensemble: v46 + v58 + v46_s1 + v46_s3 + v46_s3_swa, greedy-selected; NEW OVERALL BEST; 2.5% over v46×300; CSV saved as solution_tta_ensemble_top5_v46_v58_v46s1_v46s3_v46s3swa.csv (TO SUBMIT)** |
+| 2026-05-18 13:57 | nba_v46_s4 | 2.9237 | agent loop (300 epochs) |
+| 2026-05-18 15:34 | nba_v58_s1 | 2.8472 | agent loop (300 epochs) |
+| 2026-05-18 15:35 | nba_v58_s2 | 2.8502 | agent loop (300 epochs) |
+| 2026-05-18 15:35 | nba_v58_s3 | 2.8436 | agent loop (300 epochs) |
+| 2026-05-18 19:45 | nba_v46_s7 | 2.8776 | agent loop (300 epochs) |
+| 2026-05-18 19:45 | nba_v46_s5 | 2.8692 | agent loop (300 epochs) |
+| 2026-05-18 19:45 | nba_v46_s8 | 2.8819 | agent loop (300 epochs) |
+| 2026-05-18 19:45 | nba_v46_s6 | 2.8903 | agent loop (300 epochs) |
