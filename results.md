@@ -85,3 +85,8 @@
 | 2026-05-18 19:45 | nba_v46_s5 | 2.8692 | agent loop (300 epochs) |
 | 2026-05-18 19:45 | nba_v46_s8 | 2.8819 | agent loop (300 epochs) |
 | 2026-05-18 19:45 | nba_v46_s6 | 2.8903 | agent loop (300 epochs) |
+| 2026-06-05 13:08 | nba_v61 | 4.2235 | agent loop (5 epochs) |
+| 2026-06-05 14:23 | nba_v61 | 3.3928 | agent loop (100 epochs) |
+| 2026-06-05 14:23 | nba_v61 | 3.3928 | eval from model_v61.pth |
+| 2026-06-05 15:28 | nba_v61 | 3.2798 | agent loop (300 epochs) |
+| 2026-06-05 15:28 | nba_v61 | 3.2798 | eval from model_v61.pth |

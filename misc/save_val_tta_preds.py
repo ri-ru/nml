@@ -9,11 +9,21 @@ Outputs (under models/val_preds/):
 
 Run: python misc/save_val_tta_preds.py
 """
+import os
 import torch
-from pathlib import Path
+from pathlib import Path, PureWindowsPath
 import importlib.util
 
-DEVICE = 'cuda'
+
+def _default_device() -> str:
+    if torch.cuda.is_available():
+        return 'cuda'
+    if getattr(torch.backends, 'mps', None) and torch.backends.mps.is_available():
+        return 'mps'
+    return 'cpu'
+
+
+DEVICE = _default_device()
 BASE = Path(__file__).parent.parent
 WEIGHTS = BASE / 'models' / 'weights'
 TRAIN_TXT = BASE / 'train_files.txt'
@@ -23,6 +33,20 @@ OUT_DIR.mkdir(parents=True, exist_ok=True)
 CONTEXT = 8
 HORIZON = 12
 BATCH = 64
+DATA_DIR = os.environ.get('NML_DATA_DIR')  # optional rebase for cross-machine path lists
+
+
+def _rebase(p: str) -> str:
+    """Rebase Windows / foreign paths against NML_DATA_DIR if set."""
+    if Path(p).exists() or DATA_DIR is None:
+        return p
+    name = PureWindowsPath(p).name or Path(p).name
+    return str(Path(DATA_DIR) / name)
+
+
+def _empty_cache():
+    if DEVICE == 'cuda':
+        torch.cuda.empty_cache()
 
 # (label, source_model_file, model_class, weights_filename). Missing weights are skipped.
 MODELS = [
@@ -51,6 +75,8 @@ MODELS = [
     ('v58_s1_swa',  'nba_v58_s1', 'NBAv58Model', 'model_v58_s1_swa.pth'),
     ('v58_s2_swa',  'nba_v58_s2', 'NBAv58Model', 'model_v58_s2_swa.pth'),
     ('v58_s3_swa',  'nba_v58_s3', 'NBAv58Model', 'model_v58_s3_swa.pth'),
+    # New: HiVT-style. Constructor needs (mu, sigma) — load_one detects this.
+    ('v61',         'nba_v61',    'NBAv61Model', 'model_v61_300ep.pth'),
 ]
 
 
@@ -63,13 +89,18 @@ def compute_normalization_from_files(file_list):
     return cat.mean(dim=(0, 1)), cat.std(dim=(0, 1))
 
 
-def load_one(model_file, model_class, weights_fname):
+def load_one(model_file, model_class, weights_fname, mu=None, sigma=None):
     spec = importlib.util.spec_from_file_location(model_file, BASE / 'models' / f'{model_file}.py')
     mod = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(mod)
     cls = getattr(mod, model_class)
-    m = cls().to(DEVICE)
-    m.load_state_dict(torch.load(WEIGHTS / weights_fname, weights_only=True))
+    try:
+        m = cls()
+    except TypeError:
+        # Models like v61 require (mu, sigma) at construction.
+        m = cls(mu=mu, sigma=sigma)
+    m = m.to(DEVICE)
+    m.load_state_dict(torch.load(WEIGHTS / weights_fname, weights_only=True, map_location=DEVICE))
     m.train(False)
     return m
 
@@ -91,8 +122,8 @@ def predict_tta_norm(model, X_norm):
 
 def main():
     print('Loading splits + computing normalization...')
-    train_files = TRAIN_TXT.read_text().splitlines()
-    val_files = VAL_TXT.read_text().splitlines()
+    train_files = [_rebase(p) for p in TRAIN_TXT.read_text().splitlines()]
+    val_files   = [_rebase(p) for p in VAL_TXT.read_text().splitlines()]
     mu, sigma = compute_normalization_from_files(train_files)
     mu_d, sigma_d = mu.to(DEVICE), sigma.to(DEVICE)
 
@@ -146,7 +177,7 @@ def main():
             print(f'  MISSING weights for {label}: {wf} — skipping')
             continue
         print(f'  predicting {label}...')
-        model = load_one(mf, mc, wf)
+        model = load_one(mf, mc, wf, mu=mu, sigma=sigma)
         preds_batches = []
         for X in X_batches:
             pn = predict_tta_norm(model, X)
@@ -157,7 +188,7 @@ def main():
         full = torch.cat(preds_batches, dim=0)
         torch.save(full, out_path)
         del model
-        torch.cuda.empty_cache()
+        _empty_cache()
         print(f'    -> {out_path}  shape={tuple(full.shape)}')
 
     print('Done.')

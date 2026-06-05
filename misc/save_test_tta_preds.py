@@ -16,9 +16,29 @@ import pandas as pd
 from pathlib import Path
 import importlib.util
 
-DEVICE = 'cuda'
-TRAIN = r'C:\Users\jan\.cache\kagglehub\competitions\nml-2026\train\train'
-TEST  = r'C:\Users\jan\.cache\kagglehub\competitions\nml-2026\test\test'
+
+def _default_device() -> str:
+    if torch.cuda.is_available():
+        return 'cuda'
+    if getattr(torch.backends, 'mps', None) and torch.backends.mps.is_available():
+        return 'mps'
+    return 'cpu'
+
+
+DEVICE = _default_device()
+# NML_DATA_DIR (if set) should point at the train/ subdirectory holding *.pt files
+# (e.g. .../nml-2026/train/train). NML_TEST_DIR overrides the test dir.
+_DEFAULT_TRAIN = r'C:\Users\jan\.cache\kagglehub\competitions\nml-2026\train\train'
+_DEFAULT_TEST  = r'C:\Users\jan\.cache\kagglehub\competitions\nml-2026\test\test'
+TRAIN = os.environ.get('NML_DATA_DIR', _DEFAULT_TRAIN)
+TEST  = os.environ.get('NML_TEST_DIR',
+                       str(Path(TRAIN).parent.parent / 'test' / 'test') if Path(TRAIN).exists()
+                       else _DEFAULT_TEST)
+
+
+def _empty_cache():
+    if DEVICE == 'cuda':
+        torch.cuda.empty_cache()
 BASE = Path(__file__).parent.parent
 WEIGHTS = BASE / 'models' / 'weights'
 OUT_DIR = BASE / 'models' / 'test_preds'
@@ -54,6 +74,8 @@ MODELS = [
     ('v58_s1_swa',  'nba_v58_s1', 'NBAv58Model', 'model_v58_s1_swa.pth'),
     ('v58_s2_swa',  'nba_v58_s2', 'NBAv58Model', 'model_v58_s2_swa.pth'),
     ('v58_s3_swa',  'nba_v58_s3', 'NBAv58Model', 'model_v58_s3_swa.pth'),
+    # New: HiVT-style. Constructor needs (mu, sigma) — load_one detects this.
+    ('v61',         'nba_v61',    'NBAv61Model', 'model_v61_300ep.pth'),
 ]
 
 
@@ -66,13 +88,17 @@ def compute_normalization(data_path):
     return cat.mean(dim=(0, 1)), cat.std(dim=(0, 1))
 
 
-def load_one(model_file, model_class, weights_fname):
+def load_one(model_file, model_class, weights_fname, mu=None, sigma=None):
     spec = importlib.util.spec_from_file_location(model_file, BASE / 'models' / f'{model_file}.py')
     mod = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(mod)
     cls = getattr(mod, model_class)
-    m = cls().to(DEVICE)
-    m.load_state_dict(torch.load(WEIGHTS / weights_fname, weights_only=True))
+    try:
+        m = cls()
+    except TypeError:
+        m = cls(mu=mu, sigma=sigma)
+    m = m.to(DEVICE)
+    m.load_state_dict(torch.load(WEIGHTS / weights_fname, weights_only=True, map_location=DEVICE))
     m.train(False)
     return m
 
@@ -133,7 +159,7 @@ def main():
             print(f'  MISSING weights for {label}: {wf} — skipping')
             continue
         print(f'  predicting {label}...')
-        model = load_one(mf, mc, wf)
+        model = load_one(mf, mc, wf, mu=mu, sigma=sigma)
         all_preds = []
         rows = []
         for idx, (ctx, _id) in enumerate(zip(test_ctx, test_ids)):
@@ -147,7 +173,7 @@ def main():
         torch.save(full, out_pt)
         pd.DataFrame(rows, columns=cols).set_index('id').sort_index().to_csv(out_csv)
         del model
-        torch.cuda.empty_cache()
+        _empty_cache()
         print(f'    -> {out_pt} ({tuple(full.shape)})')
         print(f'    -> {out_csv}')
 

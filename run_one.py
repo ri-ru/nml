@@ -8,7 +8,18 @@ from evaluate import evaluate_model, make_val_dl
 
 TRAIN = r'C:\Users\jan\.cache\kagglehub\competitions\nml-2026\train\train'
 VAL   = r'C:\Users\jan\.cache\kagglehub\competitions\nml-2026\train\train'
-DEVICE = 'cuda'
+
+
+def _default_device() -> str:
+    import torch
+    if torch.cuda.is_available():
+        return 'cuda'
+    if getattr(torch.backends, 'mps', None) and torch.backends.mps.is_available():
+        return 'mps'
+    return 'cpu'
+
+
+DEVICE = _default_device()
 
 
 def run(model_path: str, epochs: int = 30, batch_size: int = 32) -> float:
