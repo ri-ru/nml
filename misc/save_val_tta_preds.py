@@ -51,6 +51,17 @@ MODELS = [
     ('v58_s1_swa',  'nba_v58_s1', 'NBAv58Model', 'model_v58_s1_swa.pth'),
     ('v58_s2_swa',  'nba_v58_s2', 'NBAv58Model', 'model_v58_s2_swa.pth'),
     ('v58_s3_swa',  'nba_v58_s3', 'NBAv58Model', 'model_v58_s3_swa.pth'),
+    ('v60',         'nba_v60',    'NBAv60Model', 'model_v60_200ep.pth'),
+    ('v60_s1',      'nba_v60_s1', 'NBAv60Model', 'model_v60_s1_200ep.pth'),
+    ('v60_swa',     'nba_v60',    'NBAv60Model', 'model_v60_swa.pth'),
+    ('v60_s1_swa',  'nba_v60_s1', 'NBAv60Model', 'model_v60_s1_swa.pth'),
+    # --- ball-weighted (NBAv46Model arch) + agent-centric + pseudo round-2 ---
+    ('v60_w5',      'nba_v46',    'NBAv46Model', 'model_v60_w5_300ep.pth'),
+    ('v60_w8',      'nba_v46',    'NBAv46Model', 'model_v60_w8_300ep.pth'),
+    ('v60_w3',      'nba_v46',    'NBAv46Model', 'model_v60_w3_300ep.pth'),
+    ('v65',         'nba_v65',    'NBAv65Model', 'model_v65_300ep.pth'),
+    ('v66',         'nba_v66',    'NBAv66Model', 'model_v66_300ep.pth'),
+    ('v68',         'nba_v46',    'NBAv46Model', 'model_v68_300ep.pth'),
 ]
 
 
