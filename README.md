@@ -53,9 +53,25 @@ misc/weighted_ensemble_per_entity.py # same idea, but one weight vector per enti
 
 Everything before `weighted_ensemble.py` is GPU work. The ensemble fits themselves are CPU + scipy.
 
+### Where the error comes from — the ball dominates
+
+The score averages MSE uniformly over all 11 entities, but the error is wildly concentrated. The
+ball (always entity 0) has **~6.3× the MSE of any player** (12.04 vs 1.71–2.08 feet²) because it
+moves faster and less predictably (passes, shots). So the ball is **9.1% of the entities but ~39%
+of the total error**. If it were predicted as well as an average player, local MSE would drop from
+2.82 → 1.90 (−33%). At short horizons (t=1–2) the ball is **58–74% of the entire error**, since
+players move smoothly and the model nails their near future.
+
+Full breakdown (ball-vs-player, per-timestep, per-axis) and the implied next experiments live in
+[`ERROR_ANALYSIS.md`](ERROR_ANALYSIS.md). Reproduce with
+`python misc/analyze_error_sources.py [--tta]`.
+
 ### Why per-entity weights help
 
-The ball (entity 0 in the model output) has ~6× the prediction MSE of any player (~12 vs ~1.7–2.0 feet²) because it moves faster and less predictably. Fitting a single weight vector across all entities forces a compromise between ball-friendly and player-friendly weighting. Per-entity weights let each entity choose its own subset of models. Gain is small (Δ local ≈ −0.007) but enough to cross the 3.0 line at submission time.
+This concentration is also why per-entity ensemble weights help. Fitting a single weight vector
+across all entities forces a compromise between ball-friendly and player-friendly weighting.
+Per-entity weights let each entity choose its own subset of models. Gain is small (Δ local ≈ −0.007)
+but enough to cross the 3.0 line at submission time.
 
 ---
 
