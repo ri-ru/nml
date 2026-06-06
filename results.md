@@ -90,3 +90,5 @@
 | 2026-06-05 14:23 | nba_v61 | 3.3928 | eval from model_v61.pth |
 | 2026-06-05 15:28 | nba_v61 | 3.2798 | agent loop (300 epochs) |
 | 2026-06-05 15:28 | nba_v61 | 3.2798 | eval from model_v61.pth |
+| 2026-06-06 03:00 | nba_v62 | 3.1775 | agent loop (300 epochs) |
+| 2026-06-06 06:02 | nba_v62 | 3.1775 | eval from model_v62.pth |

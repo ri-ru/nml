@@ -77,6 +77,8 @@ MODELS = [
     ('v58_s3_swa',  'nba_v58_s3', 'NBAv58Model', 'model_v58_s3_swa.pth'),
     # New: HiVT-style. Constructor needs (mu, sigma) — load_one detects this.
     ('v61',         'nba_v61',    'NBAv61Model', 'model_v61_300ep.pth'),
+    # Hybrid: per-focal canonical frame + v46-style AR+MoG. Also needs (mu, sigma).
+    ('v62',         'nba_v62',    'NBAv62Model', 'model_v62_300ep.pth'),
 ]
 
 
