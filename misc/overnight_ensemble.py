@@ -30,13 +30,14 @@ BASE_POOL = ['v46', 'v58', 'v58_swa',
 BALL = ['v60_w5', 'v60_w8', 'v60_w3', 'v60_w8_s1', 'v60_w8_s2', 'v60_w5_s1']
 AGENT = ['v65', 'v66']
 PSEUDO = ['v68']
+GNN = ['v72', 'v72_w8']
 
 POOLS = {
     'base':            BASE_POOL,
     'base+ball':       BASE_POOL + BALL,
     'base+ball+pseudo': BASE_POOL + BALL + PSEUDO,
-    'base+ball+agent': BASE_POOL + BALL + AGENT,
-    'all':             BASE_POOL + BALL + AGENT + PSEUDO,
+    'base+ball+gnn':   BASE_POOL + BALL + GNN,
+    'all':             BASE_POOL + BALL + AGENT + PSEUDO + GNN,
 }
 
 

@@ -68,6 +68,8 @@ MODELS = [
     ('v60_w8_s1',   'nba_v46',    'NBAv46Model', 'model_v60_w8_s1_300ep.pth'),
     ('v60_w8_s2',   'nba_v46',    'NBAv46Model', 'model_v60_w8_s2_300ep.pth'),
     ('v60_w5_s1',   'nba_v46',    'NBAv46Model', 'model_v60_w5_s1_300ep.pth'),
+    ('v72',         'nba_v72',    'NBAv72Model', 'model_v72_300ep.pth'),
+    ('v72_w8',      'nba_v72',    'NBAv72Model', 'model_v72_w8_300ep.pth'),
 ]
 
 
