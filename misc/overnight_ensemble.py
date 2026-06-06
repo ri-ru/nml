@@ -27,7 +27,7 @@ BASE_POOL = ['v46', 'v58', 'v58_swa',
              'v46_s1_swa', 'v46_s2_swa', 'v46_s3_swa', 'v46_s4_swa', 'v46_s5_swa',
              'v46_s6_swa', 'v46_s7_swa', 'v46_s8_swa',
              'v58_s1', 'v58_s2', 'v58_s3']
-BALL = ['v60_w5', 'v60_w8', 'v60_w3']
+BALL = ['v60_w5', 'v60_w8', 'v60_w3', 'v60_w8_s1', 'v60_w8_s2', 'v60_w5_s1']
 AGENT = ['v65', 'v66']
 PSEUDO = ['v68']
 
