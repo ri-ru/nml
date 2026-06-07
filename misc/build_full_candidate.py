@@ -39,7 +39,7 @@ for e in range(1,NE):
 
 cols=[f'entity_{i}_time_{t}_{a}' for t in range(HOR) for i in range(NE) for a in ['x','y']]
 rows=[[i]+out[i].reshape(-1).tolist() for i in range(Ntest)]
-csv = SOL/'solution_full_2grp.csv'
+csv = SOL/'solution_100pct_full_2grp_NEW.csv'   # brand-new file; never overwrite existing submissions
 pd.DataFrame(rows,columns=['id']+cols).set_index('id').sort_index().to_csv(csv)
 
 # local val score of the (80%-pred) 2-group for reference
@@ -48,7 +48,7 @@ vp[:,:,0,:] = (wb@Pv[:,:,:,0,:].reshape(M,-1)).reshape(Y.shape[0],HOR,2)
 for e in range(1,NE):
     vp[:,:,e,:] = (wp@Pv[:,:,:,e,:].reshape(M,-1)).reshape(Y.shape[0],HOR,2)
 local = float(np.mean((vp-Y)**2))
-msg = (f"100%-DATA CANDIDATE: solution_full_2grp.csv\n"
+msg = (f"100%-DATA CANDIDATE: solution_100pct_full_2grp_NEW.csv\n"
        f"  {nfull}/{M} members use _full (100%-data) test preds; rest 80%.\n"
        f"  reference local 2-group (80% preds) = {local:.4f}; submitted 2-group was 2.7563 -> Kaggle 2.98086.\n"
        f"  NOTE: local can't measure the _full gain (val is in their training set). Submit and compare on Kaggle.")
