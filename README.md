@@ -35,14 +35,27 @@ on its 100 %-data (`_full`) checkpoint, then the per-group weights combine them.
 build (weights + the 2 architecture files + `ensemble_weights.json` + one script) lives in
 [`final_7model/`](final_7model/README.md).
 
-**6-model variant (drop `v58`, single architecture).** Removing `v58` leaves six pure-`NBAv46Model`
-members — "one architecture, trained six ways". The ball side is **unchanged** (`v58` carried no ball
-weight); on the player side its 0.263 is reabsorbed by the v46 generalists (`v46_s7` 0.387, `v46`
-0.328, `v46_s3` 0.285). Local 2-group MSE is **2.7583 vs 2.7568** for the 7-model pool — a hair worse,
-because `v58`'s pseudo-labelled, different-architecture diversity is lost. Refit purely over cached
-predictions (no retraining): `python final_run/build_trimmed6_candidate.py` →
-`final_run/solutions/solution_trimmed6_2grp.csv`. We keep the **7-model** ensemble as the headline
-(better local number and the stronger story); the 6-model CSV is a candidate to compare on Kaggle.
+### 6-model variant — drop `v58` (single architecture)
+
+Removing `v58` leaves six pure-`NBAv46Model` members — "one architecture, trained six ways". Refit
+the 2-group weights over the same cached predictions (no retraining):
+
+| Model | Architecture | Ball weight | Player weight | Role |
+|---|---|---:|---:|---|
+| `v60_w8`    | nba_v46 / NBAv46Model | **0.606** | 0.000 | ball expert (ball-weighted loss ×8) |
+| `v60_w5_s1` | nba_v46 / NBAv46Model | **0.246** | 0.000 | ball expert (ball-weighted loss ×5, seed 1) |
+| `v60_w8_s2` | nba_v46 / NBAv46Model | **0.099** | 0.000 | ball expert (ball-weighted loss ×8, seed 2) |
+| `v46_s3`    | nba_v46 / NBAv46Model | 0.048 | 0.285 | both (the only cross-over) |
+| `v46`       | nba_v46 / NBAv46Model | 0.000 | 0.328 | player generalist (baseline) |
+| `v46_s7`    | nba_v46 / NBAv46Model | 0.000 | **0.387** | player generalist (seed 7) |
+
+The **ball side is identical** to the 7-model pool (`v58` carried no ball weight). On the player side,
+`v58`'s 0.263 is reabsorbed by the three v46 generalists (`v46_s7` 0.344 → 0.387, `v46` 0.190 → 0.328,
+`v46_s3` 0.204 → 0.285). Local 2-group MSE is **2.7583 vs 2.7568** for the 7-model pool — a hair worse,
+because `v58`'s pseudo-labelled, different-architecture diversity is lost. Build it with
+`python final_run/build_trimmed6_candidate.py` → `final_run/solutions/solution_trimmed6_2grp.csv`. We
+keep the **7-model** ensemble as the headline (better local number and the stronger story); the
+6-model CSV is a candidate to compare on Kaggle.
 
 ---
 
