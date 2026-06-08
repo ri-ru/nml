@@ -1,0 +1,903 @@
+Epoch 1/300  (ball_w=3.0)
+    train loss: 1.5266
+    val loss: 0.1604
+Epoch 2/300  (ball_w=3.0)
+    train loss: 0.2552
+    val loss: 0.0762
+Epoch 3/300  (ball_w=3.0)
+    train loss: -0.3915
+    val loss: 0.0369
+Epoch 4/300  (ball_w=3.0)
+    train loss: -0.8872
+    val loss: 0.0321
+Epoch 5/300  (ball_w=3.0)
+    train loss: -1.1840
+    val loss: 0.0226
+Epoch 6/300  (ball_w=3.0)
+    train loss: -1.4324
+    val loss: 0.0204
+Epoch 7/300  (ball_w=3.0)
+    train loss: -1.5728
+    val loss: 0.0192
+Epoch 8/300  (ball_w=3.0)
+    train loss: -1.6447
+    val loss: 0.0205
+Epoch 9/300  (ball_w=3.0)
+    train loss: -1.7438
+    val loss: 0.0181
+Epoch 10/300  (ball_w=3.0)
+    train loss: -1.8041
+    val loss: 0.0185
+Epoch 11/300  (ball_w=3.0)
+    train loss: -1.8432
+    val loss: 0.0176
+Epoch 12/300  (ball_w=3.0)
+    train loss: -1.8664
+    val loss: 0.0183
+Epoch 13/300  (ball_w=3.0)
+    train loss: -1.8935
+    val loss: 0.0178
+Epoch 14/300  (ball_w=3.0)
+    train loss: -1.8750
+    val loss: 0.0174
+Epoch 15/300  (ball_w=3.0)
+    train loss: -1.9218
+    val loss: 0.0171
+Epoch 16/300  (ball_w=3.0)
+    train loss: -1.9414
+    val loss: 0.0187
+Epoch 17/300  (ball_w=3.0)
+    train loss: -1.9661
+    val loss: 0.0165
+Epoch 18/300  (ball_w=3.0)
+    train loss: -1.9553
+    val loss: 0.0176
+Epoch 19/300  (ball_w=3.0)
+    train loss: -1.9890
+    val loss: 0.0168
+Epoch 20/300  (ball_w=3.0)
+    train loss: -1.9720
+    val loss: 0.0167
+Epoch 21/300  (ball_w=3.0)
+    train loss: -2.0162
+    val loss: 0.0172
+Epoch 22/300  (ball_w=3.0)
+    train loss: -2.0067
+    val loss: 0.0169
+Epoch 23/300  (ball_w=3.0)
+    train loss: -2.0053
+    val loss: 0.0169
+Epoch 24/300  (ball_w=3.0)
+    train loss: -2.0145
+    val loss: 0.0163
+Epoch 25/300  (ball_w=3.0)
+    train loss: -2.0250
+    val loss: 0.0164
+Epoch 26/300  (ball_w=3.0)
+    train loss: -2.0445
+    val loss: 0.0176
+Epoch 27/300  (ball_w=3.0)
+    train loss: -2.0535
+    val loss: 0.0164
+Epoch 28/300  (ball_w=3.0)
+    train loss: -2.0519
+    val loss: 0.0164
+Epoch 29/300  (ball_w=3.0)
+    train loss: -2.0591
+    val loss: 0.0176
+Epoch 30/300  (ball_w=3.0)
+    train loss: -2.0556
+    val loss: 0.0156
+Epoch 31/300  (ball_w=3.0)
+    train loss: -2.0498
+    val loss: 0.0184
+Epoch 32/300  (ball_w=3.0)
+    train loss: -2.0638
+    val loss: 0.0161
+Epoch 33/300  (ball_w=3.0)
+    train loss: -2.0744
+    val loss: 0.0157
+Epoch 34/300  (ball_w=3.0)
+    train loss: -2.0752
+    val loss: 0.0179
+Epoch 35/300  (ball_w=3.0)
+    train loss: -2.0819
+    val loss: 0.0152
+Epoch 36/300  (ball_w=3.0)
+    train loss: -2.0790
+    val loss: 0.0182
+Epoch 37/300  (ball_w=3.0)
+    train loss: -2.0918
+    val loss: 0.0158
+Epoch 38/300  (ball_w=3.0)
+    train loss: -2.0778
+    val loss: 0.0166
+Epoch 39/300  (ball_w=3.0)
+    train loss: -2.0952
+    val loss: 0.0154
+Epoch 40/300  (ball_w=3.0)
+    train loss: -2.1095
+    val loss: 0.0160
+Epoch 41/300  (ball_w=3.0)
+    train loss: -2.1123
+    val loss: 0.0165
+Epoch 42/300  (ball_w=3.0)
+    train loss: -2.1123
+    val loss: 0.0154
+Epoch 43/300  (ball_w=3.0)
+    train loss: -2.1173
+    val loss: 0.0159
+Epoch 44/300  (ball_w=3.0)
+    train loss: -2.1187
+    val loss: 0.0150
+Epoch 45/300  (ball_w=3.0)
+    train loss: -2.1340
+    val loss: 0.0154
+Epoch 46/300  (ball_w=3.0)
+    train loss: -2.1369
+    val loss: 0.0159
+Epoch 47/300  (ball_w=3.0)
+    train loss: -2.1338
+    val loss: 0.0164
+Epoch 48/300  (ball_w=3.0)
+    train loss: -2.1138
+    val loss: 0.0155
+Epoch 49/300  (ball_w=3.0)
+    train loss: -2.1417
+    val loss: 0.0157
+Epoch 50/300  (ball_w=3.0)
+    train loss: -2.1359
+    val loss: 0.0155
+Epoch 51/300  (ball_w=3.0)
+    train loss: -2.1404
+    val loss: 0.0149
+Epoch 52/300  (ball_w=3.0)
+    train loss: -2.1538
+    val loss: 0.0156
+Epoch 53/300  (ball_w=3.0)
+    train loss: -2.1391
+    val loss: 0.0164
+Epoch 54/300  (ball_w=3.0)
+    train loss: -2.1422
+    val loss: 0.0153
+Epoch 55/300  (ball_w=3.0)
+    train loss: -2.1535
+    val loss: 0.0157
+Epoch 56/300  (ball_w=3.0)
+    train loss: -2.1535
+    val loss: 0.0154
+Epoch 57/300  (ball_w=3.0)
+    train loss: -2.1574
+    val loss: 0.0152
+Epoch 58/300  (ball_w=3.0)
+    train loss: -2.1606
+    val loss: 0.0152
+Epoch 59/300  (ball_w=3.0)
+    train loss: -2.1523
+    val loss: 0.0153
+Epoch 60/300  (ball_w=3.0)
+    train loss: -2.1668
+    val loss: 0.0152
+Epoch 61/300  (ball_w=3.0)
+    train loss: -2.1634
+    val loss: 0.0148
+Epoch 62/300  (ball_w=3.0)
+    train loss: -2.1606
+    val loss: 0.0154
+Epoch 63/300  (ball_w=3.0)
+    train loss: -2.1684
+    val loss: 0.0155
+Epoch 64/300  (ball_w=3.0)
+    train loss: -2.1572
+    val loss: 0.0154
+Epoch 65/300  (ball_w=3.0)
+    train loss: -2.1609
+    val loss: 0.0165
+Epoch 66/300  (ball_w=3.0)
+    train loss: -2.1698
+    val loss: 0.0144
+Epoch 67/300  (ball_w=3.0)
+    train loss: -2.1712
+    val loss: 0.0146
+Epoch 68/300  (ball_w=3.0)
+    train loss: -2.1794
+    val loss: 0.0155
+Epoch 69/300  (ball_w=3.0)
+    train loss: -2.1873
+    val loss: 0.0149
+Epoch 70/300  (ball_w=3.0)
+    train loss: -2.1731
+    val loss: 0.0160
+Epoch 71/300  (ball_w=3.0)
+    train loss: -2.1837
+    val loss: 0.0169
+Epoch 72/300  (ball_w=3.0)
+    train loss: -2.1858
+    val loss: 0.0160
+Epoch 73/300  (ball_w=3.0)
+    train loss: -2.1651
+    val loss: 0.0148
+Epoch 74/300  (ball_w=3.0)
+    train loss: -2.1970
+    val loss: 0.0143
+Epoch 75/300  (ball_w=3.0)
+    train loss: -2.1799
+    val loss: 0.0150
+Epoch 76/300  (ball_w=3.0)
+    train loss: -2.1818
+    val loss: 0.0157
+Epoch 77/300  (ball_w=3.0)
+    train loss: -2.1970
+    val loss: 0.0162
+Epoch 78/300  (ball_w=3.0)
+    train loss: -2.1675
+    val loss: 0.0150
+Epoch 79/300  (ball_w=3.0)
+    train loss: -2.1815
+    val loss: 0.0147
+Epoch 80/300  (ball_w=3.0)
+    train loss: -2.1936
+    val loss: 0.0153
+Epoch 81/300  (ball_w=3.0)
+    train loss: -2.1855
+    val loss: 0.0158
+Epoch 82/300  (ball_w=3.0)
+    train loss: -2.1962
+    val loss: 0.0151
+Epoch 83/300  (ball_w=3.0)
+    train loss: -2.2055
+    val loss: 0.0144
+Epoch 84/300  (ball_w=3.0)
+    train loss: -2.1951
+    val loss: 0.0152
+Epoch 85/300  (ball_w=3.0)
+    train loss: -2.1903
+    val loss: 0.0157
+Epoch 86/300  (ball_w=3.0)
+    train loss: -2.2067
+    val loss: 0.0145
+Epoch 87/300  (ball_w=3.0)
+    train loss: -2.2003
+    val loss: 0.0156
+Epoch 88/300  (ball_w=3.0)
+    train loss: -2.2022
+    val loss: 0.0147
+Epoch 89/300  (ball_w=3.0)
+    train loss: -2.2039
+    val loss: 0.0143
+Epoch 90/300  (ball_w=3.0)
+    train loss: -2.1994
+    val loss: 0.0150
+Epoch 91/300  (ball_w=3.0)
+    train loss: -2.1883
+    val loss: 0.0153
+Epoch 92/300  (ball_w=3.0)
+    train loss: -2.2050
+    val loss: 0.0140
+Epoch 93/300  (ball_w=3.0)
+    train loss: -2.2096
+    val loss: 0.0151
+Epoch 94/300  (ball_w=3.0)
+    train loss: -2.2045
+    val loss: 0.0144
+Epoch 95/300  (ball_w=3.0)
+    train loss: -2.2106
+    val loss: 0.0141
+Epoch 96/300  (ball_w=3.0)
+    train loss: -2.2116
+    val loss: 0.0147
+Epoch 97/300  (ball_w=3.0)
+    train loss: -2.2086
+    val loss: 0.0145
+Epoch 98/300  (ball_w=3.0)
+    train loss: -2.2065
+    val loss: 0.0146
+Epoch 99/300  (ball_w=3.0)
+    train loss: -2.2200
+    val loss: 0.0143
+Epoch 100/300  (ball_w=3.0)
+    train loss: -2.2073
+    val loss: 0.0149
+Epoch 101/300  (ball_w=3.0)
+    train loss: -2.2125
+    val loss: 0.0141
+Epoch 102/300  (ball_w=3.0)
+    train loss: -2.2222
+    val loss: 0.0149
+Epoch 103/300  (ball_w=3.0)
+    train loss: -2.2291
+    val loss: 0.0151
+Epoch 104/300  (ball_w=3.0)
+    train loss: -2.2099
+    val loss: 0.0148
+Epoch 105/300  (ball_w=3.0)
+    train loss: -2.2145
+    val loss: 0.0145
+Epoch 106/300  (ball_w=3.0)
+    train loss: -2.2320
+    val loss: 0.0137
+Epoch 107/300  (ball_w=3.0)
+    train loss: -2.2275
+    val loss: 0.0146
+Epoch 108/300  (ball_w=3.0)
+    train loss: -2.2323
+    val loss: 0.0143
+Epoch 109/300  (ball_w=3.0)
+    train loss: -2.2216
+    val loss: 0.0142
+Epoch 110/300  (ball_w=3.0)
+    train loss: -2.2260
+    val loss: 0.0169
+Epoch 111/300  (ball_w=3.0)
+    train loss: -2.2258
+    val loss: 0.0145
+Epoch 112/300  (ball_w=3.0)
+    train loss: -2.2339
+    val loss: 0.0145
+Epoch 113/300  (ball_w=3.0)
+    train loss: -2.2354
+    val loss: 0.0138
+Epoch 114/300  (ball_w=3.0)
+    train loss: -2.2322
+    val loss: 0.0157
+Epoch 115/300  (ball_w=3.0)
+    train loss: -2.2353
+    val loss: 0.0147
+Epoch 116/300  (ball_w=3.0)
+    train loss: -2.2339
+    val loss: 0.0143
+Epoch 117/300  (ball_w=3.0)
+    train loss: -2.2493
+    val loss: 0.0139
+Epoch 118/300  (ball_w=3.0)
+    train loss: -2.2366
+    val loss: 0.0143
+Epoch 119/300  (ball_w=3.0)
+    train loss: -2.2447
+    val loss: 0.0165
+Epoch 120/300  (ball_w=3.0)
+    train loss: -2.2482
+    val loss: 0.0139
+Epoch 121/300  (ball_w=3.0)
+    train loss: -2.2484
+    val loss: 0.0141
+Epoch 122/300  (ball_w=3.0)
+    train loss: -2.2404
+    val loss: 0.0149
+Epoch 123/300  (ball_w=3.0)
+    train loss: -2.2407
+    val loss: 0.0145
+Epoch 124/300  (ball_w=3.0)
+    train loss: -2.2464
+    val loss: 0.0146
+Epoch 125/300  (ball_w=3.0)
+    train loss: -2.2454
+    val loss: 0.0141
+Epoch 126/300  (ball_w=3.0)
+    train loss: -2.2502
+    val loss: 0.0150
+Epoch 127/300  (ball_w=3.0)
+    train loss: -2.2612
+    val loss: 0.0164
+Epoch 128/300  (ball_w=3.0)
+    train loss: -2.2477
+    val loss: 0.0143
+Epoch 129/300  (ball_w=3.0)
+    train loss: -2.2616
+    val loss: 0.0142
+Epoch 130/300  (ball_w=3.0)
+    train loss: -2.2588
+    val loss: 0.0135
+Epoch 131/300  (ball_w=3.0)
+    train loss: -2.2607
+    val loss: 0.0135
+Epoch 132/300  (ball_w=3.0)
+    train loss: -2.2629
+    val loss: 0.0134
+Epoch 133/300  (ball_w=3.0)
+    train loss: -2.2635
+    val loss: 0.0142
+Epoch 134/300  (ball_w=3.0)
+    train loss: -2.2576
+    val loss: 0.0146
+Epoch 135/300  (ball_w=3.0)
+    train loss: -2.2656
+    val loss: 0.0135
+Epoch 136/300  (ball_w=3.0)
+    train loss: -2.2664
+    val loss: 0.0138
+Epoch 137/300  (ball_w=3.0)
+    train loss: -2.2697
+    val loss: 0.0139
+Epoch 138/300  (ball_w=3.0)
+    train loss: -2.2691
+    val loss: 0.0144
+Epoch 139/300  (ball_w=3.0)
+    train loss: -2.2613
+    val loss: 0.0144
+Epoch 140/300  (ball_w=3.0)
+    train loss: -2.2711
+    val loss: 0.0144
+Epoch 141/300  (ball_w=3.0)
+    train loss: -2.2641
+    val loss: 0.0154
+Epoch 142/300  (ball_w=3.0)
+    train loss: -2.2701
+    val loss: 0.0144
+Epoch 143/300  (ball_w=3.0)
+    train loss: -2.2582
+    val loss: 0.0136
+Epoch 144/300  (ball_w=3.0)
+    train loss: -2.2717
+    val loss: 0.0136
+Epoch 145/300  (ball_w=3.0)
+    train loss: -2.2776
+    val loss: 0.0141
+Epoch 146/300  (ball_w=3.0)
+    train loss: -2.2764
+    val loss: 0.0149
+Epoch 147/300  (ball_w=3.0)
+    train loss: -2.2752
+    val loss: 0.0148
+Epoch 148/300  (ball_w=3.0)
+    train loss: -2.2808
+    val loss: 0.0138
+Epoch 149/300  (ball_w=3.0)
+    train loss: -2.2759
+    val loss: 0.0141
+Epoch 150/300  (ball_w=3.0)
+    train loss: -2.2818
+    val loss: 0.0138
+Epoch 151/300  (ball_w=3.0)
+    train loss: -2.2581
+    val loss: 0.0141
+Epoch 152/300  (ball_w=3.0)
+    train loss: -2.2884
+    val loss: 0.0137
+Epoch 153/300  (ball_w=3.0)
+    train loss: -2.2772
+    val loss: 0.0143
+Epoch 154/300  (ball_w=3.0)
+    train loss: -2.2779
+    val loss: 0.0141
+Epoch 155/300  (ball_w=3.0)
+    train loss: -2.2898
+    val loss: 0.0159
+Epoch 156/300  (ball_w=3.0)
+    train loss: -2.2865
+    val loss: 0.0136
+Epoch 157/300  (ball_w=3.0)
+    train loss: -2.2883
+    val loss: 0.0139
+Epoch 158/300  (ball_w=3.0)
+    train loss: -2.2920
+    val loss: 0.0140
+Epoch 159/300  (ball_w=3.0)
+    train loss: -2.2976
+    val loss: 0.0135
+Epoch 160/300  (ball_w=3.0)
+    train loss: -2.2929
+    val loss: 0.0132
+Epoch 161/300  (ball_w=3.0)
+    train loss: -2.2930
+    val loss: 0.0146
+Epoch 162/300  (ball_w=3.0)
+    train loss: -2.2821
+    val loss: 0.0130
+Epoch 163/300  (ball_w=3.0)
+    train loss: -2.3011
+    val loss: 0.0137
+Epoch 164/300  (ball_w=3.0)
+    train loss: -2.2764
+    val loss: 0.0150
+Epoch 165/300  (ball_w=3.0)
+    train loss: -2.2910
+    val loss: 0.0133
+Epoch 166/300  (ball_w=3.0)
+    train loss: -2.2981
+    val loss: 0.0141
+Epoch 167/300  (ball_w=3.0)
+    train loss: -2.2987
+    val loss: 0.0136
+Epoch 168/300  (ball_w=3.0)
+    train loss: -2.2919
+    val loss: 0.0135
+Epoch 169/300  (ball_w=3.0)
+    train loss: -2.3014
+    val loss: 0.0137
+Epoch 170/300  (ball_w=3.0)
+    train loss: -2.3002
+    val loss: 0.0136
+Epoch 171/300  (ball_w=3.0)
+    train loss: -2.2876
+    val loss: 0.0137
+Epoch 172/300  (ball_w=3.0)
+    train loss: -2.3043
+    val loss: 0.0135
+Epoch 173/300  (ball_w=3.0)
+    train loss: -2.3048
+    val loss: 0.0141
+Epoch 174/300  (ball_w=3.0)
+    train loss: -2.3065
+    val loss: 0.0142
+Epoch 175/300  (ball_w=3.0)
+    train loss: -2.3082
+    val loss: 0.0136
+Epoch 176/300  (ball_w=3.0)
+    train loss: -2.3089
+    val loss: 0.0139
+Epoch 177/300  (ball_w=3.0)
+    train loss: -2.3099
+    val loss: 0.0155
+Epoch 178/300  (ball_w=3.0)
+    train loss: -2.3044
+    val loss: 0.0137
+Epoch 179/300  (ball_w=3.0)
+    train loss: -2.3090
+    val loss: 0.0144
+Epoch 180/300  (ball_w=3.0)
+    train loss: -2.3131
+    val loss: 0.0136
+Epoch 181/300  (ball_w=3.0)
+    train loss: -2.3056
+    val loss: 0.0140
+Epoch 182/300  (ball_w=3.0)
+    train loss: -2.3103
+    val loss: 0.0141
+Epoch 183/300  (ball_w=3.0)
+    train loss: -2.3128
+    val loss: 0.0143
+Epoch 184/300  (ball_w=3.0)
+    train loss: -2.3143
+    val loss: 0.0135
+Epoch 185/300  (ball_w=3.0)
+    train loss: -2.3119
+    val loss: 0.0137
+Epoch 186/300  (ball_w=3.0)
+    train loss: -2.3204
+    val loss: 0.0136
+Epoch 187/300  (ball_w=3.0)
+    train loss: -2.3043
+    val loss: 0.0131
+Epoch 188/300  (ball_w=3.0)
+    train loss: -2.3021
+    val loss: 0.0140
+Epoch 189/300  (ball_w=3.0)
+    train loss: -2.3211
+    val loss: 0.0134
+Epoch 190/300  (ball_w=3.0)
+    train loss: -2.3240
+    val loss: 0.0141
+Epoch 191/300  (ball_w=3.0)
+    train loss: -2.3057
+    val loss: 0.0136
+Epoch 192/300  (ball_w=3.0)
+    train loss: -2.3217
+    val loss: 0.0134
+Epoch 193/300  (ball_w=3.0)
+    train loss: -2.3085
+    val loss: 0.0135
+Epoch 194/300  (ball_w=3.0)
+    train loss: -2.3195
+    val loss: 0.0133
+Epoch 195/300  (ball_w=3.0)
+    train loss: -2.3160
+    val loss: 0.0132
+Epoch 196/300  (ball_w=3.0)
+    train loss: -2.3212
+    val loss: 0.0137
+Epoch 197/300  (ball_w=3.0)
+    train loss: -2.3229
+    val loss: 0.0142
+Epoch 198/300  (ball_w=3.0)
+    train loss: -2.3288
+    val loss: 0.0137
+Epoch 199/300  (ball_w=3.0)
+    train loss: -2.3210
+    val loss: 0.0132
+Epoch 200/300  (ball_w=3.0)
+    train loss: -2.3322
+    val loss: 0.0126
+Epoch 201/300  (ball_w=3.0)
+    train loss: -2.3278
+    val loss: 0.0129
+Epoch 202/300  (ball_w=3.0)
+    train loss: -2.3231
+    val loss: 0.0138
+Epoch 203/300  (ball_w=3.0)
+    train loss: -2.3226
+    val loss: 0.0143
+Epoch 204/300  (ball_w=3.0)
+    train loss: -2.3204
+    val loss: 0.0132
+Epoch 205/300  (ball_w=3.0)
+    train loss: -2.3314
+    val loss: 0.0141
+Epoch 206/300  (ball_w=3.0)
+    train loss: -2.3280
+    val loss: 0.0142
+Epoch 207/300  (ball_w=3.0)
+    train loss: -2.3182
+    val loss: 0.0135
+Epoch 208/300  (ball_w=3.0)
+    train loss: -2.3307
+    val loss: 0.0137
+Epoch 209/300  (ball_w=3.0)
+    train loss: -2.3279
+    val loss: 0.0134
+Epoch 210/300  (ball_w=3.0)
+    train loss: -2.3433
+    val loss: 0.0154
+Epoch 211/300  (ball_w=3.0)
+    train loss: -2.3245
+    val loss: 0.0132
+Epoch 212/300  (ball_w=3.0)
+    train loss: -2.3351
+    val loss: 0.0137
+Epoch 213/300  (ball_w=3.0)
+    train loss: -2.3342
+    val loss: 0.0138
+Epoch 214/300  (ball_w=3.0)
+    train loss: -2.3322
+    val loss: 0.0136
+Epoch 215/300  (ball_w=3.0)
+    train loss: -2.3327
+    val loss: 0.0131
+Epoch 216/300  (ball_w=3.0)
+    train loss: -2.3384
+    val loss: 0.0136
+Epoch 217/300  (ball_w=3.0)
+    train loss: -2.3475
+    val loss: 0.0157
+Epoch 218/300  (ball_w=3.0)
+    train loss: -2.3439
+    val loss: 0.0131
+Epoch 219/300  (ball_w=3.0)
+    train loss: -2.3401
+    val loss: 0.0135
+Epoch 220/300  (ball_w=3.0)
+    train loss: -2.3434
+    val loss: 0.0132
+Epoch 221/300  (ball_w=3.0)
+    train loss: -2.3429
+    val loss: 0.0142
+Epoch 222/300  (ball_w=3.0)
+    train loss: -2.3469
+    val loss: 0.0137
+Epoch 223/300  (ball_w=3.0)
+    train loss: -2.3434
+    val loss: 0.0131
+Epoch 224/300  (ball_w=3.0)
+    train loss: -2.3342
+    val loss: 0.0131
+Epoch 225/300  (ball_w=3.0)
+    train loss: -2.3309
+    val loss: 0.0136
+Epoch 226/300  (ball_w=3.0)
+    train loss: -2.3409
+    val loss: 0.0133
+Epoch 227/300  (ball_w=3.0)
+    train loss: -2.3532
+    val loss: 0.0155
+Epoch 228/300  (ball_w=3.0)
+    train loss: -2.3481
+    val loss: 0.0135
+Epoch 229/300  (ball_w=3.0)
+    train loss: -2.3417
+    val loss: 0.0132
+Epoch 230/300  (ball_w=3.0)
+    train loss: -2.3500
+    val loss: 0.0133
+Epoch 231/300  (ball_w=3.0)
+    train loss: -2.3487
+    val loss: 0.0148
+Epoch 232/300  (ball_w=3.0)
+    train loss: -2.3500
+    val loss: 0.0132
+Epoch 233/300  (ball_w=3.0)
+    train loss: -2.3481
+    val loss: 0.0140
+Epoch 234/300  (ball_w=3.0)
+    train loss: -2.3525
+    val loss: 0.0129
+Epoch 235/300  (ball_w=3.0)
+    train loss: -2.3443
+    val loss: 0.0135
+Epoch 236/300  (ball_w=3.0)
+    train loss: -2.3445
+    val loss: 0.0133
+Epoch 237/300  (ball_w=3.0)
+    train loss: -2.3656
+    val loss: 0.0127
+Epoch 238/300  (ball_w=3.0)
+    train loss: -2.3506
+    val loss: 0.0129
+Epoch 239/300  (ball_w=3.0)
+    train loss: -2.3518
+    val loss: 0.0132
+Epoch 240/300  (ball_w=3.0)
+    train loss: -2.3497
+    val loss: 0.0146
+Epoch 241/300  (ball_w=3.0)
+    train loss: -2.3636
+    val loss: 0.0131
+Epoch 242/300  (ball_w=3.0)
+    train loss: -2.3458
+    val loss: 0.0135
+Epoch 243/300  (ball_w=3.0)
+    train loss: -2.3623
+    val loss: 0.0131
+Epoch 244/300  (ball_w=3.0)
+    train loss: -2.3449
+    val loss: 0.0134
+Epoch 245/300  (ball_w=3.0)
+    train loss: -2.3623
+    val loss: 0.0128
+Epoch 246/300  (ball_w=3.0)
+    train loss: -2.3622
+    val loss: 0.0142
+Epoch 247/300  (ball_w=3.0)
+    train loss: -2.3581
+    val loss: 0.0132
+Epoch 248/300  (ball_w=3.0)
+    train loss: -2.3611
+    val loss: 0.0132
+Epoch 249/300  (ball_w=3.0)
+    train loss: -2.3549
+    val loss: 0.0130
+Epoch 250/300  (ball_w=3.0)
+    train loss: -2.3646
+    val loss: 0.0136
+Epoch 251/300  (ball_w=3.0)
+    train loss: -2.3634
+    val loss: 0.0132
+Epoch 252/300  (ball_w=3.0)
+    train loss: -2.3636
+    val loss: 0.0131
+Epoch 253/300  (ball_w=3.0)
+    train loss: -2.3616
+    val loss: 0.0132
+Epoch 254/300  (ball_w=3.0)
+    train loss: -2.3601
+    val loss: 0.0130
+Epoch 255/300  (ball_w=3.0)
+    train loss: -2.3571
+    val loss: 0.0129
+Epoch 256/300  (ball_w=3.0)
+    train loss: -2.3687
+    val loss: 0.0132
+Epoch 257/300  (ball_w=3.0)
+    train loss: -2.3686
+    val loss: 0.0132
+Epoch 258/300  (ball_w=3.0)
+    train loss: -2.3718
+    val loss: 0.0156
+Epoch 259/300  (ball_w=3.0)
+    train loss: -2.3627
+    val loss: 0.0137
+Epoch 260/300  (ball_w=3.0)
+    train loss: -2.3673
+    val loss: 0.0128
+Epoch 261/300  (ball_w=3.0)
+    train loss: -2.3701
+    val loss: 0.0126
+Epoch 262/300  (ball_w=3.0)
+    train loss: -2.3655
+    val loss: 0.0130
+Epoch 263/300  (ball_w=3.0)
+    train loss: -2.3617
+    val loss: 0.0130
+Epoch 264/300  (ball_w=3.0)
+    train loss: -2.3791
+    val loss: 0.0134
+Epoch 265/300  (ball_w=3.0)
+    train loss: -2.3677
+    val loss: 0.0131
+Epoch 266/300  (ball_w=3.0)
+    train loss: -2.3646
+    val loss: 0.0135
+Epoch 267/300  (ball_w=3.0)
+    train loss: -2.3746
+    val loss: 0.0136
+Epoch 268/300  (ball_w=3.0)
+    train loss: -2.3692
+    val loss: 0.0134
+Epoch 269/300  (ball_w=3.0)
+    train loss: -2.3705
+    val loss: 0.0132
+Epoch 270/300  (ball_w=3.0)
+    train loss: -2.3721
+    val loss: 0.0148
+Epoch 271/300  (ball_w=3.0)
+    train loss: -2.3719
+    val loss: 0.0134
+Epoch 272/300  (ball_w=3.0)
+    train loss: -2.3606
+    val loss: 0.0135
+Epoch 273/300  (ball_w=3.0)
+    train loss: -2.3708
+    val loss: 0.0130
+Epoch 274/300  (ball_w=3.0)
+    train loss: -2.3597
+    val loss: 0.0134
+Epoch 275/300  (ball_w=3.0)
+    train loss: -2.3682
+    val loss: 0.0137
+Epoch 276/300  (ball_w=3.0)
+    train loss: -2.3811
+    val loss: 0.0135
+Epoch 277/300  (ball_w=3.0)
+    train loss: -2.3784
+    val loss: 0.0136
+Epoch 278/300  (ball_w=3.0)
+    train loss: -2.3784
+    val loss: 0.0147
+Epoch 279/300  (ball_w=3.0)
+    train loss: -2.3743
+    val loss: 0.0134
+Epoch 280/300  (ball_w=3.0)
+    train loss: -2.3713
+    val loss: 0.0128
+Epoch 281/300  (ball_w=3.0)
+    train loss: -2.3740
+    val loss: 0.0131
+Epoch 282/300  (ball_w=3.0)
+    train loss: -2.3735
+    val loss: 0.0133
+Epoch 283/300  (ball_w=3.0)
+    train loss: -2.3757
+    val loss: 0.0127
+Epoch 284/300  (ball_w=3.0)
+    train loss: -2.3845
+    val loss: 0.0134
+Epoch 285/300  (ball_w=3.0)
+    train loss: -2.3596
+    val loss: 0.0133
+Epoch 286/300  (ball_w=3.0)
+    train loss: -2.3876
+    val loss: 0.0129
+Epoch 287/300  (ball_w=3.0)
+    train loss: -2.3857
+    val loss: 0.0130
+Epoch 288/300  (ball_w=3.0)
+    train loss: -2.3699
+    val loss: 0.0131
+Epoch 289/300  (ball_w=3.0)
+    train loss: -2.3698
+    val loss: 0.0137
+Epoch 290/300  (ball_w=3.0)
+    train loss: -2.3664
+    val loss: 0.0128
+Epoch 291/300  (ball_w=3.0)
+    train loss: -2.3756
+    val loss: 0.0151
+Epoch 292/300  (ball_w=3.0)
+    train loss: -2.3742
+    val loss: 0.0132
+Epoch 293/300  (ball_w=3.0)
+    train loss: -2.3790
+    val loss: 0.0131
+Epoch 294/300  (ball_w=3.0)
+    train loss: -2.3774
+    val loss: 0.0129
+Epoch 295/300  (ball_w=3.0)
+    train loss: -2.3762
+    val loss: 0.0131
+Epoch 296/300  (ball_w=3.0)
+    train loss: -2.3691
+    val loss: 0.0132
+Epoch 297/300  (ball_w=3.0)
+    train loss: -2.3719
+    val loss: 0.0137
+Epoch 298/300  (ball_w=3.0)
+    train loss: -2.3677
+    val loss: 0.0131
+Epoch 299/300  (ball_w=3.0)
+    train loss: -2.3716
+    val loss: 0.0131
+Epoch 300/300  (ball_w=3.0)
+    train loss: -2.3738
+    val loss: 0.0133
+Saved tagged weights: C:\Users\jan\Downloads\nml_project_proposal\nml_project_proposal\models\weights\model_v60_w3_300ep.pth
+nba_v60_w3: 2.8767
+AGENT_SCORE:2.8767

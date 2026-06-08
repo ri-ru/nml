@@ -11,7 +11,7 @@ WEIGHTS = Path(__file__).parent.parent / 'models' / 'weights'
 SWA_EPOCHS = [280, 285, 290, 295, 300]
 
 # (model_prefix, swa_suffix) -> resolves to model_<prefix>_swa.pth
-TARGETS = [f'v46_s{i}' for i in range(1, 9)] + ['v58'] + [f'v58_s{i}' for i in range(1, 4)]
+TARGETS = [f'v46_s{i}' for i in range(1, 9)] + ['v58'] + [f'v58_s{i}' for i in range(1, 4)] + ['v60']
 
 
 def average_state_dicts(paths):

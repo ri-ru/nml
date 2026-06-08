@@ -1,0 +1,153 @@
+Epoch 1/50  (ball_w=5.0)
+    train loss: 1.7335
+    val loss: 0.5387
+Epoch 2/50  (ball_w=5.0)
+    train loss: 1.1256
+    val loss: 0.1389
+Epoch 3/50  (ball_w=5.0)
+    train loss: 0.2053
+    val loss: 0.0694
+Epoch 4/50  (ball_w=5.0)
+    train loss: -0.4202
+    val loss: 0.0327
+Epoch 5/50  (ball_w=5.0)
+    train loss: -0.8540
+    val loss: 0.0280
+Epoch 6/50  (ball_w=5.0)
+    train loss: -1.0963
+    val loss: 0.0220
+Epoch 7/50  (ball_w=5.0)
+    train loss: -1.3382
+    val loss: 0.0237
+Epoch 8/50  (ball_w=5.0)
+    train loss: -1.4889
+    val loss: 0.0212
+Epoch 9/50  (ball_w=5.0)
+    train loss: -1.5615
+    val loss: 0.0237
+Epoch 10/50  (ball_w=5.0)
+    train loss: -1.5868
+    val loss: 0.0190
+Epoch 11/50  (ball_w=5.0)
+    train loss: -1.6839
+    val loss: 0.0191
+Epoch 12/50  (ball_w=5.0)
+    train loss: -1.6770
+    val loss: 0.0179
+Epoch 13/50  (ball_w=5.0)
+    train loss: -1.7435
+    val loss: 0.0179
+Epoch 14/50  (ball_w=5.0)
+    train loss: -1.7376
+    val loss: 0.0176
+Epoch 15/50  (ball_w=5.0)
+    train loss: -1.7583
+    val loss: 0.0165
+Epoch 16/50  (ball_w=5.0)
+    train loss: -1.7921
+    val loss: 0.0185
+Epoch 17/50  (ball_w=5.0)
+    train loss: -1.8163
+    val loss: 0.0160
+Epoch 18/50  (ball_w=5.0)
+    train loss: -1.7955
+    val loss: 0.0168
+Epoch 19/50  (ball_w=5.0)
+    train loss: -1.8460
+    val loss: 0.0168
+Epoch 20/50  (ball_w=5.0)
+    train loss: -1.8315
+    val loss: 0.0167
+Epoch 21/50  (ball_w=5.0)
+    train loss: -1.8726
+    val loss: 0.0167
+Epoch 22/50  (ball_w=5.0)
+    train loss: -1.8639
+    val loss: 0.0166
+Epoch 23/50  (ball_w=5.0)
+    train loss: -1.8690
+    val loss: 0.0171
+Epoch 24/50  (ball_w=5.0)
+    train loss: -1.8854
+    val loss: 0.0167
+Epoch 25/50  (ball_w=5.0)
+    train loss: -1.8861
+    val loss: 0.0160
+Epoch 26/50  (ball_w=5.0)
+    train loss: -1.9116
+    val loss: 0.0160
+Epoch 27/50  (ball_w=5.0)
+    train loss: -1.9373
+    val loss: 0.0158
+Epoch 28/50  (ball_w=5.0)
+    train loss: -1.9238
+    val loss: 0.0163
+Epoch 29/50  (ball_w=5.0)
+    train loss: -1.9347
+    val loss: 0.0165
+Epoch 30/50  (ball_w=5.0)
+    train loss: -1.9436
+    val loss: 0.0151
+Epoch 31/50  (ball_w=5.0)
+    train loss: -1.9548
+    val loss: 0.0179
+Epoch 32/50  (ball_w=5.0)
+    train loss: -1.9636
+    val loss: 0.0155
+Epoch 33/50  (ball_w=5.0)
+    train loss: -1.9699
+    val loss: 0.0152
+Epoch 34/50  (ball_w=5.0)
+    train loss: -1.9664
+    val loss: 0.0169
+Epoch 35/50  (ball_w=5.0)
+    train loss: -1.9782
+    val loss: 0.0150
+Epoch 36/50  (ball_w=5.0)
+    train loss: -1.9802
+    val loss: 0.0179
+Epoch 37/50  (ball_w=5.0)
+    train loss: -1.9847
+    val loss: 0.0153
+Epoch 38/50  (ball_w=5.0)
+    train loss: -1.9900
+    val loss: 0.0157
+Epoch 39/50  (ball_w=5.0)
+    train loss: -1.9969
+    val loss: 0.0149
+Epoch 40/50  (ball_w=5.0)
+    train loss: -2.0111
+    val loss: 0.0155
+Epoch 41/50  (ball_w=5.0)
+    train loss: -2.0146
+    val loss: 0.0161
+Epoch 42/50  (ball_w=5.0)
+    train loss: -2.0182
+    val loss: 0.0147
+Epoch 43/50  (ball_w=5.0)
+    train loss: -2.0216
+    val loss: 0.0154
+Epoch 44/50  (ball_w=5.0)
+    train loss: -2.0283
+    val loss: 0.0146
+Epoch 45/50  (ball_w=5.0)
+    train loss: -2.0431
+    val loss: 0.0151
+Epoch 46/50  (ball_w=5.0)
+    train loss: -2.0349
+    val loss: 0.0153
+Epoch 47/50  (ball_w=5.0)
+    train loss: -2.0257
+    val loss: 0.0159
+Epoch 48/50  (ball_w=5.0)
+    train loss: -2.0438
+    val loss: 0.0148
+Epoch 49/50  (ball_w=5.0)
+    train loss: -2.0484
+    val loss: 0.0154
+Epoch 50/50  (ball_w=5.0)
+    train loss: -2.0326
+    val loss: 0.0148
+Saved tagged weights: C:\Users\jan\Downloads\nml_project_proposal\nml_project_proposal\models\weights\model_v60_w5_50ep.pth
+nba_v60_w5: 3.2663
+AGENT_SCORE:3.2663

@@ -1,0 +1,10 @@
+v68 training file list: train_files_pseudo_cons.txt
+Epoch 1/2
+    train loss: 1.6806
+    val loss: 0.1769
+Epoch 2/2
+    train loss: 0.2414
+    val loss: 0.0774
+Saved tagged weights: C:\Users\jan\Downloads\nml_project_proposal\nml_project_proposal\models\weights\model_v68_2ep.pth
+nba_v68: 31.0531
+AGENT_SCORE:31.0531

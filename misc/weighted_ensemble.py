@@ -32,6 +32,7 @@ LABELS = [
     'v46_s5_swa', 'v46_s6_swa', 'v46_s7_swa', 'v46_s8_swa',
     'v58_s1', 'v58_s2', 'v58_s3',
     'v58_s1_swa', 'v58_s2_swa', 'v58_s3_swa',
+    'v60', 'v60_s1', 'v60_swa', 'v60_s1_swa',
 ]
 
 

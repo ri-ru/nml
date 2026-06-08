@@ -1,0 +1,153 @@
+Epoch 1/50
+    train loss: 0.0508
+    val loss: 0.0125
+Epoch 2/50
+    train loss: 0.0476
+    val loss: 0.0124
+Epoch 3/50
+    train loss: 0.0488
+    val loss: 0.0129
+Epoch 4/50
+    train loss: 0.0489
+    val loss: 0.0131
+Epoch 5/50
+    train loss: 0.0480
+    val loss: 0.0127
+Epoch 6/50
+    train loss: 0.0488
+    val loss: 0.0131
+Epoch 7/50
+    train loss: 0.0500
+    val loss: 0.0127
+Epoch 8/50
+    train loss: 0.0490
+    val loss: 0.0133
+Epoch 9/50
+    train loss: 0.0464
+    val loss: 0.0128
+Epoch 10/50
+    train loss: 0.0468
+    val loss: 0.0129
+Epoch 11/50
+    train loss: 0.0463
+    val loss: 0.0126
+Epoch 12/50
+    train loss: 0.0477
+    val loss: 0.0141
+Epoch 13/50
+    train loss: 0.0497
+    val loss: 0.0133
+Epoch 14/50
+    train loss: 0.0466
+    val loss: 0.0124
+Epoch 15/50
+    train loss: 0.0489
+    val loss: 0.0124
+Epoch 16/50
+    train loss: 0.0473
+    val loss: 0.0133
+Epoch 17/50
+    train loss: 0.0472
+    val loss: 0.0125
+Epoch 18/50
+    train loss: 0.0478
+    val loss: 0.0127
+Epoch 19/50
+    train loss: 0.0463
+    val loss: 0.0130
+Epoch 20/50
+    train loss: 0.0501
+    val loss: 0.0131
+Epoch 21/50
+    train loss: 0.0466
+    val loss: 0.0136
+Epoch 22/50
+    train loss: 0.0465
+    val loss: 0.0134
+Epoch 23/50
+    train loss: 0.0484
+    val loss: 0.0136
+Epoch 24/50
+    train loss: 0.0470
+    val loss: 0.0132
+Epoch 25/50
+    train loss: 0.0477
+    val loss: 0.0132
+Epoch 26/50
+    train loss: 0.0491
+    val loss: 0.0129
+Epoch 27/50
+    train loss: 0.0465
+    val loss: 0.0132
+Epoch 28/50
+    train loss: 0.0481
+    val loss: 0.0134
+Epoch 29/50
+    train loss: 0.0490
+    val loss: 0.0133
+Epoch 30/50
+    train loss: 0.0470
+    val loss: 0.0126
+Epoch 31/50
+    train loss: 0.0479
+    val loss: 0.0156
+Epoch 32/50
+    train loss: 0.0490
+    val loss: 0.0133
+Epoch 33/50
+    train loss: 0.0485
+    val loss: 0.0127
+Epoch 34/50
+    train loss: 0.0478
+    val loss: 0.0148
+Epoch 35/50
+    train loss: 0.0470
+    val loss: 0.0128
+Epoch 36/50
+    train loss: 0.0490
+    val loss: 0.0152
+Epoch 37/50
+    train loss: 0.0504
+    val loss: 0.0131
+Epoch 38/50
+    train loss: 0.0481
+    val loss: 0.0134
+Epoch 39/50
+    train loss: 0.0493
+    val loss: 0.0128
+Epoch 40/50
+    train loss: 0.0478
+    val loss: 0.0136
+Epoch 41/50
+    train loss: 0.0455
+    val loss: 0.0145
+Epoch 42/50
+    train loss: 0.0487
+    val loss: 0.0128
+Epoch 43/50
+    train loss: 0.0474
+    val loss: 0.0131
+Epoch 44/50
+    train loss: 0.0487
+    val loss: 0.0127
+Epoch 45/50
+    train loss: 0.0469
+    val loss: 0.0130
+Epoch 46/50
+    train loss: 0.0475
+    val loss: 0.0136
+Epoch 47/50
+    train loss: 0.0490
+    val loss: 0.0146
+Epoch 48/50
+    train loss: 0.0488
+    val loss: 0.0130
+Epoch 49/50
+    train loss: 0.0463
+    val loss: 0.0131
+Epoch 50/50
+    train loss: 0.0483
+    val loss: 0.0128
+Saved tagged weights: C:\Users\jan\Downloads\nml_project_proposal\nml_project_proposal\models\weights\model_v73_50ep.pth
+nba_v73: 2.8633
+AGENT_SCORE:2.8633

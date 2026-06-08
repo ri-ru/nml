@@ -1,0 +1,29 @@
+[12:38:44] === 100% RETRAIN QUEUE START: waiting for current GPU jobs (v72/v72_w8/v73) ===
+[13:40:47] GPU free. Retraining 14 models on 100% data, 4 at a time.
+[13:40:47] launched retrain_full v46
+[13:40:47] launched retrain_full v58
+[13:40:47] launched retrain_full v46_s3
+[13:40:47] launched retrain_full v46_s5
+[15:36:41] === v2 QUEUE (2-at-a-time): waiting for batch-1 retrains to finish ===
+[19:36:51] batch-1 done. Retraining remaining 10 models 2-at-a-time.
+[19:36:52] launched retrain_full v46_s7
+[19:36:52] launched retrain_full v58_s1
+[22:33:53] done v46_s7
+[22:40:53] done v58_s1
+[22:40:53] launched retrain_full v58_s2
+[22:40:53] launched retrain_full v58_s3
+[01:47:54] done v58_s2
+[01:47:54] done v58_s3
+[01:47:54] launched retrain_full v60_w5
+[01:47:54] launched retrain_full v60_w8
+[04:46:56] done v60_w5
+[04:46:56] done v60_w8
+[04:46:56] launched retrain_full v60_w3
+[04:46:56] launched retrain_full v60_w8_s1
+[07:45:57] done v60_w3
+[07:45:57] done v60_w8_s1
+[07:45:57] launched retrain_full v60_w8_s2
+[07:45:57] launched retrain_full v60_w5_s1
+[10:44:59] done v60_w8_s2
+[10:44:59] done v60_w5_s1
+[10:44:59] === 100PCT RETRAIN DONE (all 14). Next: regenerate _full test preds + reapply 2-group weights. ===

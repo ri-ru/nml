@@ -359,7 +359,7 @@ class Trainer:
             val_sampler.set_epoch(epoch)
             scheduler.step()
 
-        torch.save(model.state_dict(), WEIGHTS_DIR / 'model_v58.pth')
+        torch.save(model.state_dict(), WEIGHTS_DIR / 'model_v60.pth')
         self.model = model
 
     def _run_epoch(self, dataloader, loss_fn, model, optimizer, split):

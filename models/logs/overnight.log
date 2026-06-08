@@ -1,0 +1,341 @@
+[23:48:01] === OVERNIGHT START ===
+[23:48:01] Phase 1: waiting for v60_w5/w8/w3 300ep...
+[00:53:01] v60 done (or timed out). Saving TTA preds (v60 ball models)...
+Loading splits + computing normalization...
+Val windows: 2982
+Saved Y_real.pt  shape=(2982, 12, 11, 2)
+  skip v46 (already saved)
+  skip v58 (already saved)
+  MISSING weights for v58_swa: model_v58_swa.pth ù skipping
+  skip v46_s1 (already saved)
+  skip v46_s2 (already saved)
+  skip v46_s3 (already saved)
+  skip v46_s4 (already saved)
+  skip v46_s5 (already saved)
+  skip v46_s6 (already saved)
+  skip v46_s7 (already saved)
+  skip v46_s8 (already saved)
+  skip v46_s1_swa (already saved)
+  skip v46_s2_swa (already saved)
+  skip v46_s3_swa (already saved)
+  skip v46_s4_swa (already saved)
+  skip v46_s5_swa (already saved)
+  skip v46_s6_swa (already saved)
+  skip v46_s7_swa (already saved)
+  skip v46_s8_swa (already saved)
+  skip v58_s1 (already saved)
+  skip v58_s2 (already saved)
+  skip v58_s3 (already saved)
+  MISSING weights for v58_s1_swa: model_v58_s1_swa.pth ù skipping
+  MISSING weights for v58_s2_swa: model_v58_s2_swa.pth ù skipping
+  MISSING weights for v58_s3_swa: model_v58_s3_swa.pth ù skipping
+  skip v60 (already saved)
+  skip v60_s1 (already saved)
+  MISSING weights for v60_swa: model_v60_swa.pth ù skipping
+  MISSING weights for v60_s1_swa: model_v60_s1_swa.pth ù skipping
+  predicting v60_w5...
+    -> C:\Users\jan\Downloads\nml_project_proposal\nml_project_proposal\models\val_preds\v60_w5.pt  shape=(2982, 12, 11, 2)
+  predicting v60_w8...
+    -> C:\Users\jan\Downloads\nml_project_proposal\nml_project_proposal\models\val_preds\v60_w8.pt  shape=(2982, 12, 11, 2)
+  predicting v60_w3...
+    -> C:\Users\jan\Downloads\nml_project_proposal\nml_project_proposal\models\val_preds\v60_w3.pt  shape=(2982, 12, 11, 2)
+  MISSING weights for v65: model_v65_300ep.pth ù skipping
+  MISSING weights for v66: model_v66_300ep.pth ù skipping
+  MISSING weights for v68: model_v68_300ep.pth ù skipping
+Done.
+Computing normalization...
+Test files: 1243
+  skip v46 (already saved)
+  skip v58 (already saved)
+  MISSING weights for v58_swa: model_v58_swa.pth ù skipping
+  skip v46_s1 (already saved)
+  skip v46_s2 (already saved)
+  skip v46_s3 (already saved)
+  skip v46_s4 (already saved)
+  skip v46_s5 (already saved)
+  skip v46_s6 (already saved)
+  skip v46_s7 (already saved)
+  skip v46_s8 (already saved)
+  skip v46_s1_swa (already saved)
+  skip v46_s2_swa (already saved)
+  skip v46_s3_swa (already saved)
+  skip v46_s4_swa (already saved)
+  skip v46_s5_swa (already saved)
+  skip v46_s6_swa (already saved)
+  skip v46_s7_swa (already saved)
+  skip v46_s8_swa (already saved)
+  skip v58_s1 (already saved)
+  skip v58_s2 (already saved)
+  skip v58_s3 (already saved)
+  MISSING weights for v58_s1_swa: model_v58_s1_swa.pth ù skipping
+  MISSING weights for v58_s2_swa: model_v58_s2_swa.pth ù skipping
+  MISSING weights for v58_s3_swa: model_v58_s3_swa.pth ù skipping
+  skip v60 (already saved)
+  skip v60_s1 (already saved)
+  MISSING weights for v60_swa: model_v60_swa.pth ù skipping
+  MISSING weights for v60_s1_swa: model_v60_s1_swa.pth ù skipping
+  predicting v60_w5...
+    0/1243
+    500/1243
+    1000/1243
+    -> C:\Users\jan\Downloads\nml_project_proposal\nml_project_proposal\models\test_preds\v60_w5.pt ((1243, 12, 11, 2))
+    -> C:\Users\jan\Downloads\nml_project_proposal\nml_project_proposal\models\solutions\solution_tta_v60_w5.csv
+  predicting v60_w8...
+    0/1243
+    500/1243
+    1000/1243
+    -> C:\Users\jan\Downloads\nml_project_proposal\nml_project_proposal\models\test_preds\v60_w8.pt ((1243, 12, 11, 2))
+    -> C:\Users\jan\Downloads\nml_project_proposal\nml_project_proposal\models\solutions\solution_tta_v60_w8.csv
+  predicting v60_w3...
+    0/1243
+    500/1243
+    1000/1243
+    -> C:\Users\jan\Downloads\nml_project_proposal\nml_project_proposal\models\test_preds\v60_w3.pt ((1243, 12, 11, 2))
+    -> C:\Users\jan\Downloads\nml_project_proposal\nml_project_proposal\models\solutions\solution_tta_v60_w3.csv
+  MISSING weights for v65: model_v65_300ep.pth ù skipping
+  MISSING weights for v66: model_v66_300ep.pth ù skipping
+  MISSING weights for v68: model_v68_300ep.pth ù skipping
+Done.
+[01:07:02] Running ensemble sweep (incremental, v60 folded)...
+base: cons 2.7865/ball11.916  perent 2.7799/ball11.896  phys 2.7799->2.7799 (no)
+base+ball: cons 2.7851/ball11.853  perent 2.7538/ball11.610  phys 2.7538->2.7538 (no)
+base+ball+pseudo: cons 2.7851/ball11.853  perent 2.7538/ball11.610  phys 2.7538->2.7538 (no)
+base+ball+agent: cons 2.7851/ball11.853  perent 2.7538/ball11.610  phys 2.7538->2.7538 (no)
+all: cons 2.7851/ball11.853  perent 2.7538/ball11.610  phys 2.7538->2.7538 (no)
+
+Wrote C:\Users\jan\Downloads\nml_project_proposal\nml_project_proposal\OVERNIGHT_RESULTS.md
+[01:11:19] Generating round-2 pseudo from solution_overnight_base+ball_cons.csv...
+Loading solution_overnight_base+ball_cons.csv...
+Wrote 1243 pseudo (skipped 0); train_files_pseudo_round2.txt = 5217 total
+[01:11:21] Phase 2: launching v65 + v66 + v68 at 300ep...
+[01:11:21] launched v65 @300ep
+[01:11:21] launched v66 @300ep
+[01:11:21] launched v68 @300ep
+[01:11:31] waiting for v65/v66/v68 300ep (up to 7h)...
+[06:26:35] Phase 3: saving TTA preds for v65/v66/v68 + final ensemble sweep...
+Loading splits + computing normalization...
+Val windows: 2982
+Saved Y_real.pt  shape=(2982, 12, 11, 2)
+  skip v46 (already saved)
+  skip v58 (already saved)
+  MISSING weights for v58_swa: model_v58_swa.pth ù skipping
+  skip v46_s1 (already saved)
+  skip v46_s2 (already saved)
+  skip v46_s3 (already saved)
+  skip v46_s4 (already saved)
+  skip v46_s5 (already saved)
+  skip v46_s6 (already saved)
+  skip v46_s7 (already saved)
+  skip v46_s8 (already saved)
+  skip v46_s1_swa (already saved)
+  skip v46_s2_swa (already saved)
+  skip v46_s3_swa (already saved)
+  skip v46_s4_swa (already saved)
+  skip v46_s5_swa (already saved)
+  skip v46_s6_swa (already saved)
+  skip v46_s7_swa (already saved)
+  skip v46_s8_swa (already saved)
+  skip v58_s1 (already saved)
+  skip v58_s2 (already saved)
+  skip v58_s3 (already saved)
+  MISSING weights for v58_s1_swa: model_v58_s1_swa.pth ù skipping
+  MISSING weights for v58_s2_swa: model_v58_s2_swa.pth ù skipping
+  MISSING weights for v58_s3_swa: model_v58_s3_swa.pth ù skipping
+  skip v60 (already saved)
+  skip v60_s1 (already saved)
+  MISSING weights for v60_swa: model_v60_swa.pth ù skipping
+  MISSING weights for v60_s1_swa: model_v60_s1_swa.pth ù skipping
+  skip v60_w5 (already saved)
+  skip v60_w8 (already saved)
+  skip v60_w3 (already saved)
+  predicting v65...
+    -> C:\Users\jan\Downloads\nml_project_proposal\nml_project_proposal\models\val_preds\v65.pt  shape=(2982, 12, 11, 2)
+  predicting v66...
+    -> C:\Users\jan\Downloads\nml_project_proposal\nml_project_proposal\models\val_preds\v66.pt  shape=(2982, 12, 11, 2)
+  predicting v68...
+    -> C:\Users\jan\Downloads\nml_project_proposal\nml_project_proposal\models\val_preds\v68.pt  shape=(2982, 12, 11, 2)
+  MISSING weights for v60_w8_s1: model_v60_w8_s1_300ep.pth ù skipping
+  MISSING weights for v60_w8_s2: model_v60_w8_s2_300ep.pth ù skipping
+  MISSING weights for v60_w5_s1: model_v60_w5_s1_300ep.pth ù skipping
+Done.
+Computing normalization...
+Test files: 1243
+  skip v46 (already saved)
+  skip v58 (already saved)
+  MISSING weights for v58_swa: model_v58_swa.pth ù skipping
+  skip v46_s1 (already saved)
+  skip v46_s2 (already saved)
+  skip v46_s3 (already saved)
+  skip v46_s4 (already saved)
+  skip v46_s5 (already saved)
+  skip v46_s6 (already saved)
+  skip v46_s7 (already saved)
+  skip v46_s8 (already saved)
+  skip v46_s1_swa (already saved)
+  skip v46_s2_swa (already saved)
+  skip v46_s3_swa (already saved)
+  skip v46_s4_swa (already saved)
+  skip v46_s5_swa (already saved)
+  skip v46_s6_swa (already saved)
+  skip v46_s7_swa (already saved)
+  skip v46_s8_swa (already saved)
+  skip v58_s1 (already saved)
+  skip v58_s2 (already saved)
+  skip v58_s3 (already saved)
+  MISSING weights for v58_s1_swa: model_v58_s1_swa.pth ù skipping
+  MISSING weights for v58_s2_swa: model_v58_s2_swa.pth ù skipping
+  MISSING weights for v58_s3_swa: model_v58_s3_swa.pth ù skipping
+  skip v60 (already saved)
+  skip v60_s1 (already saved)
+  MISSING weights for v60_swa: model_v60_swa.pth ù skipping
+  MISSING weights for v60_s1_swa: model_v60_s1_swa.pth ù skipping
+  skip v60_w5 (already saved)
+  skip v60_w8 (already saved)
+  skip v60_w3 (already saved)
+  predicting v65...
+    0/1243
+    500/1243
+    1000/1243
+    -> C:\Users\jan\Downloads\nml_project_proposal\nml_project_proposal\models\test_preds\v65.pt ((1243, 12, 11, 2))
+    -> C:\Users\jan\Downloads\nml_project_proposal\nml_project_proposal\models\solutions\solution_tta_v65.csv
+  predicting v66...
+    0/1243
+    500/1243
+    1000/1243
+    -> C:\Users\jan\Downloads\nml_project_proposal\nml_project_proposal\models\test_preds\v66.pt ((1243, 12, 11, 2))
+    -> C:\Users\jan\Downloads\nml_project_proposal\nml_project_proposal\models\solutions\solution_tta_v66.csv
+  predicting v68...
+    0/1243
+    500/1243
+    1000/1243
+    -> C:\Users\jan\Downloads\nml_project_proposal\nml_project_proposal\models\test_preds\v68.pt ((1243, 12, 11, 2))
+    -> C:\Users\jan\Downloads\nml_project_proposal\nml_project_proposal\models\solutions\solution_tta_v68.csv
+  MISSING weights for v60_w8_s1: model_v60_w8_s1_300ep.pth ù skipping
+  MISSING weights for v60_w8_s2: model_v60_w8_s2_300ep.pth ù skipping
+  MISSING weights for v60_w5_s1: model_v60_w5_s1_300ep.pth ù skipping
+Done.
+base: cons 2.7865/ball11.916  perent 2.7799/ball11.896  phys 2.7799->2.7799 (no)
+base+ball: cons 2.7851/ball11.853  perent 2.7538/ball11.610  phys 2.7538->2.7538 (no)
+base+ball+pseudo: cons 2.7851/ball11.854  perent 2.7535/ball11.610  phys 2.7535->2.7535 (no)
+base+ball+agent: cons 2.7851/ball11.853  perent 2.7535/ball11.610  phys 2.7535->2.7535 (no)
+all: cons 2.7851/ball11.854  perent 2.7532/ball11.610  phys 2.7532->2.7532 (no)
+
+Wrote C:\Users\jan\Downloads\nml_project_proposal\nml_project_proposal\OVERNIGHT_RESULTS.md
+[06:45:55] === FINAL SINGLE-MODEL SCORES ===
+[06:45:55] v60_w5_300ep : AGENT_SCORE:2.9138
+[06:45:55] v60_w8_300ep : AGENT_SCORE:2.9315
+[06:45:55] v60_w3_300ep : AGENT_SCORE:2.8767
+[06:45:55] v65_300ep : AGENT_SCORE:4.7057
+[06:45:55] v66_300ep : AGENT_SCORE:4.1373
+[06:45:55] v68_300ep : AGENT_SCORE:2.8356
+[06:45:55] === OVERNIGHT DONE === see OVERNIGHT_RESULTS.md + models/solutions/solution_overnight_*.csv
+[06:47:33] FINALIZER: seeds+v68 done, running final sweep with ball seeds...
+Loading splits + computing normalization...
+Val windows: 2982
+Saved Y_real.pt  shape=(2982, 12, 11, 2)
+  skip v46 (already saved)
+  skip v58 (already saved)
+  MISSING weights for v58_swa: model_v58_swa.pth ? skipping
+  skip v46_s1 (already saved)
+  skip v46_s2 (already saved)
+  skip v46_s3 (already saved)
+  skip v46_s4 (already saved)
+  skip v46_s5 (already saved)
+  skip v46_s6 (already saved)
+  skip v46_s7 (already saved)
+  skip v46_s8 (already saved)
+  skip v46_s1_swa (already saved)
+  skip v46_s2_swa (already saved)
+  skip v46_s3_swa (already saved)
+  skip v46_s4_swa (already saved)
+  skip v46_s5_swa (already saved)
+  skip v46_s6_swa (already saved)
+  skip v46_s7_swa (already saved)
+  skip v46_s8_swa (already saved)
+  skip v58_s1 (already saved)
+  skip v58_s2 (already saved)
+  skip v58_s3 (already saved)
+  MISSING weights for v58_s1_swa: model_v58_s1_swa.pth ? skipping
+  MISSING weights for v58_s2_swa: model_v58_s2_swa.pth ? skipping
+  MISSING weights for v58_s3_swa: model_v58_s3_swa.pth ? skipping
+  skip v60 (already saved)
+  skip v60_s1 (already saved)
+  MISSING weights for v60_swa: model_v60_swa.pth ? skipping
+  MISSING weights for v60_s1_swa: model_v60_s1_swa.pth ? skipping
+  skip v60_w5 (already saved)
+  skip v60_w8 (already saved)
+  skip v60_w3 (already saved)
+  skip v65 (already saved)
+  skip v66 (already saved)
+  skip v68 (already saved)
+  predicting v60_w8_s1...
+    -> C:\Users\jan\Downloads\nml_project_proposal\nml_project_proposal\models\val_preds\v60_w8_s1.pt  shape=(2982, 12, 11, 2)
+  predicting v60_w8_s2...
+    -> C:\Users\jan\Downloads\nml_project_proposal\nml_project_proposal\models\val_preds\v60_w8_s2.pt  shape=(2982, 12, 11, 2)
+  predicting v60_w5_s1...
+    -> C:\Users\jan\Downloads\nml_project_proposal\nml_project_proposal\models\val_preds\v60_w5_s1.pt  shape=(2982, 12, 11, 2)
+Done.
+Computing normalization...
+Test files: 1243
+  skip v46 (already saved)
+  skip v58 (already saved)
+  MISSING weights for v58_swa: model_v58_swa.pth ? skipping
+  skip v46_s1 (already saved)
+  skip v46_s2 (already saved)
+  skip v46_s3 (already saved)
+  skip v46_s4 (already saved)
+  skip v46_s5 (already saved)
+  skip v46_s6 (already saved)
+  skip v46_s7 (already saved)
+  skip v46_s8 (already saved)
+  skip v46_s1_swa (already saved)
+  skip v46_s2_swa (already saved)
+  skip v46_s3_swa (already saved)
+  skip v46_s4_swa (already saved)
+  skip v46_s5_swa (already saved)
+  skip v46_s6_swa (already saved)
+  skip v46_s7_swa (already saved)
+  skip v46_s8_swa (already saved)
+  skip v58_s1 (already saved)
+  skip v58_s2 (already saved)
+  skip v58_s3 (already saved)
+  MISSING weights for v58_s1_swa: model_v58_s1_swa.pth ? skipping
+  MISSING weights for v58_s2_swa: model_v58_s2_swa.pth ? skipping
+  MISSING weights for v58_s3_swa: model_v58_s3_swa.pth ? skipping
+  skip v60 (already saved)
+  skip v60_s1 (already saved)
+  MISSING weights for v60_swa: model_v60_swa.pth ? skipping
+  MISSING weights for v60_s1_swa: model_v60_s1_swa.pth ? skipping
+  skip v60_w5 (already saved)
+  skip v60_w8 (already saved)
+  skip v60_w3 (already saved)
+  skip v65 (already saved)
+  skip v66 (already saved)
+  skip v68 (already saved)
+  predicting v60_w8_s1...
+    0/1243
+    500/1243
+    1000/1243
+    -> C:\Users\jan\Downloads\nml_project_proposal\nml_project_proposal\models\test_preds\v60_w8_s1.pt ((1243, 12, 11, 2))
+    -> C:\Users\jan\Downloads\nml_project_proposal\nml_project_proposal\models\solutions\solution_tta_v60_w8_s1.csv
+  predicting v60_w8_s2...
+    0/1243
+    500/1243
+    1000/1243
+    -> C:\Users\jan\Downloads\nml_project_proposal\nml_project_proposal\models\test_preds\v60_w8_s2.pt ((1243, 12, 11, 2))
+    -> C:\Users\jan\Downloads\nml_project_proposal\nml_project_proposal\models\solutions\solution_tta_v60_w8_s2.csv
+  predicting v60_w5_s1...
+    0/1243
+    500/1243
+    1000/1243
+    -> C:\Users\jan\Downloads\nml_project_proposal\nml_project_proposal\models\test_preds\v60_w5_s1.pt ((1243, 12, 11, 2))
+    -> C:\Users\jan\Downloads\nml_project_proposal\nml_project_proposal\models\solutions\solution_tta_v60_w5_s1.csv
+Done.
+base: cons 2.7865/ball11.916  perent 2.7799/ball11.896  phys 2.7799->2.7799 (no)
+base+ball: cons 2.7833/ball11.817  perent 2.7525/ball11.595  phys 2.7525->2.7525 (no)
+base+ball+pseudo: cons 2.7833/ball11.817  perent 2.7522/ball11.595  phys 2.7522->2.7522 (no)
+base+ball+agent: cons 2.7833/ball11.817  perent 2.7521/ball11.595  phys 2.7521->2.7521 (no)
+all: cons 2.7833/ball11.817  perent 2.7519/ball11.595  phys 2.7519->2.7519 (no)
+
+Wrote C:\Users\jan\Downloads\nml_project_proposal\nml_project_proposal\OVERNIGHT_RESULTS.md
+[07:07:02] FINAL SWEEP WITH SEEDS DONE

@@ -1,0 +1,12 @@
+Epoch 1/3
+    train loss: -1.1016
+    val loss: 0.0273
+Epoch 2/3
+    train loss: -1.6133
+    val loss: 0.0236
+Epoch 3/3
+    train loss: -1.7647
+    val loss: 0.0230
+Saved tagged weights: C:\Users\jan\Downloads\nml_project_proposal\nml_project_proposal\models\weights\model_v65_3ep.pth
+nba_v65: 6.6774
+AGENT_SCORE:6.6774

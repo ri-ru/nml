@@ -1,0 +1,132 @@
+[00:37:44] === AUTONOMOUS RUNNER START ===
+[00:37:44] P1: waiting for '100PCT RETRAIN DONE' in retrain100.log...
+[10:45:46] P1 done. 14 _full weights present.
+[10:45:46] P2: computing _full test preds + building 100% candidate...
+saved v46_full (1243)
+saved v46_s3_full (1243)
+saved v46_s5_full (1243)
+saved v46_s7_full (1243)
+saved v58_full (1243)
+saved v58_s1_full (1243)
+saved v58_s2_full (1243)
+saved v58_s3_full (1243)
+saved v60_w5_full (1243)
+saved v60_w8_full (1243)
+saved v60_w3_full (1243)
+saved v60_w8_s1_full (1243)
+saved v60_w8_s2_full (1243)
+saved v60_w5_s1_full (1243)
+100%-DATA CANDIDATE: solution_100pct_full_2grp_NEW.csv
+  14/27 members use _full (100%-data) test preds; rest 80%.
+  reference local 2-group (80% preds) = 2.7563; submitted 2-group was 2.7563 -> Kaggle 2.98086.
+  NOTE: local can't measure the _full gain (val is in their training set). Submit and compare on Kaggle.
+[11:52:05] P2 done -> solution_full_2grp.csv
+[11:52:05] P3: GNN diversity. Saving v72/v72_w8 preds + ensemble sweep...
+Loading splits + computing normalization...
+Val windows: 2982
+Saved Y_real.pt  shape=(2982, 12, 11, 2)
+  skip v46 (already saved)
+  skip v58 (already saved)
+  MISSING weights for v58_swa: model_v58_swa.pth ù skipping
+  skip v46_s1 (already saved)
+  skip v46_s2 (already saved)
+  skip v46_s3 (already saved)
+  skip v46_s4 (already saved)
+  skip v46_s5 (already saved)
+  skip v46_s6 (already saved)
+  skip v46_s7 (already saved)
+  skip v46_s8 (already saved)
+  skip v46_s1_swa (already saved)
+  skip v46_s2_swa (already saved)
+  skip v46_s3_swa (already saved)
+  skip v46_s4_swa (already saved)
+  skip v46_s5_swa (already saved)
+  skip v46_s6_swa (already saved)
+  skip v46_s7_swa (already saved)
+  skip v46_s8_swa (already saved)
+  skip v58_s1 (already saved)
+  skip v58_s2 (already saved)
+  skip v58_s3 (already saved)
+  MISSING weights for v58_s1_swa: model_v58_s1_swa.pth ù skipping
+  MISSING weights for v58_s2_swa: model_v58_s2_swa.pth ù skipping
+  MISSING weights for v58_s3_swa: model_v58_s3_swa.pth ù skipping
+  skip v60 (already saved)
+  skip v60_s1 (already saved)
+  MISSING weights for v60_swa: model_v60_swa.pth ù skipping
+  MISSING weights for v60_s1_swa: model_v60_s1_swa.pth ù skipping
+  skip v60_w5 (already saved)
+  skip v60_w8 (already saved)
+  skip v60_w3 (already saved)
+  skip v65 (already saved)
+  skip v66 (already saved)
+  skip v68 (already saved)
+  skip v60_w8_s1 (already saved)
+  skip v60_w8_s2 (already saved)
+  skip v60_w5_s1 (already saved)
+  predicting v72...
+    -> C:\Users\jan\Downloads\nml_project_proposal\nml_project_proposal\models\val_preds\v72.pt  shape=(2982, 12, 11, 2)
+  predicting v72_w8...
+    -> C:\Users\jan\Downloads\nml_project_proposal\nml_project_proposal\models\val_preds\v72_w8.pt  shape=(2982, 12, 11, 2)
+Done.
+Computing normalization...
+Test files: 1243
+  skip v46 (already saved)
+  skip v58 (already saved)
+  MISSING weights for v58_swa: model_v58_swa.pth ù skipping
+  skip v46_s1 (already saved)
+  skip v46_s2 (already saved)
+  skip v46_s3 (already saved)
+  skip v46_s4 (already saved)
+  skip v46_s5 (already saved)
+  skip v46_s6 (already saved)
+  skip v46_s7 (already saved)
+  skip v46_s8 (already saved)
+  skip v46_s1_swa (already saved)
+  skip v46_s2_swa (already saved)
+  skip v46_s3_swa (already saved)
+  skip v46_s4_swa (already saved)
+  skip v46_s5_swa (already saved)
+  skip v46_s6_swa (already saved)
+  skip v46_s7_swa (already saved)
+  skip v46_s8_swa (already saved)
+  skip v58_s1 (already saved)
+  skip v58_s2 (already saved)
+  skip v58_s3 (already saved)
+  MISSING weights for v58_s1_swa: model_v58_s1_swa.pth ù skipping
+  MISSING weights for v58_s2_swa: model_v58_s2_swa.pth ù skipping
+  MISSING weights for v58_s3_swa: model_v58_s3_swa.pth ù skipping
+  skip v60 (already saved)
+  skip v60_s1 (already saved)
+  MISSING weights for v60_swa: model_v60_swa.pth ù skipping
+  MISSING weights for v60_s1_swa: model_v60_s1_swa.pth ù skipping
+  skip v60_w5 (already saved)
+  skip v60_w8 (already saved)
+  skip v60_w3 (already saved)
+  skip v65 (already saved)
+  skip v66 (already saved)
+  skip v68 (already saved)
+  skip v60_w8_s1 (already saved)
+  skip v60_w8_s2 (already saved)
+  skip v60_w5_s1 (already saved)
+  predicting v72...
+    0/1243
+    500/1243
+    1000/1243
+    -> C:\Users\jan\Downloads\nml_project_proposal\nml_project_proposal\models\test_preds\v72.pt ((1243, 12, 11, 2))
+    -> C:\Users\jan\Downloads\nml_project_proposal\nml_project_proposal\models\solutions\solution_tta_v72.csv
+  predicting v72_w8...
+    0/1243
+    500/1243
+    1000/1243
+    -> C:\Users\jan\Downloads\nml_project_proposal\nml_project_proposal\models\test_preds\v72_w8.pt ((1243, 12, 11, 2))
+    -> C:\Users\jan\Downloads\nml_project_proposal\nml_project_proposal\models\solutions\solution_tta_v72_w8.csv
+Done.
+base: cons 2.7865/ball11.916  perent 2.7799/ball11.896  phys 2.7799->2.7799 (no)
+base+ball: cons 2.7833/ball11.817  perent 2.7525/ball11.595  phys 2.7525->2.7525 (no)
+base+ball+pseudo: cons 2.7833/ball11.817  perent 2.7522/ball11.595  phys 2.7522->2.7522 (no)
+base+ball+gnn: cons 2.7828/ball11.820  perent 2.7519/ball11.595  phys 2.7519->2.7519 (no)
+all: cons 2.7828/ball11.820  perent 2.7514/ball11.595  phys 2.7514->2.7514 (no)
+
+Wrote C:\Users\jan\Downloads\nml_project_proposal\nml_project_proposal\OVERNIGHT_RESULTS.md
+[12:06:25] P3 done.
+[12:06:25] === AUTONOMOUS RUNNER DONE. See MORNING_SUMMARY.md + models/solutions/solution_full_2grp.csv ===
