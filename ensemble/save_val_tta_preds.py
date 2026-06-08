@@ -13,7 +13,21 @@ import torch
 from pathlib import Path
 import importlib.util
 
-DEVICE = 'cuda'
+def _default_device() -> str:
+    if torch.cuda.is_available():
+        return 'cuda'
+    if getattr(torch.backends, 'mps', None) and torch.backends.mps.is_available():
+        return 'mps'
+    return 'cpu'
+
+
+DEVICE = _default_device()
+
+
+def _empty_cache():
+    if DEVICE == 'cuda':
+        _empty_cache()
+
 from _config import WEIGHTS, TRAIN_TXT, VAL_TXT, MODELS as MODELS_DIR, VAL_DIR as OUT_DIR
 CONTEXT = 8
 HORIZON = 12
@@ -80,7 +94,7 @@ def load_one(model_file, model_class, weights_fname):
     spec.loader.exec_module(mod)
     cls = getattr(mod, model_class)
     m = cls().to(DEVICE)
-    m.load_state_dict(torch.load(WEIGHTS / weights_fname, weights_only=True))
+    m.load_state_dict(torch.load(WEIGHTS / weights_fname, weights_only=True, map_location=DEVICE))
     m.train(False)
     return m
 
@@ -168,7 +182,7 @@ def main():
         full = torch.cat(preds_batches, dim=0)
         torch.save(full, out_path)
         del model
-        torch.cuda.empty_cache()
+        _empty_cache()
         print(f'    -> {out_path}  shape={tuple(full.shape)}')
 
     print('Done.')
