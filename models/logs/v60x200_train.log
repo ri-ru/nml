@@ -1,5 +1,0 @@
-v60: using 5217 files (real + pseudo) from train_files_pseudo_cons.txt
-Epoch 1/200
-    train loss: 0.9093
-    val loss: 0.0962
-Epoch 2/200
