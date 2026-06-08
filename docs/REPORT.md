@@ -123,6 +123,13 @@ Ball-weighted models get **0** player weight and generalists get **0** ball weig
 variants the optimizer keeps **~13** (the rest are redundant). A 2-group variant (one ball vector +
 one shared player vector) regularizes the player weights and generalizes best on the leaderboard.
 
+**How few models are actually needed?** We tested the redundancy claim directly: refit the 2-group
+ensemble on only the **7 weight-carrying models** (3 ball experts `v60_w8 / v60_w5_s1 / v60_w8_s2`
++ 4 player generalists `v46 / v58 / v46_s3 / v46_s7`) and submit. The 7-model ensemble scored Kaggle
+**2.95815**, matching — in fact marginally beating — the full 27-model pool (**2.95986**). The other
+20 models contributed nothing. This self-contained 7-model submission lives in
+[`final_7model/`](../final_7model/).
+
 ---
 
 ## 6. Results

@@ -18,6 +18,16 @@ The 14 retrained members are `v46, v46_s3, v46_s5, v46_s7, v58, v58_s1/s2/s3` an
 specialists `v60_w3/w5/w5_s1/w8/w8_s1/w8_s2`. Members not retrained (the SWA snapshots) fall back to
 their 80 % test predictions — `build_full_candidate.py` handles the prefer-`_full`-else-80 % logic.
 
+## Only 7 of the 27 carry weight — `solution_trimmed7_2grp.csv` (Kaggle 2.95815)
+
+The 2-group weights are non-zero for just **7** members. `build_trimmed_candidate.py` refits the
+ensemble on only those — 3 ball experts (`v60_w8, v60_w5_s1, v60_w8_s2`) + 4 player generalists
+(`v46, v58, v46_s3, v46_s7`), all of which already have `_full` checkpoints, so it is a **pure refit
+over cached predictions, no retraining**. The result, [`solutions/solution_trimmed7_2grp.csv`](solutions/solution_trimmed7_2grp.csv),
+scored Kaggle **2.95815** — matching (slightly beating) the 27-model **2.95986**. The other 20 models
+were dead weight. A clean, self-contained copy of this 7-model submission (weights + architectures +
+build script + the fitted weights) lives in [`../final_7model/`](../final_7model/).
+
 > **Why no local number here:** once val is folded into training, the local val score is optimistic
 > and meaningless. These models are judged **only on Kaggle**. The 80/20 result (2.98086) is the
 > honest, reportable metric; 2.95986 is the leaderboard entry it produced.
