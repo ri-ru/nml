@@ -15,8 +15,8 @@ import torch
 from pathlib import Path
 
 BASE = Path(__file__).parent.parent
-SOLUTIONS = BASE / 'models' / 'solutions'
-TEST_DIR = Path(r'C:\Users\jan\.cache\kagglehub\competitions\nml-2026\test\test')
+from _config import SOL_DIR as SOLUTIONS, TEST as _TEST
+TEST_DIR = Path(_TEST)
 PSEUDO_DIR = BASE / 'pseudo_train'
 PSEUDO_DIR.mkdir(parents=True, exist_ok=True)
 TRAIN_TXT = BASE / 'train_files.txt'

@@ -21,6 +21,15 @@ Thumbs.db
 # Pytest
 .pytest_cache/
 
-# Intermediate per-model TTA tensors (regenerable from weights via save_*_tta_preds.py)
-models/val_preds/
-models/test_preds/
+# Cached per-model TTA prediction tensors (regenerable from weights via save_*_tta_preds.py)
+ensemble/val_preds/
+ensemble/test_preds/
+final_run/test_preds/
+
+# Pseudo-label data (regenerated from a solution CSV via make_pseudo_*.py)
+pseudo_train/
+pseudo_train_round2/
+pseudo_train_cons/
+
+# Generated run reports
+final_run/build_report.md

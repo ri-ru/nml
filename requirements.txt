@@ -1,0 +1,9 @@
+# NBA trajectory prediction — runtime dependencies.
+# Install:  pip install -r requirements.txt
+# GPU is needed for training / generating predictions; the ensemble weight-fitting
+# (ball_player_ensemble.py, weighted_ensemble*.py) is CPU-only.
+torch>=2.0
+numpy>=1.24
+pandas>=2.0
+scipy>=1.10
+tqdm>=4.65

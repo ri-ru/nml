@@ -1,13 +1,17 @@
-"""Run training + evaluation for one generated model file. Called by the agent loop."""
+"""Run training + evaluation for one model file: python core/run_one.py <model.py> [epochs] [batch]."""
 import importlib.util
+import os
 import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent))
 from evaluate import evaluate_model, make_val_dl
 
-TRAIN = r'C:\Users\jan\.cache\kagglehub\competitions\nml-2026\train\train'
-VAL   = r'C:\Users\jan\.cache\kagglehub\competitions\nml-2026\train\train'
+# Dataset root — override with NML_DATA. Both point at the train dir; the 80/20
+# split is applied inside each model's Trainer via train_files.txt / val_files.txt.
+_DATA = os.environ.get('NML_DATA', r'C:\Users\jan\.cache\kagglehub\competitions\nml-2026')
+TRAIN = str(Path(_DATA) / 'train' / 'train')
+VAL   = TRAIN
 DEVICE = 'cuda'
 
 

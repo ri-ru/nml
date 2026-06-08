@@ -17,10 +17,7 @@ import pandas as pd
 from pathlib import Path
 from scipy.optimize import minimize
 
-BASE = Path(__file__).parent.parent
-VAL_DIR = BASE / 'models' / 'val_preds'
-TEST_DIR = BASE / 'models' / 'test_preds'
-SOL_DIR = BASE / 'models' / 'solutions'
+from _config import VAL_DIR, TEST_DIR, SOL_DIR
 HORIZON = 12
 
 # Candidate pool — script will skip labels missing on disk.

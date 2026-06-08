@@ -1,19 +1,18 @@
 """Build the 100%-data submission candidate: fit 2-group (ball|players) weights on the honest 80%
 val preds, then APPLY them to the _full TEST preds (100%-data members) where available, falling back
 to 80% test preds for non-retrained members (e.g. SWA). Writes solution_full_2grp.csv + a report."""
-from pathlib import Path
 import numpy as np, pandas as pd, torch
 from scipy.optimize import minimize
 
-BASE = Path(__file__).parent.parent
-VAL, TEST, SOL = BASE/'models'/'val_preds', BASE/'models'/'test_preds', BASE/'models'/'solutions'
+from _config import VAL_DIR_80 as VAL, TEST_DIR as TEST_FULL, TEST_DIR_80 as TEST_80, SOL_DIR as SOL, FINAL
 HOR, NE = 12, 11
 POOL = ['v46','v58','v46_s1','v46_s2','v46_s3','v46_s4','v46_s5','v46_s6','v46_s7','v46_s8',
         'v46_s1_swa','v46_s2_swa','v46_s3_swa','v46_s4_swa','v46_s5_swa','v46_s6_swa','v46_s7_swa','v46_s8_swa',
         'v58_s1','v58_s2','v58_s3','v60_w5','v60_w8','v60_w3','v60_w8_s1','v60_w8_s2','v60_w5_s1']
 
 Y = torch.load(VAL/'Y_real.pt').numpy()
-labs = [l for l in POOL if (VAL/f'{l}.pt').exists() and (TEST/f'{l}.pt').exists()]
+labs = [l for l in POOL if (VAL/f'{l}.pt').exists()
+        and ((TEST_FULL/f'{l}_full.pt').exists() or (TEST_80/f'{l}.pt').exists())]
 Pv = np.stack([torch.load(VAL/f'{l}.pt').numpy() for l in labs]); M = len(labs)
 
 def fit(Pe, Ye):
@@ -23,13 +22,13 @@ def fit(Pe, Ye):
 wb = fit(Pv[:,:,:,0,:].reshape(M,-1), Y[:,:,0,:].reshape(-1))
 wp = fit(Pv[:,:,:,1:,:].reshape(M,-1), Y[:,:,1:,:].reshape(-1))
 
-# test preds: prefer _full, else 80%
+# test preds: prefer _full (100%-data, this folder), else fall back to 80% (ensemble/)
 nfull = 0
 Pt = []
 for l in labs:
-    fp = TEST/f'{l}_full.pt'
+    fp = TEST_FULL/f'{l}_full.pt'
     if fp.exists(): Pt.append(torch.load(fp).numpy()); nfull += 1
-    else: Pt.append(torch.load(TEST/f'{l}.pt').numpy())
+    else: Pt.append(torch.load(TEST_80/f'{l}.pt').numpy())
 Pt = np.stack(Pt)
 Ntest = Pt.shape[1]
 out = np.zeros((Ntest,HOR,NE,2),dtype=np.float32)
@@ -53,4 +52,4 @@ msg = (f"100%-DATA CANDIDATE: solution_100pct_full_2grp_NEW.csv\n"
        f"  reference local 2-group (80% preds) = {local:.4f}; submitted 2-group was 2.7563 -> Kaggle 2.98086.\n"
        f"  NOTE: local can't measure the _full gain (val is in their training set). Submit and compare on Kaggle.")
 print(msg)
-(BASE/'MORNING_SUMMARY.md').open('a', encoding='utf-8').write('\n## 100% candidate\n'+msg+'\n')
+(FINAL/'build_report.md').open('a', encoding='utf-8').write('\n## 100% candidate\n'+msg+'\n')

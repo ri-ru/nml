@@ -17,12 +17,10 @@ Run:
 """
 import sys
 import importlib.util
-from pathlib import Path
 
 import torch
 
-BASE = Path(__file__).parent.parent
-WEIGHTS = BASE / 'models' / 'weights'
+from _config import WEIGHTS, MODELS as MODELS_DIR, ROOT
 DEVICE = 'cuda' if torch.cuda.is_available() else 'cpu'
 USE_TTA = '--tta' in sys.argv
 
@@ -36,7 +34,7 @@ WEIGHT_NAME = _arg('--weights', 'model_v46_300ep.pth')
 
 
 def load_model(py_name, cls_name, weight_name):
-    spec = importlib.util.spec_from_file_location(py_name, BASE / 'models' / f'{py_name}.py')
+    spec = importlib.util.spec_from_file_location(py_name, MODELS_DIR / f'{py_name}.py')
     mod = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(mod)
     model = getattr(mod, cls_name)().to(DEVICE)
@@ -72,11 +70,14 @@ def forward_tta(model, X, mu_d, sigma_d):
 def main():
     mod, model = load_model('nba_v46', 'NBAv46Model', WEIGHT_NAME)
 
+    # the model file lives in ensemble/models/, so point its split lists at the repo root
+    mod.TRAIN_TXT = ROOT / 'train_files.txt'
+    mod.VAL_TXT = ROOT / 'val_files.txt'
     trainer = mod.Trainer(None, None, device=DEVICE)
     mu = trainer.mu.to(DEVICE)
     sigma = trainer.sigma.to(DEVICE)
 
-    sys.path.insert(0, str(BASE))
+    sys.path.insert(0, str(ROOT / 'core'))
     import evaluate
     val_dl = evaluate.make_val_dl(trainer, batch_size=64)
 

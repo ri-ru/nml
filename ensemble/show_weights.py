@@ -1,10 +1,8 @@
 """Print the full fitted 2-group ensemble weight vectors (ball | players) for all pool models."""
-from pathlib import Path
 import numpy as np, torch
 from scipy.optimize import minimize
 
-BASE = Path(__file__).parent.parent
-VAL = BASE/'models'/'val_preds'
+from _config import VAL_DIR as VAL
 POOL = ['v46','v58','v46_s1','v46_s2','v46_s3','v46_s4','v46_s5','v46_s6','v46_s7','v46_s8',
         'v46_s1_swa','v46_s2_swa','v46_s3_swa','v46_s4_swa','v46_s5_swa','v46_s6_swa','v46_s7_swa','v46_s8_swa',
         'v58_s1','v58_s2','v58_s3','v60_w5','v60_w8','v60_w3','v60_w8_s1','v60_w8_s2','v60_w5_s1']

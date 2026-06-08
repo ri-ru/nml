@@ -4,12 +4,9 @@ import os, importlib.util
 from pathlib import Path
 import torch
 
+from _config import TRAIN, TEST, WEIGHTS, MODELS as MODELS_DIR, TEST_DIR as OUT
+
 DEVICE = 'cuda'
-TRAIN = r'C:\Users\jan\.cache\kagglehub\competitions\nml-2026\train\train'
-TEST  = r'C:\Users\jan\.cache\kagglehub\competitions\nml-2026\test\test'
-BASE = Path(__file__).parent.parent
-WEIGHTS = BASE / 'models' / 'weights'
-OUT = BASE / 'models' / 'test_preds'
 CONTEXT, HORIZON = 8, 12
 
 # (label, module, class) — weights are model_<label>_full.pth
@@ -32,7 +29,7 @@ def norm():
 
 
 def load(mod, cls, w):
-    spec = importlib.util.spec_from_file_location(mod, BASE / 'models' / f'{mod}.py')
+    spec = importlib.util.spec_from_file_location(mod, MODELS_DIR / f'{mod}.py')
     m = importlib.util.module_from_spec(spec); spec.loader.exec_module(m)
     net = getattr(m, cls)().to(DEVICE)
     net.load_state_dict(torch.load(WEIGHTS / w, weights_only=True)); net.train(False); return net
