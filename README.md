@@ -35,6 +35,15 @@ on its 100 %-data (`_full`) checkpoint, then the per-group weights combine them.
 build (weights + the 2 architecture files + `ensemble_weights.json` + one script) lives in
 [`final_7model/`](final_7model/README.md).
 
+**6-model variant (drop `v58`, single architecture).** Removing `v58` leaves six pure-`NBAv46Model`
+members — "one architecture, trained six ways". The ball side is **unchanged** (`v58` carried no ball
+weight); on the player side its 0.263 is reabsorbed by the v46 generalists (`v46_s7` 0.387, `v46`
+0.328, `v46_s3` 0.285). Local 2-group MSE is **2.7583 vs 2.7568** for the 7-model pool — a hair worse,
+because `v58`'s pseudo-labelled, different-architecture diversity is lost. Refit purely over cached
+predictions (no retraining): `python final_run/build_trimmed6_candidate.py` →
+`final_run/solutions/solution_trimmed6_2grp.csv`. We keep the **7-model** ensemble as the headline
+(better local number and the stronger story); the 6-model CSV is a candidate to compare on Kaggle.
+
 ---
 
 ## Repository layout
