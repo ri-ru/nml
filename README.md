@@ -57,6 +57,22 @@ because `v58`'s pseudo-labelled, different-architecture diversity is lost. Build
 keep the **7-model** ensemble as the headline (better local number and the stronger story); the
 6-model CSV is a candidate to compare on Kaggle.
 
+### v46 retrain + single-model diagnostics
+
+To probe how much the ensemble buys over one model, v46 was retrained from scratch for 300 epochs on
+100 % of the data (`final_run/weights/model_v46_full_retrain300.pth`; the submitted 2.95815 checkpoint
+stays `model_v46_full.pth`). From it we build three diagnostic candidates in `final_run/solutions/`:
+
+| CSV | Builder | What it isolates |
+|---|---|---|
+| `solution_v46_solo.csv`         | `build_v46_solo.py`            | **one v46 alone** (4-flip TTA, no ensemble) |
+| `solution_trimmed7_v46retrain.csv` | `build_v46retrain_candidates.py` | 7-model pool with the retrained v46 |
+| `solution_trimmed6_v46retrain.csv` | `build_v46retrain_candidates.py` | 6-model pool (no v58) with the retrained v46 |
+
+Ensemble weights are unchanged — they are fit on the 80 % val preds, which the retrain does not touch;
+only v46's *test* predictions differ. The local MSE therefore can't see the retrain, so these are
+judged purely on Kaggle (the solo model is expected well above 2.958 — it has no ball specialist).
+
 ---
 
 ## Repository layout
