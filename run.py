@@ -1,32 +1,56 @@
-"""One launcher for the whole project — training, ensembling, and both final submissions.
+"""Launcher for all of your reproductibility needs, dear graders! 
+drop the dataset into the repo root to do this. (nml-2026)
 
-Every subcommand just prints and runs the real underlying command (no magic), so what you see here is
-exactly what the README documents. Set NML_DATA (or drop the dataset at ./data/nml-2026) first.
 
-    python run.py split                      # regenerate the fixed 80/20 split manifests
-    python run.py train v46 300              # train one ensemble member on the 80% split
-    python run.py train v46 300 --full       # train one ensemble member on 100% of the data
+Commends: 
+    python run.py split                      # redoes the fixed 80/20 split  
+    python run.py train v46 300              # train one ensemble member on 80% split
+    python run.py train v46 300 --full       # train one ensemble member on 100% 
     python run.py train-all --full           # train all 6 members (add nothing for the 80% split)
-    python run.py fit-weights                # cache val preds, fit the 2-group ensemble weights
-    python run.py submit                     # final submission 1: the 6-model ensemble CSV
-    python run.py submit-single v46          # final submission 2: a single-model CSV (default v46)
-    python run.py reproduce                  # the entire pipeline from scratch (GPU, hours)
+    python run.py fit-weights                # cache val preds+ fit the 2-group ensemble weights
+    python run.py submit                     # makes the final submission 1: the 6-model ensemble CSV
+    python run.py submit-single v46          # makes the final submission 1: a single-model CSV (default v46, because this is our best model
+    python run.py reproduce                  # the entire pipeline from scratch (GPU!!!)
 """
+
+
+import os
 import subprocess
 import sys
 from pathlib import Path
 
+
+
+
+
 ROOT = Path(__file__).resolve().parent
 PY = sys.executable
 
-# The 6 ensemble members (mirror demarche/ensemble/_config.py MEMBERS).
+#6 ensemble members
 MEMBERS = ["v46", "v46_s3", "v46_s7", "v60_w8", "v60_w5_s1", "v60_w8_s2"]
 
 
+def _resolve_data_env():
+    """Point NML_DATA at the dataset. 
+    it should be put into the main repo, for it to be named nml-2026
+    """
+    env = os.environ.copy()
+    if env.get("NML_DATA"):
+        return env  # respect an explicit override
+    for candidate in (ROOT / "nml-2026", ROOT / "data" / "nml-2026"):
+        if (candidate / "train" / "train").exists():
+            env["NML_DATA"] = str(candidate)
+            break
+    return env
+
+
+ENV = _resolve_data_env()
+
+
 def sh(*cmd):
-    """Print a command (as you'd type it) and run it, streaming output. Abort on failure."""
+    """print the commands, run it, abort on failure. """
     print(f"\n$ python {' '.join(cmd[1:])}\n", flush=True)
-    subprocess.run(cmd, cwd=ROOT, check=True)
+    subprocess.run(cmd, cwd=ROOT, check=True, env=ENV)
 
 
 def main():
