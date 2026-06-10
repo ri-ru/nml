@@ -17,11 +17,20 @@ cross-validation gives local ADE **2.758**.
 ## Repository structure
 
 ```
+model/       The architecture, defined ONCE: NBAv46Model + dataset + losses + base Trainer,
+             plus variants.build_member(seed, ball_w). Everything else imports from here.
 core/        Shared infrastructure used by every model.
-demarche/    The construction path: one model file per milestone (the report's Table 1).
+demarche/    The construction path: one milestone per step (the report's Table 1).
 ensemble/    The 80/20 validated pipeline (honest local CV -> local ADE 2.758).
-final/       The final submission (Kaggle ADE 2.954), fully self-contained.
+final/       The final submission (Kaggle ADE 2.954), self-contained (keeps its own model copy
+             so the submission folder runs standalone).
 ```
+
+There is **one** architecture (`model/architecture.py`). The 6 ensemble members are not 6 copies
+of it — they are configs that differ only by random seed and ball-weight: `build_member(seed, ball_w)`.
+The `demarche/` v46/v60 files and the `ensemble/models/` member files are 3-line wrappers around it.
+`final/` is the one deliberate exception: it keeps a private copy of the architecture so the
+submission folder has zero external dependencies.
 
 ### `core/` — shared infrastructure (3 files)
 
@@ -34,8 +43,9 @@ final/       The final submission (Kaggle ADE 2.954), fully self-contained.
 
 ### `demarche/` — how we got here (one file per milestone)
 
-Each file is a self-contained model + `Trainer`, runnable on its own, with its trained weight. Read
-top-to-bottom to see the reasoning. Local ADE is on the 80/20 val split.
+`baseline`, `v6`, `v38` are self-contained files (they are genuinely *different* earlier networks).
+`v46` and `v60_w8` are 3-line milestones that import the shared `model/`. Each is runnable on its own
+via `core/run_one.py` and has its trained weight. Local ADE is on the 80/20 val split.
 
 | Step | File | What's new | Local ADE |
 |---|---|---|---|
@@ -45,7 +55,7 @@ top-to-bottom to see the reasoning. Local ADE is on the 80/20 val split.
 | 3 Mixture | `nba_v46.py` | **mixture-of-2-Gaussians head** + timestep-weighted NLL, 300 ep — **the canonical model** | 2.86 |
 | 4 Ball-weighting | `nba_v60_base.py`, `nba_v60_w8.py` | up-weight the ball ×8 in the loss (train ball specialists) | — |
 
-The five components a grader probes, all in `nba_v46.py`:
+The five components a grader probes, all in `model/architecture.py`:
 **I/O** `NBADataset` (X=8 ctx, y=12 horizon) · **architecture** `NBAv46Model` (2× GRU+attention →
 MoG head) · **graph** `TypeAwareDistanceBiasedAttention` (distance + type-pair bias over 11 nodes) +
 kNN `_social_features` · **temporal** per-node `GRUCell` + autoregressive rollout · **objective**
@@ -61,7 +71,8 @@ the optimiser routes ball-weighted models to the ball and generalists to the pla
 - `save_val_tta_preds.py` / `save_test_tta_preds.py` — cache the 6 members' 4-flip TTA predictions.
 - `ball_player_ensemble.py` — fit the 2-group weights and write the submission CSV.
 - `show_weights.py` — print the fitted ball/player weight vectors.
-- `models/` + `weights/` — the 6 members' definitions and 80 %-split checkpoints.
+- `models/` — the 6 members as 3-line configs (seed + ball-weight) importing the shared `model/`;
+  `weights/` — their 80 %-split checkpoints.
 
 ### `final/` — the final submission (self-contained)
 

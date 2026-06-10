@@ -1,9 +1,10 @@
-"""v60_w8: v46 arch + ball-weighted MoG NLL, ball entity weighted 8x. See nba_v60_base.py."""
+"""Ensemble member v60_w8 — ball specialist, ball loss x8, seed 0.
+    python core/run_one.py ensemble/models/nba_v60_w8.py 300 32   -> model_v60_w8_300ep.pth
+"""
 import sys
 from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).parent))
-from nba_v60_base import build_trainer_class
+sys.path.insert(0, str(Path(__file__).resolve().parents[2]))  # repo root, for `model`
+from model.variants import build_member  # noqa: E402
 
-BALL_W = 8.0
-Trainer = build_trainer_class(BALL_W, 'model_v60_w8')
+Trainer = build_member(seed=0, ball_w=8.0)
