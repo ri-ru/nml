@@ -31,9 +31,8 @@ MEMBERS = {
     "v46_s7":    (1.0, 7),
 }
 VAL_DIR = ENSEMBLE / "val_preds"  # cached per-model val TTA tensors (gitignored)
-TEST_DIR = ENSEMBLE / "test_preds"  # cached per-model test TTA tensors (gitignored)
 SOL_DIR = ROOT / "outputs" / "solutions"  # submission CSVs live under outputs/
-for _d in (VAL_DIR, TEST_DIR, SOL_DIR):
+for _d in (VAL_DIR, SOL_DIR):
     _d.mkdir(parents=True, exist_ok=True)
 
 # train/val split files live at the repo root

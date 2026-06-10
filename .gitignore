@@ -26,7 +26,6 @@ data/
 
 # Cached per-model TTA prediction tensors (regenerable from weights via save_*_tta_preds.py)
 demarche/ensemble/val_preds/
-demarche/ensemble/test_preds/
 
 # Regenerable scratch CSVs (the two SUBMITTED CSVs in outputs/solutions/ are committed)
 outputs/solutions/solution_tta_*.csv

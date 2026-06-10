@@ -63,20 +63,24 @@ kNN `_social_features` · **temporal** per-node `GRUCell` + autoregressive rollo
 ### `demarche/ensemble/` — the 80/20 validated pipeline
 
 Members trained on 80 % of the data; the 2-group **ball | players** weights fit on the held-out
-20 %. The key finding (`analyze_error_sources.py`): the **ball alone is ~39 % of the total error**
+20 %. The motivating finding from our error analysis: the **ball alone is ~39 % of the total error**
 (~6× any player). So we fit *two* weight vectors — one for the ball, one shared across players — and
 the optimiser routes ball-weighted models to the ball and generalists to the players.
 
+Three scripts, one job each (plus the shared config):
+
 - `_config.py` — paths + the **`MEMBERS` registry** (the 6 members = label → seed, ball-weight).
-- `train_member.py` — train one member by name. Each member has **two** checkpoints, differing only
-  in the data seen: the 80% split (to fit weights honestly) and the 100% `--full` model (what the
-  submission loads):
+- `train_member.py` — **(1) train.** Train one member by name. Each member has **two** checkpoints,
+  differing only in the data seen: the 80% split (to fit weights honestly) and the 100% `--full`
+  model (what the submission loads):
   ```bash
   python demarche/ensemble/train_member.py v46_s3 300          # 80% split -> model_v46_s3_300ep.pth
   python demarche/ensemble/train_member.py v46_s3 300 --full   # 100% data -> model_v46_s3_full.pth
   ```
-- `save_val_tta_preds.py` / `save_test_tta_preds.py` — cache the 6 members' 4-flip TTA predictions.
-- `ball_player_ensemble.py` — fit the 2-group weights; `show_weights.py` prints them.
+- `save_val_tta_preds.py` — **(2) cache.** Run the 6 (80%) members on the val split with 4-flip TTA,
+  dump predictions to `val_preds/` (gitignored) so the fit is CPU-only and repeatable.
+- `ball_player_ensemble.py` — **(3) fit.** Least-squares fit of the 2-group weights on those cached
+  val predictions, and print them to paste into `final/ensemble_weights.json`.
 - checkpoints for all members land in `outputs/weights/` (shared with every other model).
 
 ### `final/` — the two final Kaggle submissions

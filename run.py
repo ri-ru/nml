@@ -7,7 +7,7 @@ exactly what the README documents. Set NML_DATA (or drop the dataset at ./data/n
     python run.py train v46 300              # train one ensemble member on the 80% split
     python run.py train v46 300 --full       # train one ensemble member on 100% of the data
     python run.py train-all --full           # train all 6 members (add nothing for the 80% split)
-    python run.py fit-weights                # cache val+test preds, fit the 2-group ensemble weights
+    python run.py fit-weights                # cache val preds, fit the 2-group ensemble weights
     python run.py submit                     # final submission 1: the 6-model ensemble CSV
     python run.py submit-single v46          # final submission 2: a single-model CSV (default v46)
     python run.py reproduce                  # the entire pipeline from scratch (GPU, hours)
@@ -52,7 +52,6 @@ def main():
 
     elif cmd == "fit-weights":
         sh(PY, "demarche/ensemble/save_val_tta_preds.py")
-        sh(PY, "demarche/ensemble/save_test_tta_preds.py")
         sh(PY, "demarche/ensemble/ball_player_ensemble.py")
 
     elif cmd == "submit":
@@ -67,7 +66,6 @@ def main():
             sh(PY, "demarche/ensemble/train_member.py", label, "300")            # 80% (for weight fitting)
             sh(PY, "demarche/ensemble/train_member.py", label, "300", "--full")  # 100% (for submission)
         sh(PY, "demarche/ensemble/save_val_tta_preds.py")
-        sh(PY, "demarche/ensemble/save_test_tta_preds.py")
         sh(PY, "demarche/ensemble/ball_player_ensemble.py")
         sh(PY, "final/build_ensemble_6model.py")
         sh(PY, "final/build_single_model.py", "v46")
