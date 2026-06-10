@@ -1,6 +1,6 @@
-"""v46 version. best version for solo. 
+"""v46 version. best version for solo. CORE architecture for the rest of the project. 
 MoG K=2 + K=2 social + timestep-weighted NLL
-Trained for 300 epochs w/T_max = 300. 
+parent of v60
 """
 import math
 import random
@@ -19,11 +19,13 @@ WEIGHTS_DIR.mkdir(parents=True, exist_ok=True)
 TRAIN_TXT = _DIR.parent / 'train_files.txt'
 VAL_TXT   = _DIR.parent / 'val_files.txt'
 
-TEAM_EMB_DIM = 8
-K_MIX = 2
+TEAM_EMB_DIM = 8 # len of the learned vector for "which team"  
+K_MIX = 2  # two Gaussians in head 
 
 
 class NBADataset(Dataset):
+    """20-frame window, with 8 frames to look at, 12 to predict."""
+
     def __init__(self, file_list, context_size, horizon_size, mu, sigma, augment=False):
         super().__init__()
         self.context_size = context_size
@@ -34,15 +36,21 @@ class NBADataset(Dataset):
         self.max_start = []
         for f in file_list:
             seq = torch.load(f, weights_only=False)
+            # normalize x,y once now (features 0,1). 
+            # mu/sigma come from train 
+
             seq[:, :, [0, 1]] = (seq[:, :, [0, 1]].clone() - mu) / sigma
             self.sequences.append(seq)
             self.max_start.append(max(0, len(seq) - self.window_size))
 
     def __getitem__(self, index):
+        #(which play, where to start).
         seq_idx, start = index
         X = self.sequences[seq_idx][start:start + self.context_size].clone()
         y = self.sequences[seq_idx][start + self.context_size:start + self.window_size].clone()
         if self.augment:
+            # symmetry augmentation, we mirror a play left/right or up/down. free real estate. 
+
             if random.random() < 0.5:
                 X[:, :, 0] = -X[:, :, 0]
                 y[:, :, 0] = -y[:, :, 0]
@@ -56,6 +64,9 @@ class NBADataset(Dataset):
 
 
 class NBASampler(Sampler):
+    """One window per play per epoch, but we roll each time where the window starts every epoch,
+    so over training the model ends up seeing lots of different slices of the same play for free. free real estate pt2"""
+
     def __init__(self, batch_size, max_start, seed=0, shuffle=True):
         self.batch_size = batch_size
         self.max_start = max_start
@@ -70,10 +81,12 @@ class NBASampler(Sampler):
 
     def __iter__(self):
         n = len(self)
+        # shuffle  plays in batches
         perm = torch.randperm(n, generator=self.generator).tolist() if self.shuffle else list(range(n))
         perm_start = [(i, self.max_start[i]) for i in perm]
         for k in range(0, n, self.batch_size):
             for idx, max_start in perm_start[k:k + self.batch_size]:
+                # ...then pick a random start within each play  
                 start = torch.randint(0, max_start + 1, size=(), generator=self.generator)
                 yield idx, start
 
@@ -82,26 +95,37 @@ class NBASampler(Sampler):
 
 
 class MoGNLLLoss:
+    """negative log-likelihood of a 2-Gaussian mixture. ie trying to predict where + how unsure we are and we score on proba"""
+
     def compute(self, pred, target):
         B, T, N, _ = target.shape
         tgt = target[:, :, :, :2].permute(1, 0, 2, 3).reshape(T, B * N, 2)
+        #mean_x, mean_y, log_sigma_x, log_sigma_y, weight_logit per gaussian
         pred = pred.reshape(T, B * N, K_MIX, 5)
         mu        = pred[:, :, :, :2]
-        log_sigma = pred[:, :, :, 2:4].clamp(-3, 3)
+        log_sigma = pred[:, :, :, 2:4].clamp(-3, 3)  #do not remove clamp or blows up sometimes 
         logit_w   = pred[:, :, :, 4]
-        log_w = logit_w - logit_w.logsumexp(dim=-1, keepdim=True)
+        log_w = logit_w - logit_w.logsumexp(dim=-1, keepdim=True)   # normalize  
         var = (log_sigma * 2).exp()
         tgt_k = tgt.unsqueeze(2).expand_as(mu)
         diff = tgt_k - mu
+
+
         log_prob_k = -0.5 * (diff ** 2 / var + log_sigma * 2 + math.log(2 * math.pi))
         log_prob_k = log_prob_k.sum(dim=-1)
+
         log_mix = torch.logsumexp(log_w + log_prob_k, dim=-1)
+
+        # weight later timesteps more  
+        
         weights = torch.linspace(1.0, 2.0, T, device=pred.device)
         total = sum(weights[t] * (-log_mix[t].mean()) for t in range(T))
         return total / weights.sum()
 
 
 class MultiStepMSE:
+    """Validation metric only, mse"""
+
     def __init__(self):
         self.loss_fn = nn.MSELoss()
 
@@ -112,10 +136,13 @@ class MultiStepMSE:
 
 
 class GRUCell(nn.Module):
+    """We step it one frame at a time and slip an attention layer in between (see the rollout in forward)
+    built-in nn.GRU won't  let us do, so we roll our own. """
+
     def __init__(self, input_dim, state_dim):
         super().__init__()
         self.state_dim = state_dim
-        self.pre_norm = nn.LayerNorm(input_dim)
+        self.pre_norm = nn.LayerNorm(input_dim)   # normalizing 
         self.GRU_Z = nn.Sequential(nn.Linear(input_dim + state_dim, state_dim), nn.Sigmoid())
         self.GRU_R = nn.Sequential(nn.Linear(input_dim + state_dim, state_dim), nn.Sigmoid())
         self.GRU_H = nn.Sequential(nn.Linear(input_dim + state_dim, state_dim), nn.Tanh())
@@ -124,11 +151,14 @@ class GRUCell(nn.Module):
         x = self.pre_norm(x)
         Z = self.GRU_Z(torch.cat([x, h], dim=1))
         R = self.GRU_R(torch.cat([x, h], dim=1))
-        H_tilde = self.GRU_H(torch.cat([x, R * h], dim=1))
-        return Z * h + (1 - Z) * H_tilde
+        H_tilde = self.GRU_H(torch.cat([x, R * h], dim=1))# how much old state feeds the candidate
+        return Z * h + (1 - Z) * H_tilde # old state vs. candidate
 
 
 class TypeAwareDistanceBiasedAttention(nn.Module):
+    """Lets the 11 entities (10 players + ball) look at each other within a single frame.
+    Regular multi-head attention, plus two basketball-y nudges (distance and type pair if opponent, ball, teammate etc)"""
+
     def __init__(self, state_dim, num_heads=4, num_types=3):
         super().__init__()
         assert state_dim % num_heads == 0
@@ -140,14 +170,16 @@ class TypeAwareDistanceBiasedAttention(nn.Module):
         self.v = nn.Linear(state_dim, state_dim)
         self.out = nn.Linear(state_dim, state_dim)
         self.norm = nn.LayerNorm(state_dim)
-        self.dist_proj = nn.Linear(1, num_heads)
-        self.type_pair_bias = nn.Embedding(num_types * num_types, num_heads)
+        self.dist_proj = nn.Linear(1, num_heads)            
+        self.type_pair_bias = nn.Embedding(num_types * num_types, num_heads)   
 
     def forward(self, h, pos, node_type):
         B, N, D = h.shape
+        #pw distances  
         diff = pos.unsqueeze(2) - pos.unsqueeze(1)
         dist = diff.norm(dim=-1, keepdim=True)
-        dist_bias = self.dist_proj(dist).permute(0, 3, 1, 2)
+        dist_bias = self.dist_proj(dist).permute(0, 3, 1, 2)         # -> [B, heads, N, N]
+        # look up the learned bias for each ordered  
         type_i = node_type.unsqueeze(2).expand(-1, -1, N)
         type_j = node_type.unsqueeze(1).expand(-1, N, -1)
         type_bias = self.type_pair_bias(type_i * 3 + type_j).permute(0, 3, 1, 2)
@@ -156,13 +188,19 @@ class TypeAwareDistanceBiasedAttention(nn.Module):
             return t.reshape(B, N, self.num_heads, self.head_dim).transpose(1, 2)
 
         Q, K, V = split_heads(self.q(h)), split_heads(self.k(h)), split_heads(self.v(h))
+
+
         attn = F.softmax(Q @ K.transpose(-2, -1) * self.scale + dist_bias + type_bias, dim=-1)
         out = (attn @ V).transpose(1, 2).reshape(B, N, D)
-        return self.norm(h + self.out(out))
+        return self.norm(h + self.out(out))   # residual + norm, as usual
 
 
 class NBAv46Model(nn.Module):
-    """v44 arch (MoG K=2), trained 300ep with T_max=300."""
+    """for each frame we build features for all 11 entities, run them through GRU then attention, and then head
+    gives us a 2 gaussian mixture per entity. 
+    GRU contains memory over time. attention lets entities react to each other within a frame.
+
+    See forward()"""
 
     def __init__(self, state_dim=128, context_size=8, horizon_size=12, num_heads=4, num_layers=2):
         super().__init__()
@@ -171,19 +209,23 @@ class NBAv46Model(nn.Module):
         self.state_dim = state_dim
         self.num_layers = num_layers
 
-        self.team_emb = nn.Embedding(3, TEAM_EMB_DIM)
-        input_dim_0 = 32 + TEAM_EMB_DIM
+        self.team_emb = nn.Embedding(3, TEAM_EMB_DIM)  # ball / team A / team B 
+        input_dim_0 = 32 + TEAM_EMB_DIM   # 32 motion+social numbers per entity, plus the team vector
+
 
         self.log_temperature = nn.Parameter(torch.zeros(1))
 
+        #GRU
         self.gru_layers = nn.ModuleList([
             GRUCell(input_dim_0 if i == 0 else state_dim, state_dim)
             for i in range(num_layers)
         ])
+        #Attention
         self.attn_layers = nn.ModuleList([
             TypeAwareDistanceBiasedAttention(state_dim, num_heads)
             for _ in range(num_layers)
         ])
+        #squeeze the state down to 5 numbers per Gaussian  as before
         self.proj = nn.Sequential(
             nn.Linear(state_dim, 128), nn.ReLU(),
             nn.Linear(128, 64), nn.ReLU(),
@@ -191,6 +233,7 @@ class NBAv46Model(nn.Module):
         )
 
     def _get_node_type(self, X):
+        #0=ball, 1=team A, 2=team B.
         team = X[:, 0, :, 3]
         node_type = torch.zeros_like(team, dtype=torch.long)
         node_type[team == -1] = 1
@@ -198,20 +241,26 @@ class NBAv46Model(nn.Module):
         return node_type
 
     def _ball_broadcast(self, pos, vel, ball_mask):
+        # grab the ball's row and copy it onto every entity, so each one can measure itself relative to the ball.
         mask_f = ball_mask.float().unsqueeze(-1)
         ball_pos = (pos * mask_f).sum(dim=1, keepdim=True).expand_as(pos)
         ball_vel = (vel * mask_f).sum(dim=1, keepdim=True).expand_as(vel)
         return ball_pos, ball_vel
 
     def _social_features(self, pos, vel, node_type, ball_mask):
+        """For each player, describe their immediate situation: the 2 closest teammates and
+        2 closest opponents (where they are + how they're moving, relative to me), plus a
+        soft "everyone, weighted by closeness" summary. This is the stuff a player actually
+        reacts to. The ball has no team, so its row is zeroed out and ignored here."""
         B, N, _ = pos.shape
-        INF = 1e4
+        INF = 1e4   # non candidates
         dist = (pos.unsqueeze(2) - pos.unsqueeze(1)).norm(dim=-1)
         eye = torch.eye(N, dtype=torch.bool, device=pos.device).unsqueeze(0)
         type_i = node_type.unsqueeze(2)
         type_j = node_type.unsqueeze(1)
-        same_mask = (type_i == type_j) & (type_i != 0) & ~eye
-        opp_mask = ((type_i == 1) & (type_j == 2)) | ((type_i == 2) & (type_j == 1))
+        same_mask = (type_i == type_j) & (type_i != 0) & ~eye   #same team
+        opp_mask = ((type_i == 1) & (type_j == 2)) | ((type_i == 2) & (type_j == 1))   # the other team
+        # blank out everyone who isn't a candidate 
         dist_same = dist.masked_fill(~same_mask, INF)
         dist_opp  = dist.masked_fill(~opp_mask,  INF)
         nn_same_top2 = dist_same.topk(2, dim=2, largest=False).indices
@@ -222,14 +271,18 @@ class NBAv46Model(nn.Module):
         ball2 = ball_mask.unsqueeze(-1).expand(B, N, 2)
 
         def gather_rel(nn_idx):
+            #neighbor's position/velocity as an offset from mine (and 0 for the ball's row)
             rp = (pos[b_idx, nn_idx] - pos).masked_fill(ball2, 0.0)
             rv = (vel[b_idx, nn_idx] - vel).masked_fill(ball2, 0.0)
             return rp, rv
 
+        #nearest + 2nd-nearest teammate, nearest + 2nd-nearest opponent
         rp_s1, rv_s1 = gather_rel(nn_same1)
         rp_s2, rv_s2 = gather_rel(nn_same2)
         rp_o1, rv_o1 = gather_rel(nn_opp1)
         rp_o2, rv_o2 = gather_rel(nn_opp2)
+
+
         T = self.log_temperature.exp().clamp(min=0.1, max=10.0)
         w_same = torch.softmax(-dist_same / T, dim=2)
         w_opp  = torch.softmax(-dist_opp  / T, dim=2)
@@ -239,15 +292,19 @@ class NBAv46Model(nn.Module):
         att_same_vel = (w_same.unsqueeze(-1) * rel_vel).sum(dim=2).masked_fill(ball2, 0.0)
         att_opp_pos  = (w_opp.unsqueeze(-1)  * rel_pos).sum(dim=2).masked_fill(ball2, 0.0)
         att_opp_vel  = (w_opp.unsqueeze(-1)  * rel_vel).sum(dim=2).masked_fill(ball2, 0.0)
+        #(4 neighbors x pos+vel) + 8 soft 
         return torch.cat([rp_s1, rv_s1, rp_s2, rv_s2,
                           rp_o1, rv_o1, rp_o2, rv_o2,
                           att_same_pos, att_same_vel,
                           att_opp_pos,  att_opp_vel], dim=-1)
 
     def forward(self, X):
+        # Walk all 20 frames one at a time. For the first 8 we feed the real positions; after
+        # that we feed the model its OWN last prediction and let it keep going 
+ 
         B, _, N, _ = X.shape
         T = self.context_size + self.horizon_size
-        ball_mask = (X[:, 0, :, 2] == 0)
+        ball_mask = (X[:, 0, :, 2] == 0)    
         node_type = self._get_node_type(X)
         team_emb  = self.team_emb(node_type)
         h = [torch.zeros(B * N, self.state_dim, device=X.device) for _ in range(self.num_layers)]
@@ -257,19 +314,21 @@ class NBAv46Model(nn.Module):
 
         for t in range(T):
             if t < self.context_size:
-                pos = X[:, t, :, :2]
+                pos = X[:, t, :, :2]                                       
                 vel = torch.zeros_like(pos) if prev_pos is None else pos - prev_pos
                 prev_pos = pos
             else:
-                pos = pred_mu.reshape(B, N, 2)
+                pos = pred_mu.reshape(B, N, 2)                            
                 vel = pos - prev_pos
                 prev_pos = pos
 
+            #my motion, my motion relative to the ball, who's around me, my team
             ball_pos, ball_vel = self._ball_broadcast(pos, vel, ball_mask)
             motion = torch.cat([pos, vel, pos - ball_pos, vel - ball_vel], dim=-1)
             social = self._social_features(pos, vel, node_type, ball_mask)
             x_in = torch.cat([motion, social, team_emb], dim=-1).reshape(B * N, -1)
 
+            #GRU updates memory, then attention lets the entities talk
             layer_in = x_in
             for i in range(self.num_layers):
                 h[i] = self.gru_layers[i](layer_in, h[i])
@@ -278,17 +337,21 @@ class NBAv46Model(nn.Module):
                 ).reshape(B * N, self.state_dim)
                 layer_in = h[i]
 
+
+
             if self.context_size - 1 <= t < T - 1:
                 out = self.proj(h[-1])
                 out_k = out.reshape(B * N, K_MIX, 5)
+
                 log_w = out_k[:, :, 4] - out_k[:, :, 4].logsumexp(dim=-1, keepdim=True)
                 w = log_w.exp()
                 pred_mu = (w.unsqueeze(-1) * out_k[:, :, :2]).sum(dim=1)
-                all_preds.append(out)
+                all_preds.append(out)   
 
         preds = torch.stack(all_preds, dim=0)
         if self.training:
-            return preds
+            return preds   # to MoGNLLLoss
+        # eval/inference: collapse to the single best-guess point per entity
         preds_k = preds.reshape(preds.shape[0], B * N, K_MIX, 5)
         log_w = preds_k[:, :, :, 4] - preds_k[:, :, :, 4].logsumexp(dim=-1, keepdim=True)
         w = log_w.exp()
@@ -296,14 +359,17 @@ class NBAv46Model(nn.Module):
 
 
 class Trainer:
+    """Wires up data, model, optimizer and runs the epochs. The base v46 saves to model_v46.pth;
+    the ensemble members subclass this (see nba_v60_base.py) to change the loss and the filename."""
+
     def __init__(self, train_path, val_path, device='cuda', epochs=35, batch_size=32, full=False, **kwargs):
         self.device = device
         self.epochs = epochs
         self.batch_size = batch_size
         self.model = None
 
-        # full=True trains on 100% of the labelled data (val == train, only for loss monitoring) —
-        # used for the submission checkpoints. Otherwise use the fixed 80/20 manifests when present.
+        # full=True: train on ALL labelled data (the "val" set is just train again, only watched for loss). ie for final submission. otherwise 80/20
+
         if not full and TRAIN_TXT.exists() and VAL_TXT.exists():
             train_files = TRAIN_TXT.read_text().splitlines()
             val_files   = VAL_TXT.read_text().splitlines()
@@ -318,6 +384,7 @@ class Trainer:
         self.val_dataset   = NBADataset(val_files,   8, 12, mu, sigma, augment=False)
 
     def _compute_normalization(self, file_list):
+        # mean/std of x,y over the whole train set 
         all_pos = []
         for f in file_list:
             seq = torch.load(f, weights_only=False)
@@ -338,9 +405,10 @@ class Trainer:
                               sampler=val_sampler,   generator=generator)
 
         model = NBAv46Model().to(self.device)
-        train_loss_fn = MoGNLLLoss()
-        val_loss_fn   = MultiStepMSE()
+        train_loss_fn = MoGNLLLoss()    #NLL
+        val_loss_fn   = MultiStepMSE()  # MSE to watch 
         optimizer = torch.optim.Adam(model.parameters(), lr=1e-3, weight_decay=5e-4)
+
         scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=self.epochs)
 
         for epoch in range(self.epochs):
@@ -358,6 +426,7 @@ class Trainer:
         self.model = model
 
     def _run_epoch(self, dataloader, loss_fn, model, optimizer, split):
+        # one pass over the data. 
         avg_loss = 0.0
         for X, y in tqdm(dataloader, desc=f'  {split}'):
             X, y = X.to(self.device), y.to(self.device)
@@ -366,7 +435,7 @@ class Trainer:
             if split == 'train':
                 optimizer.zero_grad()
                 loss.backward()
-                torch.nn.utils.clip_grad_norm_(model.parameters(), 10.0)
+                torch.nn.utils.clip_grad_norm_(model.parameters(), 10.0)   # clip or blows up 
                 optimizer.step()
             avg_loss += loss.detach()
         avg_loss = avg_loss / len(dataloader)
