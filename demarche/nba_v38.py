@@ -1,10 +1,7 @@
 """v38: v26 GRU arch + diagonal Gaussian NLL loss.
-Instead of MSE (point prediction), output (mu_x, mu_y, log_sx, log_sy) per player per step
-and train with Gaussian negative log-likelihood. Forces the model to express uncertainty on
-multimodal trajectories rather than collapsing to the mean.
-Eval returns only mu — compatible with evaluate.py and the submission pipeline.
-Uses proper train/val split (train_files.txt / val_files.txt). 35 epochs to test paradigm.
-"""
+so we change from MSE here to Gaussian negative log-likelihood 
+Eval returns only mu  
+ """
 import random
 from pathlib import Path
 
@@ -84,7 +81,7 @@ class NBASampler(Sampler):
 
 class GaussianNLLLoss:
     def compute(self, pred, target):
-        # pred:   [T, B*N, 4] — (mu_x, mu_y, log_sx, log_sy)
+        # pred:  [T, B*N, 4] — (mu_x, mu_y, log_sx, log_sy)
         # target: [B, T, N, F]
         B, T, N, _ = target.shape
         tgt = target[:, :, :, :2].permute(1, 0, 2, 3).reshape(T, B * N, 2)
@@ -285,13 +282,13 @@ class NBAv38Model(nn.Module):
 
             if self.context_size - 1 <= t < T - 1:
                 out = self.proj(h[-1])       # [B*N, 4]
-                pred_mu = out[:, :2]         # use mu for rollout
+                pred_mu = out[:, :2]   
                 all_preds.append(out)
 
         preds = torch.stack(all_preds, dim=0)  # [12, B*N, 4]
         if self.training:
             return preds
-        return preds[:, :, :2]  # eval: return only mu, [12, B*N, 2]
+        return preds[:, :, :2]  # return only mu, [12, B*N, 2]
 
 
 class Trainer:

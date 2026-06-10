@@ -1,23 +1,20 @@
-"""Train one ensemble member by name (replaces the old per-member files):
-
+"""Train one ensemble member with it's name 
     python demarche/ensemble/train_member.py v46_s3 300            # 80% split  -> model_v46_s3_300ep.pth
     python demarche/ensemble/train_member.py v46_s3 300 --full     # 100% data  -> model_v46_s3_full.pth
 
-All members are the single demarche/nba_v46.py architecture; they differ only by
-(ball_w, seed), defined once in _config.MEMBERS.
+see _config.MEMBERS for seeds 
 
-Two checkpoints per member, distinguished only by the data they see:
   - default : trains on the fixed 80/20 split (needs train_files.txt/val_files.txt) and saves
-              model_<label>_<epochs>ep.pth — the honest model used to FIT the ensemble weights.
-  - --full  : trains on 100% of the labelled data and saves model_<label>_full.pth — the
-              checkpoint the final submission actually loads (final/build_ensemble_6model.py).
+              model_<label>_<epochs>ep.pth  used to FIT the ensemble weights.
+  - --full  : trains on 100% of the labelled data and saves model_<label>_full.pth  the final submission 
+  actually loads (final/build_ensemble_6model.py).
 """
 import sys
 from pathlib import Path
 
 import torch
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1]))  # demarche/ — the single architecture
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))  #  
 from nba_v60_base import build_trainer_class  # noqa: E402
 from _config import MEMBERS, WEIGHTS, TRAIN  # noqa: E402
 

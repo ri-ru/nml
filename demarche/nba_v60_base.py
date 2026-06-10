@@ -1,13 +1,7 @@
-"""v60 base — Phase 1 of the ball-error attack (see BALL_ERROR_PLAN.md).
-
-Identical to v46 in every way EXCEPT the training loss: the per-(timestep) MoG NLL is additionally
-weighted per entity, with the ball (entity index 0, always) upweighted by BALL_W. Everything else
-(arch=NBAv46Model, 300ep, T_max=300, lr=1e-3, wd=5e-4, augment, val=MultiStepMSE) is unchanged so
-the only variable is the ball weight.
-
-Thin variant files (nba_v60_w2.py, ...) set BALL_W and a checkpoint stem, then do:
-    Trainer = build_trainer_class(BALL_W, 'model_v60_w2')
-run_one.py discovers `Trainer` and additionally saves model_v60_wN_<epochs>ep.pth.
+"""v60 base.
+Attack the balle error.  
+Identical to v46 in every way EXCEPT the training loss: the per-(timestep) MoG NLL is  
+weighted per entity, with the ball (entity index 0, always) upweighted by BALL_W. 
 """
 import math
 import random
@@ -15,7 +9,7 @@ import sys
 from pathlib import Path
 
 import torch
-import torch.nn.functional as F  # noqa: F401 (kept for parity / potential use)
+import torch.nn.functional as F   
 from torch.utils.data import DataLoader
 
 sys.path.insert(0, str(Path(__file__).parent))
@@ -27,7 +21,7 @@ WEIGHTS_DIR = nba_v46.WEIGHTS_DIR
 
 
 class BallWeightedMoGNLLLoss:
-    """v46 MoG NLL, but each entity's NLL is scaled; ball (entity 0) by `ball_w`."""
+    """v46 MoG NLL, but each entity's NLL is scaled; ball (entity 0) by ball_W"""
 
     def __init__(self, ball_w: float):
         self.ball_w = ball_w
@@ -48,8 +42,8 @@ class BallWeightedMoGNLLLoss:
         log_mix = torch.logsumexp(log_w + log_prob_k, dim=-1)  # [T, B*N]
         nll = -log_mix                                          # [T, B*N]
 
-        # reshape order is [b0n0, b0n1, ..., b0n10, b1n0, ...]; entity n at pos b*N+n.
-        # ball is always entity index 0 -> upweight every (b*N + 0) position.
+        # reshape order is [b0n0, b0n1, ..., b0n10, b1n0, ...] btw 
+ 
         w_ent = torch.ones(N, device=pred.device)
         w_ent[0] = self.ball_w
         w_ent = w_ent.repeat(B)  # [B*N]

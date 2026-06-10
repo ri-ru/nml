@@ -1,13 +1,10 @@
 """v6: Ball-Conditioned Type-Aware Graph Attention.
-Key architectural insights from spec:
-- Ball is central: all players react to ball. Add ball-relative features to each node.
-- Typed edges: (ball↔player, teammate, opponent) have different interaction dynamics.
-- Graph-based: explicit team structure via type-pair attention biases.
+Ball is life. All players react to ball. 
+Add ball-relative features to each node.
+ Typed edges: (ball↔player, teammate, opponent) w/ different interacitons 
 
-Input per entity: [x, y, vx, vy, rel_x, rel_y, rel_vx, rel_vy] + team_embedding(8)
-= 16 features. rel_* = position/velocity relative to ball (zero for ball itself).
-Type-aware attention: learned per (source_type, target_type) bias in each attention head.
-Teacher forcing 0.8→0.0 over training. state_dim=128, 2 layers, 35 epochs.
+[x, y, vx, vy, rel_x, rel_y, rel_vx, rel_vy] + team_embedding(8)
+= 16 features. 
 """
 import os
 import random
@@ -23,7 +20,7 @@ _DIR = Path(__file__).parent
 WEIGHTS_DIR = _DIR.parent / 'outputs' / 'weights'
 WEIGHTS_DIR.mkdir(parents=True, exist_ok=True)
 
-TEAM_EMB_DIM = 8  # embedding size for (ball / team_a / team_b) node types
+TEAM_EMB_DIM = 8  # embedding size for (ball / team_a / team_b)  
 
 
 class NBADataset(Dataset):
@@ -133,9 +130,9 @@ class TypeAwareDistanceBiasedAttention(nn.Module):
         dist = diff.norm(dim=-1, keepdim=True)       # [B, N, N, 1]
         dist_bias = self.dist_proj(dist).permute(0, 3, 1, 2)  # [B, heads, N, N]
 
-        # Type-pair bias: which kind of social interaction is this edge?
-        type_i = node_type.unsqueeze(2).expand(-1, -1, N)  # [B, N, N] — source type
-        type_j = node_type.unsqueeze(1).expand(-1, N, -1)  # [B, N, N] — target type
+        #Which kind of social interaction is this edge?
+        type_i = node_type.unsqueeze(2).expand(-1, -1, N)  # [B, N, N]  source type
+        type_j = node_type.unsqueeze(1).expand(-1, N, -1)  # [B, N, N]  target type
         pair_idx = type_i * 3 + type_j                     # [B, N, N] in [0, 8]
         type_bias = self.type_pair_bias(pair_idx).permute(0, 3, 1, 2)  # [B, heads, N, N]
 
@@ -158,7 +155,7 @@ class NBAv6Model(nn.Module):
         self.state_dim = state_dim
         self.num_layers = num_layers
 
-        # Node type embedding: 0=ball, 1=team_a, 2=team_b
+        # 0=ball, 1=team_a, 2=team_b
         self.team_emb = nn.Embedding(3, TEAM_EMB_DIM)
         input_dim_0 = 8 + TEAM_EMB_DIM  # [x,y,vx,vy,rel_x,rel_y,rel_vx,rel_vy] + emb
 
@@ -177,7 +174,7 @@ class NBAv6Model(nn.Module):
         )
 
     def _get_node_type(self, X):
-        """Map team feature to type id: ball=0, team_a=1, team_b=2."""
+        """ ball=0, team_a=1, team_b=2."""
         team = X[:, 0, :, 3]  # [B, N], values in {-1, 0, 1}
         node_type = torch.zeros_like(team, dtype=torch.long)
         node_type[team == -1] = 1  # Team A
@@ -187,7 +184,7 @@ class NBAv6Model(nn.Module):
 
     def _ball_broadcast(self, pos, vel, ball_mask):
         """Broadcast ball position/velocity to all N entities."""
-        # ball_mask: [B, N] bool — True for ball entity
+        # ball_mask: [B, N]  
         mask_f = ball_mask.float().unsqueeze(-1)  # [B, N, 1]
         ball_pos = (pos * mask_f).sum(dim=1, keepdim=True)  # [B, 1, 2]
         ball_vel = (vel * mask_f).sum(dim=1, keepdim=True)  # [B, 1, 2]
@@ -198,8 +195,7 @@ class NBAv6Model(nn.Module):
         B, _, N, _ = X.shape
         T = self.context_size + self.horizon_size
 
-        # Static per-sequence properties (constant across time)
-        ball_mask = (X[:, 0, :, 2] == 0)          # [B, N] — True for ball
+        ball_mask = (X[:, 0, :, 2] == 0)  
         node_type = self._get_node_type(X)          # [B, N]
         team_emb = self.team_emb(node_type)         # [B, N, TEAM_EMB_DIM]
 
@@ -224,12 +220,12 @@ class NBAv6Model(nn.Module):
                 prev_pos = pred_pos
                 pos = pred_pos
 
-            # Ball-relative features: each entity sees how far it is from ball
+            # Each entity sees how far it is from ball
             ball_pos, ball_vel = self._ball_broadcast(pos, vel, ball_mask)
             rel_pos = pos - ball_pos  # [B, N, 2] — zero for ball itself
             rel_vel = vel - ball_vel  # [B, N, 2] — zero for ball itself
 
-            # Full node feature: own motion + ball-relative motion + team identity
+            # Own motion + ball-relative motion + team identity
             motion = torch.cat([pos, vel, rel_pos, rel_vel], dim=-1)  # [B, N, 8]
             x_in = torch.cat([motion, team_emb], dim=-1)              # [B, N, 16]
             x_in = x_in.reshape(B * N, -1)
