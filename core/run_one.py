@@ -7,12 +7,13 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent))
 from evaluate import evaluate_model, make_val_dl
 
-# Dataset root — override with NML_DATA. Both point at the train dir; the 80/20
+# Dataset root — must be set via NML_DATA. Both point at the train dir; the 80/20
 # split is applied inside each model's Trainer via train_files.txt / val_files.txt.
-_DATA = os.environ.get('NML_DATA', r'C:\Users\jan\.cache\kagglehub\competitions\nml-2026')
-TRAIN = str(Path(_DATA) / 'train' / 'train')
+if 'NML_DATA' not in os.environ:
+    raise SystemExit('Set NML_DATA to the dataset root, e.g.  export NML_DATA=/path/to/nml-2026')
+TRAIN = str(Path(os.environ['NML_DATA']) / 'train' / 'train')
 VAL   = TRAIN
-DEVICE = 'cuda'
+DEVICE = 'cuda' if __import__('torch').cuda.is_available() else 'cpu'
 
 
 def run(model_path: str, epochs: int = 30, batch_size: int = 32) -> float:

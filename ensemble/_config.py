@@ -29,8 +29,12 @@ TRAIN_TXT = ROOT / "train_files.txt"
 VAL_TXT = ROOT / "val_files.txt"
 TRAIN_TXT_FULL = ROOT / "train_files_full.txt"
 
-# Dataset root — override with the NML_DATA env var (see module docstring).
-_DEFAULT_DATA = r"C:\Users\jan\.cache\kagglehub\competitions\nml-2026"
-DATA = Path(os.environ.get("NML_DATA", _DEFAULT_DATA))
+# Dataset root — must be set via the NML_DATA env var (see module docstring).
+if "NML_DATA" not in os.environ:
+    raise SystemExit(
+        "Set NML_DATA to the dataset root (folder with train/train/*.pt and test/test/*.pt), "
+        "e.g.  export NML_DATA=/path/to/nml-2026"
+    )
+DATA = Path(os.environ["NML_DATA"])
 TRAIN = str(DATA / "train" / "train")
 TEST = str(DATA / "test" / "test")

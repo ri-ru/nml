@@ -1,24 +1,30 @@
-"""Build the FINAL 7-model Kaggle submission — self-contained.
+"""Build the FINAL 6-model Kaggle submission — self-contained (Kaggle ADE 2.954).
 
-Pipeline (no training, no ensemble/ or final_run/ dependency):
-  1. load the 7 100%-data (_full) checkpoints from ./weights using the 2 architectures in ./models;
+Single architecture: all 6 members are NBAv46Model (3 ball specialists trained with a
+ball-weighted loss + 3 player generalists at different seeds), so only one model file
+(models/nba_v46.py) is needed.
+
+Pipeline (no training, no dependency on ../ensemble or any other folder):
+  1. load the 6 100%-data (_full) checkpoints from ./weights;
   2. run 4-flip TTA inference on every test sequence (last 8 frames -> next 12 positions);
   3. apply the 2-group ensemble weights in ./ensemble_weights.json
         - the BALL (entity 0) uses `ball_weights`
         - every PLAYER (entities 1..10) uses `player_weights`
-  4. write ./solution_final_7model.csv (Kaggle format, ids sorted).
+  4. write ./solution.csv (Kaggle format, ids sorted).
 
-This reproduces the submitted file byte-for-byte (Kaggle MSE 2.95815).
+The committed solution.csv is the submitted artifact; this script reproduces it up to the
+precision of the published weights in ensemble_weights.json.
 
 Run:
     export NML_DATA=/path/to/nml-2026          # folder with train/train/*.pt and test/test/*.pt
-    python final_7model/build_submission.py
+    python final/build_submission.py
 """
 import os
 import json
 import importlib.util
 from pathlib import Path
 
+import numpy as np
 import torch
 import pandas as pd
 
@@ -28,21 +34,14 @@ WEIGHTS_DIR = HERE / "weights"
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 CONTEXT, HORIZON, NE = 8, 12, 11
 
-_DEFAULT_DATA = r"C:\Users\jan\.cache\kagglehub\competitions\nml-2026"
-DATA = Path(os.environ.get("NML_DATA", _DEFAULT_DATA))
+if "NML_DATA" not in os.environ:
+    raise SystemExit(
+        "Set NML_DATA to the dataset root (the folder containing train/train/*.pt and "
+        "test/test/*.pt), e.g.  export NML_DATA=/path/to/nml-2026"
+    )
+DATA = Path(os.environ["NML_DATA"])
 TRAIN = str(DATA / "train" / "train")   # normalization stats (matches how _full models were trained)
 TEST = str(DATA / "test" / "test")
-
-# label -> (architecture module, class). Weights are model_<label>_full.pth in ./weights.
-ARCH = {
-    "v46":      ("nba_v46", "NBAv46Model"),
-    "v58":      ("nba_v58", "NBAv58Model"),
-    "v46_s3":   ("nba_v46", "NBAv46Model"),
-    "v46_s7":   ("nba_v46", "NBAv46Model"),
-    "v60_w8":   ("nba_v46", "NBAv46Model"),
-    "v60_w8_s2": ("nba_v46", "NBAv46Model"),
-    "v60_w5_s1": ("nba_v46", "NBAv46Model"),
-}
 
 
 def compute_normalization(data_path):
@@ -55,13 +54,13 @@ def compute_normalization(data_path):
     return cat.mean(dim=(0, 1)), cat.std(dim=(0, 1))
 
 
-def load_model(label):
-    mod_name, cls_name = ARCH[label]
-    spec = importlib.util.spec_from_file_location(mod_name, MODELS_DIR / f"{mod_name}.py")
+def load_model(weights_file):
+    """All 6 members share the NBAv46Model architecture (models/nba_v46.py)."""
+    spec = importlib.util.spec_from_file_location("nba_v46", MODELS_DIR / "nba_v46.py")
     mod = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(mod)
-    net = getattr(mod, cls_name)().to(DEVICE)
-    net.load_state_dict(torch.load(WEIGHTS_DIR / f"model_{label}_full.pth", weights_only=True))
+    net = mod.NBAv46Model().to(DEVICE)
+    net.load_state_dict(torch.load(WEIGHTS_DIR / weights_file, weights_only=True))
     net.train(False)
     return net
 
@@ -84,8 +83,9 @@ def predict_tta(net, ctx, mu_d, sig_d):
 def main():
     cfg = json.load(open(HERE / "ensemble_weights.json"))
     pool = cfg["pool"]
-    wb = torch.tensor(cfg["ball_weights"], dtype=torch.float64).numpy()
-    wp = torch.tensor(cfg["player_weights"], dtype=torch.float64).numpy()
+    wfile = cfg["weights_file"]
+    wb = np.array(cfg["ball_weights"], dtype=np.float64)
+    wp = np.array(cfg["player_weights"], dtype=np.float64)
     print(f"device={DEVICE}  pool={pool}")
 
     print("computing normalization from train ...")
@@ -102,11 +102,10 @@ def main():
         ctxs.append(s[-CONTEXT:])
     print(f"test sequences: {len(ctxs)}")
 
-    import numpy as np
     # Pt[m] = [N_test, 12, 11, 2] for model m, in pool order.
     Pt = np.zeros((len(pool), len(ctxs), HORIZON, NE, 2), dtype=np.float32)
     for m, label in enumerate(pool):
-        net = load_model(label)
+        net = load_model(wfile[label])
         for i, ctx in enumerate(ctxs):
             Pt[m, i] = predict_tta(net, ctx.unsqueeze(0).to(DEVICE), mu_d, sig_d).cpu().numpy()
         del net
@@ -122,7 +121,7 @@ def main():
 
     cols = [f"entity_{i}_time_{t}_{a}" for t in range(HORIZON) for i in range(NE) for a in ["x", "y"]]
     rows = [[ids[i]] + out[i].reshape(-1).tolist() for i in range(Ntest)]
-    csv = HERE / "solution_final_7model.csv"
+    csv = HERE / "solution.csv"
     pd.DataFrame(rows, columns=["id"] + cols).set_index("id").sort_index().to_csv(csv)
     print(f"wrote {csv}")
 

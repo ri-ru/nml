@@ -1,14 +1,13 @@
 """
-Generate per-model test-set TTA predictions and save as both a tensor
-(.pt for ensembling) and a Kaggle CSV (for direct submission).
+Generate per-model test-set TTA predictions for the 6 ensemble members and save each as
+both a tensor (.pt for ensembling) and a Kaggle CSV.
 
-Run after save_val_tta_preds.py — uses the same model list, so weighted
-ensemble can later combine val preds (for weight fitting) with test
-preds (for the actual submission).
+Run after save_val_tta_preds.py — uses the same 6 models, so the 2-group weights fit on the
+val preds can be applied to these test preds for the submission.
 
-Outputs (under models/test_preds/):
-  <label>.pt   - [N_test, 12, 11, 2] in feet
-  <label>.csv  - Kaggle-format solution CSV
+Outputs:
+  test_preds/<label>.pt        - [N_test, 12, 11, 2] in feet
+  solutions/solution_tta_<label>.csv - Kaggle-format per-model solution
 """
 import os
 import torch
@@ -16,54 +15,35 @@ import pandas as pd
 from pathlib import Path
 import importlib.util
 
-DEVICE = 'cuda'
 from _config import TRAIN, TEST, WEIGHTS, MODELS as MODELS_DIR, TEST_DIR as OUT_DIR, SOL_DIR
+
+
+def _default_device() -> str:
+    if torch.cuda.is_available():
+        return 'cuda'
+    if getattr(torch.backends, 'mps', None) and torch.backends.mps.is_available():
+        return 'mps'
+    return 'cpu'
+
+
+DEVICE = _default_device()
 CONTEXT = 8
 HORIZON = 12
 
+# All 6 members are NBAv46Model.
 MODELS = [
-    ('v46',         'nba_v46',    'NBAv46Model', 'model_v46_300ep.pth'),
-    ('v58',         'nba_v58',    'NBAv58Model', 'model_v58_300ep.pth'),
-    ('v58_swa',     'nba_v58',    'NBAv58Model', 'model_v58_swa.pth'),
-    ('v46_s1',      'nba_v46_s1', 'NBAv46Model', 'model_v46_s1_300ep.pth'),
-    ('v46_s2',      'nba_v46_s2', 'NBAv46Model', 'model_v46_s2_300ep.pth'),
-    ('v46_s3',      'nba_v46_s3', 'NBAv46Model', 'model_v46_s3_300ep.pth'),
-    ('v46_s4',      'nba_v46_s4', 'NBAv46Model', 'model_v46_s4_300ep.pth'),
-    ('v46_s5',      'nba_v46_s5', 'NBAv46Model', 'model_v46_s5_300ep.pth'),
-    ('v46_s6',      'nba_v46_s6', 'NBAv46Model', 'model_v46_s6_300ep.pth'),
-    ('v46_s7',      'nba_v46_s7', 'NBAv46Model', 'model_v46_s7_300ep.pth'),
-    ('v46_s8',      'nba_v46_s8', 'NBAv46Model', 'model_v46_s8_300ep.pth'),
-    ('v46_s1_swa',  'nba_v46_s1', 'NBAv46Model', 'model_v46_s1_swa.pth'),
-    ('v46_s2_swa',  'nba_v46_s2', 'NBAv46Model', 'model_v46_s2_swa.pth'),
-    ('v46_s3_swa',  'nba_v46_s3', 'NBAv46Model', 'model_v46_s3_swa.pth'),
-    ('v46_s4_swa',  'nba_v46_s4', 'NBAv46Model', 'model_v46_s4_swa.pth'),
-    ('v46_s5_swa',  'nba_v46_s5', 'NBAv46Model', 'model_v46_s5_swa.pth'),
-    ('v46_s6_swa',  'nba_v46_s6', 'NBAv46Model', 'model_v46_s6_swa.pth'),
-    ('v46_s7_swa',  'nba_v46_s7', 'NBAv46Model', 'model_v46_s7_swa.pth'),
-    ('v46_s8_swa',  'nba_v46_s8', 'NBAv46Model', 'model_v46_s8_swa.pth'),
-    ('v58_s1',      'nba_v58_s1', 'NBAv58Model', 'model_v58_s1_300ep.pth'),
-    ('v58_s2',      'nba_v58_s2', 'NBAv58Model', 'model_v58_s2_300ep.pth'),
-    ('v58_s3',      'nba_v58_s3', 'NBAv58Model', 'model_v58_s3_300ep.pth'),
-    ('v58_s1_swa',  'nba_v58_s1', 'NBAv58Model', 'model_v58_s1_swa.pth'),
-    ('v58_s2_swa',  'nba_v58_s2', 'NBAv58Model', 'model_v58_s2_swa.pth'),
-    ('v58_s3_swa',  'nba_v58_s3', 'NBAv58Model', 'model_v58_s3_swa.pth'),
-    ('v60',         'nba_v60',    'NBAv60Model', 'model_v60_200ep.pth'),
-    ('v60_s1',      'nba_v60_s1', 'NBAv60Model', 'model_v60_s1_200ep.pth'),
-    ('v60_swa',     'nba_v60',    'NBAv60Model', 'model_v60_swa.pth'),
-    ('v60_s1_swa',  'nba_v60_s1', 'NBAv60Model', 'model_v60_s1_swa.pth'),
-    # --- ball-weighted (NBAv46Model arch) + agent-centric + pseudo round-2 ---
-    ('v60_w5',      'nba_v46',    'NBAv46Model', 'model_v60_w5_300ep.pth'),
-    ('v60_w8',      'nba_v46',    'NBAv46Model', 'model_v60_w8_300ep.pth'),
-    ('v60_w3',      'nba_v46',    'NBAv46Model', 'model_v60_w3_300ep.pth'),
-    ('v65',         'nba_v65',    'NBAv65Model', 'model_v65_300ep.pth'),
-    ('v66',         'nba_v66',    'NBAv66Model', 'model_v66_300ep.pth'),
-    ('v68',         'nba_v46',    'NBAv46Model', 'model_v68_300ep.pth'),
-    ('v60_w8_s1',   'nba_v46',    'NBAv46Model', 'model_v60_w8_s1_300ep.pth'),
-    ('v60_w8_s2',   'nba_v46',    'NBAv46Model', 'model_v60_w8_s2_300ep.pth'),
-    ('v60_w5_s1',   'nba_v46',    'NBAv46Model', 'model_v60_w5_s1_300ep.pth'),
-    ('v72',         'nba_v72',    'NBAv72Model', 'model_v72_300ep.pth'),
-    ('v72_w8',      'nba_v72',    'NBAv72Model', 'model_v72_w8_300ep.pth'),
+    ('v60_w8',     'nba_v46', 'NBAv46Model', 'model_v60_w8_300ep.pth'),
+    ('v60_w5_s1',  'nba_v46', 'NBAv46Model', 'model_v60_w5_s1_300ep.pth'),
+    ('v60_w8_s2',  'nba_v46', 'NBAv46Model', 'model_v60_w8_s2_300ep.pth'),
+    ('v46_s3',     'nba_v46', 'NBAv46Model', 'model_v46_s3_300ep.pth'),
+    ('v46',        'nba_v46', 'NBAv46Model', 'model_v46_300ep.pth'),
+    ('v46_s7',     'nba_v46', 'NBAv46Model', 'model_v46_s7_300ep.pth'),
 ]
+
+
+def _empty_cache():
+    if DEVICE == 'cuda':
+        torch.cuda.empty_cache()
 
 
 def compute_normalization(data_path):
@@ -81,7 +61,7 @@ def load_one(model_file, model_class, weights_fname):
     spec.loader.exec_module(mod)
     cls = getattr(mod, model_class)
     m = cls().to(DEVICE)
-    m.load_state_dict(torch.load(WEIGHTS / weights_fname, weights_only=True))
+    m.load_state_dict(torch.load(WEIGHTS / weights_fname, weights_only=True, map_location=DEVICE))
     m.train(False)
     return m
 
@@ -156,7 +136,7 @@ def main():
         torch.save(full, out_pt)
         pd.DataFrame(rows, columns=cols).set_index('id').sort_index().to_csv(out_csv)
         del model
-        torch.cuda.empty_cache()
+        _empty_cache()
         print(f'    -> {out_pt} ({tuple(full.shape)})')
         print(f'    -> {out_csv}')
 

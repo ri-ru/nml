@@ -6,9 +6,10 @@ Models can load these instead of scanning a directory to get a clean split.
 import os, random
 from pathlib import Path
 
-# Dataset root — override with NML_DATA (folder containing train/train/*.pt).
-_DATA = os.environ.get('NML_DATA', r'C:\Users\jan\.cache\kagglehub\competitions\nml-2026')
-TRAIN = str(Path(_DATA) / 'train' / 'train')
+# Dataset root — must be set via NML_DATA (folder containing train/train/*.pt).
+if 'NML_DATA' not in os.environ:
+    raise SystemExit('Set NML_DATA to the dataset root, e.g.  export NML_DATA=/path/to/nml-2026')
+TRAIN = str(Path(os.environ['NML_DATA']) / 'train' / 'train')
 OUT   = Path(__file__).resolve().parent.parent   # repo root: writes train_files.txt / val_files.txt
 
 files = sorted([os.path.join(TRAIN, f) for f in os.listdir(TRAIN) if f.endswith('.pt')],

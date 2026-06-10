@@ -4,7 +4,8 @@ vector for ALL players (entities 1-10). This is a regularized middle ground betw
 ball-specialist routing that won us the leaderboard while cutting params 11->2 to shrink the
 local->Kaggle overfit gap.
 
-Pool = base + ball specialists (the 2.98 pool). Writes solution_ball_player_2grp.csv + reports.
+Pool = the 6 final members: 3 ball specialists (v60) + 3 player generalists (v46), single
+architecture. Writes solution_ball_player_2grp.csv + reports.
 """
 import numpy as np
 import pandas as pd
@@ -13,9 +14,8 @@ from scipy.optimize import minimize
 
 from _config import VAL_DIR as VAL, TEST_DIR as TEST, SOL_DIR as SOL
 HOR, NE = 12, 11
-POOL = ['v46','v58','v46_s1','v46_s2','v46_s3','v46_s4','v46_s5','v46_s6','v46_s7','v46_s8',
-        'v46_s1_swa','v46_s2_swa','v46_s3_swa','v46_s4_swa','v46_s5_swa','v46_s6_swa','v46_s7_swa','v46_s8_swa',
-        'v58_s1','v58_s2','v58_s3','v60_w5','v60_w8','v60_w3','v60_w8_s1','v60_w8_s2','v60_w5_s1']
+POOL = ['v60_w8', 'v60_w5_s1', 'v60_w8_s2',   # ball specialists
+        'v46_s3', 'v46', 'v46_s7']            # player generalists
 
 Y = torch.load(VAL/'Y_real.pt').numpy()
 labs = [l for l in POOL if (VAL/f'{l}.pt').exists() and (TEST/f'{l}.pt').exists()]

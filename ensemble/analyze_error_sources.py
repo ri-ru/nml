@@ -11,9 +11,9 @@ SAME denormalized MSE. Breaks total error down by:
 Optionally runs 4-flip TTA to match the submission protocol.
 
 Run:
-  python misc/analyze_error_sources.py                       # v46_300ep, plain
-  python misc/analyze_error_sources.py --tta                 # 4-flip TTA
-  python misc/analyze_error_sources.py --weights model_v60_w3_50ep.pth --tta
+  python ensemble/analyze_error_sources.py                              # v46_300ep, plain
+  python ensemble/analyze_error_sources.py --tta                        # 4-flip TTA
+  python ensemble/analyze_error_sources.py --weights model_v60_w8_300ep.pth --tta
 """
 import sys
 import importlib.util

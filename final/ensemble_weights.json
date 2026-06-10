@@ -1,0 +1,31 @@
+{
+  "_comment": "2-group ensemble weights for the FINAL 6-model submission (Kaggle 2.954). Single architecture (all 6 are NBAv46Model). 'ball_weights' route entity 0 (the ball); 'player_weights' route entities 1-10 (pooled). Fit by constrained least-squares (w>=0, sum=1) on the honest 80% validation predictions, then applied to the 100%-data (_full) test predictions. Order matches 'pool'. These are the published fitted weights to 3 d.p.; the authoritative submitted artifact is solution.csv.",
+  "pool": [
+    "v60_w8",
+    "v60_w5_s1",
+    "v60_w8_s2",
+    "v46_s3",
+    "v46",
+    "v46_s7"
+  ],
+  "role": {
+    "v60_w8": "ball specialist (ball-weighted loss x8)",
+    "v60_w5_s1": "ball specialist (ball-weighted loss x5, seed 1)",
+    "v60_w8_s2": "ball specialist (ball-weighted loss x8, seed 2)",
+    "v46_s3": "player generalist (seed 3; the only cross-over member)",
+    "v46": "player generalist (baseline)",
+    "v46_s7": "player generalist (seed 7)"
+  },
+  "weights_file": {
+    "v60_w8": "model_v60_w8_full.pth",
+    "v60_w5_s1": "model_v60_w5_s1_full.pth",
+    "v60_w8_s2": "model_v60_w8_s2_full.pth",
+    "v46_s3": "model_v46_s3_full.pth",
+    "v46": "model_v46_full.pth",
+    "v46_s7": "model_v46_s7_full.pth"
+  },
+  "ball_weights": [0.606, 0.246, 0.099, 0.048, 0.0, 0.0],
+  "player_weights": [0.0, 0.0, 0.0, 0.285, 0.328, 0.387],
+  "reference_local_val_mse_80pct": 2.7583,
+  "kaggle_mse": 2.954
+}

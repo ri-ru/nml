@@ -12,11 +12,10 @@ the trained weight for each. Everything in between (≈80 variants and dead-ends
 | 2→3 | Social kNN (2 nearest mates/opponents) + epoch scaling + court-symmetry augmentation | *(folded into v46)* | — | **3.73** | Longer cosine schedule beat all further feature engineering. |
 | 4 | **Gaussian NLL loss** (+ honest train/val split) | `nba_v38.py` | `model_v38.pth` | **3.44** | Breakthrough #1 — predict a distribution, not a point. |
 | 5 | **Mixture-of-Gaussians head (K=2)** + timestep-weighted NLL + 300 ep | `nba_v46.py` | `model_v46_300ep.pth` | **2.86** | Breakthrough #2 — models bimodal futures. **The canonical model.** |
-| 6 | **Pseudo-labels** (semi-supervised on the unlabeled test set) | `nba_v58.py` | `model_v58_300ep.pth` | **2.84** | Best single model; seeds + SWA add ensemble diversity. |
-| 7 | **Ball-weighting** (up-weight the ball 8× in the loss) | `nba_v60_base.py`, `nba_v60_w8.py` | `model_v60_w8_300ep.pth` | — | Our contribution: error analysis showed the ball is ~6.3× any player's error, so we train ball specialists for the ensemble. |
+| 6 | **Ball-weighting** (up-weight the ball 8× in the loss) | `nba_v60_base.py`, `nba_v60_w8.py` | `model_v60_w8_300ep.pth` | — | Our contribution: error analysis showed the ball is ~6.3× any player's error, so we train ball specialists for the ensemble. |
 
 `nba_v46.py` is the architecture all later models share — steps 1–5 are cumulative inside it. The
-ball-weighted models (step 7) reuse the v46 architecture with a re-weighted loss defined in
+ball-weighted models (step 6) reuse the v46 architecture with a re-weighted loss defined in
 `nba_v60_base.py`.
 
 ## The 5 components a grader will probe (all in `nba_v46.py`)
