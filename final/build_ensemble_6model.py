@@ -1,22 +1,11 @@
-"""Build the FINAL 6-model Kaggle submission (Kaggle ADE 2.954).
+"""final 6-model Kaggle submission  2.954 
 
-Single architecture: all 6 members are NBAv46Model (3 ball specialists trained with a
-ball-weighted loss + 3 player generalists at different seeds). The architecture is loaded
-from the one canonical file, ../demarche/nba_v46.py (no copy in this folder).
+All 6 members are NBAv46Model 
+(3 ball specialists w/ a ball-weighted loss 
++ 3 player generalists at different seeds) 
 
-Pipeline (no training):
-  1. load the 6 100%-data (_full) checkpoints from ../outputs/weights;
-  2. run 4-flip TTA inference on every test sequence (last 8 frames -> next 12 positions);
-  3. apply the 2-group ensemble weights in ./ensemble_weights.json
-        - the BALL (entity 0) uses `ball_weights`
-        - every PLAYER (entities 1..10) uses `player_weights`
-  4. write ../outputs/solutions/solution_ensemble_6model.csv (Kaggle format, ids sorted).
-
-The committed outputs/solutions/solution_ensemble_6model.csv is the submitted artifact; this script
-reproduces it up to the precision of the published weights in ensemble_weights.json.
-
-Run:
-    export NML_DATA=/path/to/nml-2026          # or place the dataset at ./data/nml-2026
+ 
+    export NML_DATA=/path/to/nml-2026      
     python final/build_ensemble_6model.py
 """
 import os
@@ -29,12 +18,11 @@ import torch
 import pandas as pd
 
 HERE = Path(__file__).resolve().parent
-ARCH_DIR = HERE.parent / "demarche"   # single architecture source: demarche/nba_v46.py (no copy)
+ARCH_DIR = HERE.parent / "demarche"   
 WEIGHTS_DIR = HERE.parent / "outputs" / "weights"
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 CONTEXT, HORIZON, NE = 8, 12, 11
 
-# Dataset root: NML_DATA env var, else the conventional ./data/nml-2026 in the repo.
 DATA = Path(os.environ.get("NML_DATA") or HERE.parent / "data" / "nml-2026")
 if not (DATA / "train" / "train").exists():
     raise SystemExit(
@@ -56,7 +44,6 @@ def compute_normalization(data_path):
 
 
 def load_model(weights_file):
-    """All 6 members share the NBAv46Model architecture (demarche/nba_v46.py)."""
     spec = importlib.util.spec_from_file_location("nba_v46", ARCH_DIR / "nba_v46.py")
     mod = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(mod)
@@ -67,7 +54,7 @@ def load_model(weights_file):
 
 
 def predict_tta(net, ctx, mu_d, sig_d):
-    """ctx: [1, 8, 11, F] normalized. Returns [12, 11, 2] in feet, averaged over 4 court reflections."""
+    """ctx: [1, 8, 11, F] normalized. Returns [12, 11, 2] in feet """
     out = []
     for fx, fy in [(False, False), (True, False), (False, True), (True, True)]:
         x = ctx.clone()

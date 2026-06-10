@@ -8,7 +8,7 @@ RESULTS_FILE = os.path.join(os.path.dirname(__file__), 'results.md')
 
 
 def evaluate_model(model, trainer, val_dl, name: str, notes: str = '') -> float:
-    """Evaluate a model, print the score, and log it to results.md."""
+    """Evaluate a model, print the score, and log it to results.md. for tracking"""
     loss_fn = nn.MSELoss()
     mu = trainer.mu.to(trainer.device)
     sigma = trainer.sigma.to(trainer.device)

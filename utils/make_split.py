@@ -1,12 +1,9 @@
 """
-Create an 80/20 train/val split of the training data by file index.
-Writes train_files.txt and val_files.txt — lists of absolute paths.
-Models can load these instead of scanning a directory to get a clean split.
+Create an 80/20 train/val split of the training data by file index. 
 """
 import os, random
 from pathlib import Path
 
-# Dataset root: NML_DATA env var, else the conventional ./data/nml-2026 in the repo.
 OUT  = Path(__file__).resolve().parent.parent   # repo root: writes train_files.txt / val_files.txt
 DATA = Path(os.environ.get('NML_DATA') or OUT / 'data' / 'nml-2026')
 if not (DATA / 'train' / 'train').exists():

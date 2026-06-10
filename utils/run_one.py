@@ -1,4 +1,6 @@
-"""Run training + evaluation for one model file: python utils/run_one.py <model.py> [epochs] [batch]."""
+"""Run training + evaluation for one model file
+
+ python utils/run_one.py <model.py> [epochs] [batch]."""
 import importlib.util
 import os
 import sys
@@ -7,7 +9,6 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent))
 from evaluate import evaluate_model, make_val_dl
 
-# Dataset root: NML_DATA env var, else the conventional ./data/nml-2026 in the repo. Both point at
 # the train dir; the 80/20 split is applied inside each model's Trainer via train_files.txt/val_files.txt.
 _DATA = Path(os.environ.get('NML_DATA') or Path(__file__).resolve().parent.parent / 'data' / 'nml-2026')
 if not (_DATA / 'train' / 'train').exists():
@@ -34,8 +35,7 @@ def run(model_path: str, epochs: int = 30, batch_size: int = 32) -> float:
         device=DEVICE, epochs=epochs, batch_size=batch_size,
     )
     trainer.train()
-
-    # Save epoch-tagged copy — never overwrites previous checkpoints
+ 
     import torch
     weights_dir = Path(__file__).resolve().parent.parent / 'outputs' / 'weights'
     weights_dir.mkdir(parents=True, exist_ok=True)
