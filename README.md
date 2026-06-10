@@ -1,145 +1,187 @@
-# NBA Multi-Agent Trajectory Prediction — EE-452 (NML 2026)
+# NBA Multi-Agent Trajectory Prediction (EE-452, NML 2026)
 
 Given **8 context frames** of an NBA possession, predict the next **12 positions** of all
 **11 entities** (10 players + the ball). Scored by mean-squared error in court coordinates (feet),
 lower is better, averaged uniformly over entities, timesteps, and axes (the ADE metric).
 
 **Method.** A single **graph-attention network** (spatio-temporal GAT + GRU + mixture-of-Gaussians
-head), trained under four principled regimes and combined by an **error-analysis-driven, per-entity
+head), trained six ways under one architecture and combined by an **error-analysis-driven, 2-group
 ensemble** that automatically specialises models to the ball vs. the players.
 
-**Result.** Kaggle **2.98086** (validated 80/20 ensemble) → **2.95986** (members retrained on
-100 % of the labelled data) → **2.95815** (final, distilled to the **7 weight-carrying models**). The
-full method write-up is in [`docs/REPORT.md`](docs/REPORT.md).
-
-## Final ensemble (Kaggle 2.95815) — the 7 models and their weights
-
-The full pipeline trained 27 variants, but the fitted ensemble showed only 7 carry any weight; refit
-on just those 7 it **matches and slightly beats** the 27-model submission with ~4× fewer models. The
-**2-group** ensemble fits one weight vector for the ball (entity 0) and one shared vector for all
-players (entities 1–10); the optimiser cleanly splits the pool into ball experts and player experts.
-
-| Model | Architecture | Ball weight | Player weight | Role |
-|---|---|---:|---:|---|
-| `v60_w8`    | nba_v46 / NBAv46Model | **0.606** | 0.000 | ball expert (ball-weighted loss ×8) |
-| `v60_w5_s1` | nba_v46 / NBAv46Model | **0.246** | 0.000 | ball expert (ball-weighted loss ×5, seed 1) |
-| `v60_w8_s2` | nba_v46 / NBAv46Model | **0.099** | 0.000 | ball expert (ball-weighted loss ×8, seed 2) |
-| `v46_s3`    | nba_v46 / NBAv46Model | 0.048 | 0.204 | both (the only cross-over) |
-| `v46`       | nba_v46 / NBAv46Model | 0.000 | 0.190 | player generalist (baseline) |
-| `v58`       | nba_v58 / NBAv58Model | 0.000 | 0.263 | player generalist (pseudo-labeled) |
-| `v46_s7`    | nba_v46 / NBAv46Model | 0.000 | **0.344** | player generalist (seed 7) |
-
-6 of the 7 share the **same** network (`NBAv46Model`), differing only in training (ball-weighting,
-seeds); `v58` uses `NBAv58Model` (same design, pseudo-labelled). Each member predicts under 4-flip TTA
-on its 100 %-data (`_full`) checkpoint, then the per-group weights combine them. The self-contained
-build (weights + the 2 architecture files + `ensemble_weights.json` + one script) lives in
-[`final_7model/`](final_7model/README.md).
-
-### 6-model variant — drop `v58` (single architecture)
-
-Removing `v58` leaves six pure-`NBAv46Model` members — "one architecture, trained six ways". Refit
-the 2-group weights over the same cached predictions (no retraining):
-
-| Model | Architecture | Ball weight | Player weight | Role |
-|---|---|---:|---:|---|
-| `v60_w8`    | nba_v46 / NBAv46Model | **0.606** | 0.000 | ball expert (ball-weighted loss ×8) |
-| `v60_w5_s1` | nba_v46 / NBAv46Model | **0.246** | 0.000 | ball expert (ball-weighted loss ×5, seed 1) |
-| `v60_w8_s2` | nba_v46 / NBAv46Model | **0.099** | 0.000 | ball expert (ball-weighted loss ×8, seed 2) |
-| `v46_s3`    | nba_v46 / NBAv46Model | 0.048 | 0.285 | both (the only cross-over) |
-| `v46`       | nba_v46 / NBAv46Model | 0.000 | 0.328 | player generalist (baseline) |
-| `v46_s7`    | nba_v46 / NBAv46Model | 0.000 | **0.387** | player generalist (seed 7) |
-
-The **ball side is identical** to the 7-model pool (`v58` carried no ball weight). On the player side,
-`v58`'s 0.263 is reabsorbed by the three v46 generalists (`v46_s7` 0.344 → 0.387, `v46` 0.190 → 0.328,
-`v46_s3` 0.204 → 0.285). Local 2-group MSE is **2.7583 vs 2.7568** for the 7-model pool — a hair worse,
-because `v58`'s pseudo-labelled, different-architecture diversity is lost. Build it with
-`python final_run/build_trimmed6_candidate.py` → `final_run/solutions/solution_trimmed6_2grp.csv`. We
-keep the **7-model** ensemble as the headline (better local number and the stronger story); the
-6-model CSV is a candidate to compare on Kaggle.
-
-### v46 retrain + single-model diagnostics
-
-To probe how much the ensemble buys over one model, v46 was retrained from scratch for 300 epochs on
-100 % of the data (`final_run/weights/model_v46_full_retrain300.pth`; the submitted 2.95815 checkpoint
-stays `model_v46_full.pth`). From it we build three diagnostic candidates in `final_run/solutions/`:
-
-| CSV | Builder | What it isolates |
-|---|---|---|
-| `solution_v46_solo.csv`         | `build_v46_solo.py`            | **one v46 alone** (4-flip TTA, no ensemble) |
-| `solution_trimmed7_v46retrain.csv` | `build_v46retrain_candidates.py` | 7-model pool with the retrained v46 |
-| `solution_trimmed6_v46retrain.csv` | `build_v46retrain_candidates.py` | 6-model pool (no v58) with the retrained v46 |
-
-Ensemble weights are unchanged — they are fit on the 80 % val preds, which the retrain does not touch;
-only v46's *test* predictions differ. The local MSE therefore can't see the retrain, so these are
-judged purely on Kaggle (the solo model is expected well above 2.958 — it has no ball specialist).
+**Result.** Kaggle ADE **2.954** (a 6-model, single-architecture ensemble: 3 ball specialists + 3
+player generalists, members retrained on 100 % of the labelled data). Honest 80/20 cross-validation
+gives local ADE **2.758**.
 
 ---
 
-## Repository layout
+## Repository structure
 
 ```
-demarche/     The méthode / journey — one model file per milestone step (baseline → v6 → v38
-              → v46 → v58 → v60 ball-weighting), each with its trained weight. Read this to
-              understand WHY the architecture looks the way it does. See demarche/README.md.
-
-ensemble/     The 80/20 VALIDATED pipeline (honest local CV → Kaggle 2.98086).
-              27 member weights + the graph model definitions + the scripts that cache
-              predictions and fit the 2-group (ball | players) ensemble. See ensemble/README.md.
-
-final_run/    The 100 %-data submission (Kaggle 2.95986). The same members RETRAINED on 100 % of
-              the labelled data (train + val), reusing the 2-group weights fit in ensemble/.
-              See final_run/README.md.
-
-final_7model/ The FINAL submission (Kaggle 2.95815), self-contained. The 27-model ensemble
-              distilled to the 7 weight-carrying models (3 ball experts + 4 player generalists):
-              7 checkpoints + 2 architecture files + ensemble_weights.json + build_submission.py,
-              with no dependency on ensemble/ or final_run/. See final_7model/README.md.
-
-core/         Shared infra: make_split.py (80/20 split), run_one.py (train one model),
-              evaluate.py (local val MSE).
-
-docs/         REPORT.md (method), ERROR_ANALYSIS.md (the "ball dominates" finding),
-              CHANGELOG.md + results.md + notes.md (full experimental log).
-
-ORIGINAL.ipynb            The provided starter notebook (visualisation + naive baseline).
-NML_Project_Proposal.pdf  The assignment.
-train_files.txt / val_files.txt / train_files_full.txt   Split manifests (see "Data" below).
+run.py       One launcher for everything (train / ensemble / both submissions). Start here.
+utils/       Shared infrastructure (split / train / score).
+demarche/    The construction path + the ONE architecture (demarche/nba_v46.py);
+             the 80/20 validated ensemble pipeline lives in demarche/ensemble/.
+final/       The two final Kaggle submissions (6-model ensemble = ADE 2.954; single model).
+outputs/     weights/ (every trained checkpoint) + solutions/ (the submitted CSVs).
 ```
 
-> The full research history (≈90 model variants, all checkpoints, every submission CSV, the
-> autonomous training orchestrators) lives on the **`main-archive`** branch. This branch keeps
-> only what's needed to understand and reproduce the result.
+The architecture is defined **once**, in `demarche/nba_v46.py`. The 6 ensemble members are not copies
+of it: they are entries in a small registry (`demarche/ensemble/_config.py` → `MEMBERS`, just seed +
+ball-weight) that all load that one file; `final/` loads it too. There is exactly one copy of the
+network in the whole repo.
+
+### `utils/`: shared infrastructure (3 files)
+
+- **`make_split.py`**: makes the 80/20 train/val split once (fixed seed 42); writes
+  `train_files.txt` + `val_files.txt` so every model uses the *same* split.
+- **`run_one.py`**: the training entry point: `python utils/run_one.py <model.py> <epochs> <batch>`.
+  Dynamically imports the model's `Trainer`, trains, saves an epoch-tagged checkpoint, evaluates.
+- **`evaluate.py`**: local scorer: de-normalises to court feet and computes the MSE (same metric as
+  Kaggle), using a fixed 3-windows-per-sequence sampler.
+
+### `demarche/`: how we got here (one file per milestone)
+
+`baseline`, `v6`, `v38` are self-contained files (genuinely *different* earlier networks). `v46` is
+**the** architecture: every later component (ensemble members, final) imports it. `v60` is `v46`
+with a ball-weighted loss. Each is runnable via `utils/run_one.py` with its trained weight. Local ADE
+is on the 80/20 val split.
+
+| Step | File | What's new | Local ADE |
+|---|---|---|---|
+| 0 Baseline | `nba_baseline.py` | provided non-graph GRU, each entity independent (MSE) | 54.01 |
+| 1 Graph | `nba_v6.py` | **graph attention** + ball-relative features (the graph is born) | 4.36 |
+| 2 Gaussian | `nba_v38.py` | Gaussian NLL (predict a distribution) + kNN social features | 3.44 |
+| 3 Mixture | `nba_v46.py` | **mixture-of-2-Gaussians head** + timestep-weighted NLL, 300 ep (**the canonical model**) | 2.86 |
+| 4 Ball-weighting | `nba_v60_base.py` | the ball-weighted loss + trainer factory; ball specialists are trained via `demarche/ensemble/train_member.py` | n/a |
+
+The five components a grader probes, all in `demarche/nba_v46.py`:
+**I/O** `NBADataset` (X=8 ctx, y=12 horizon) · **architecture** `NBAv46Model` (2× GRU+attention →
+MoG head) · **graph** `TypeAwareDistanceBiasedAttention` (distance + type-pair bias over 11 nodes) +
+kNN `_social_features` · **temporal** per-node `GRUCell` + autoregressive rollout · **objective**
+`MoGNLLLoss`.
+
+### `demarche/ensemble/`: the 80/20 validated pipeline
+
+Members trained on 80 % of the data; the 2-group **ball | players** weights fit on the held-out
+20 %. The motivating finding from our error analysis: the **ball alone is ~39 % of the total error**
+(~6× any player). So we fit *two* weight vectors (one for the ball, one shared across players), and
+the optimiser routes ball-weighted models to the ball and generalists to the players.
+
+Three scripts, one job each (plus the shared config):
+
+- `_config.py`: paths + the **`MEMBERS` registry** (the 6 members = label → seed, ball-weight).
+- `train_member.py`: **(1) train.** Train one member by name. Each member has **two** checkpoints,
+  differing only in the data seen: the 80% split (to fit weights honestly) and the 100% `--full`
+  model (what the submission loads):
+  ```bash
+  python demarche/ensemble/train_member.py v46_s3 300          # 80% split -> model_v46_s3_300ep.pth
+  python demarche/ensemble/train_member.py v46_s3 300 --full   # 100% data -> model_v46_s3_full.pth
+  ```
+- `save_val_tta_preds.py`: **(2) cache.** Run the 6 (80%) members on the val split with 4-flip TTA,
+  dump predictions to `val_preds/` (gitignored) so the fit is CPU-only and repeatable.
+- `ball_player_ensemble.py`: **(3) fit.** Least-squares fit of the 2-group weights on those cached
+  val predictions, and print them to paste into `final/ensemble_weights.json`.
+- checkpoints for all members land in `outputs/weights/` (shared with every other model).
+
+### `final/`: the two final Kaggle submissions
+
+We submitted **two** entries, one script each (both load 100 %-data `_full` checkpoints and run 4-flip
+TTA; all the same architecture, loaded from `demarche/nba_v46.py`):
+
+- **`build_ensemble_6model.py`**: the 6-model ensemble (3 ball specialists `v60_*` + 3 player
+  generalists `v46*`), combined by the 2-group weights. **Kaggle ADE 2.954.**
+- **`build_single_model.py [label]`**: a single model, no ensembling (default `v46`). Modular: works
+  for any member, e.g. `python final/build_single_model.py v60_w8`.
+
+| Model | Role | Ball w | Player w |
+|---|---|---:|---:|
+| `v60_w8`    | ball specialist (×8)        | 0.606 | 0.000 |
+| `v60_w5_s1` | ball specialist (×5, seed 1)| 0.246 | 0.000 |
+| `v60_w8_s2` | ball specialist (×8, seed 2)| 0.099 | 0.000 |
+| `v46_s3`    | player generalist (seed 3)  | 0.048 | 0.285 |
+| `v46`       | player generalist (baseline)| 0.000 | 0.328 |
+| `v46_s7`    | player generalist (seed 7)  | 0.000 | 0.387 |
+
+`build_ensemble_6model.py` loads the 6 checkpoints → 4-flip TTA on the test set → applies the weights
+from `ensemble_weights.json` → writes `outputs/solutions/solution_ensemble_6model.csv`.
+
+### `outputs/`: weights & submissions
+
+`outputs/weights/` holds every trained checkpoint; the two CSVs submitted to Kaggle live in
+`outputs/solutions/`:
+- `solution_ensemble_6model.csv`: the 6-model ensemble (ADE **2.954**).
+- `solution_v46_full.csv`: a single v46 (100 % data, 4-flip TTA, no ensemble).
 
 ---
 
 ## Data
 
-The dataset is **not** committed. Point the code at it once via an environment variable — the folder
-that contains `train/train/*.pt` and `test/test/*.pt` (kagglehub competition layout):
+The dataset is **not** committed (it's large). Tell the code where it is in **either** way: the
+target is the folder that contains `train/train/*.pt` and `test/test/*.pt` (kagglehub layout):
 
 ```bash
-export NML_DATA=/path/to/nml-2026          # macOS / Linux
+export NML_DATA=/path/to/nml-2026          # macOS / Linux  (option 1: env var)
 $env:NML_DATA = "C:\path\to\nml-2026"      # Windows PowerShell
 ```
 
-The `*_files.txt` manifests hold absolute paths from the machine they were generated on.
-Regenerate them for your machine with:
+…or just drop/symlink the dataset at **`./data/nml-2026`** in the repo (the gitignored default location
+the code falls back to when `NML_DATA` is unset). No env var needed.
+
+Then generate the 80/20 split manifests for your machine (they hold absolute paths, so they are
+**not** committed: `make_split.py` recreates the exact same split via its fixed seed):
 
 ```bash
-python core/make_split.py        # writes train_files.txt + val_files.txt at the repo root
+python utils/make_split.py                 # writes train_files.txt + val_files.txt at the repo root
 ```
 
 ## Setup
 
 ```bash
-pip install -r requirements.txt   # torch, numpy, pandas, scipy, tqdm
+pip install -r requirements.txt            # torch, numpy, pandas, scipy, tqdm
 ```
 
-A CUDA GPU is needed for training and for generating predictions. The ensemble weight-fitting step
-is CPU-only.
+A CUDA GPU is needed for training and prediction; the ensemble weight-fitting is CPU-only.
 
 ## Reproduce
 
-- **The validated 2.98086 result** → see [`ensemble/README.md`](ensemble/README.md).
-- **The 100 %-data 2.95986 submission** → see [`final_run/README.md`](final_run/README.md).
-- **The final 2.95815 (7-model) submission** → see [`final_7model/README.md`](final_7model/README.md).
+Everything runs through one launcher, **`run.py`**, which prints each underlying command before it runs
+it (so nothing is hidden). `python run.py` with no args lists every subcommand.
+
+**A. Fastest: rebuild both submissions from the committed `_full` weights** (no training; the 6
+`_full` checkpoints are already in `outputs/weights/`):
+
+```bash
+python run.py submit               # 6-model ensemble  -> outputs/solutions/solution_ensemble_6model.csv
+python run.py submit-single v46    # single model      -> outputs/solutions/solution_v46_full.csv
+```
+
+**B. Everything from scratch**: retrain all 6 members twice (an 80% model to fit the weights honestly
++ a 100% `--full` model for the submission), re-fit the weights, rebuild the CSVs. One command:
+
+```bash
+python run.py reproduce            # GPU, hours: split -> train-all (80% + full) -> fit-weights -> submit
+```
+
+…which is exactly this, if you'd rather run the steps yourself:
+
+```bash
+python run.py split                          # fixed-seed 80/20 manifests for THIS machine
+python run.py train-all                      # GPU: all 6 members, 80% split   -> model_<m>_300ep.pth
+python run.py train-all --full               # GPU: all 6 members, 100% data   -> model_<m>_full.pth
+python run.py fit-weights                    # GPU+CPU: cache val/test preds, fit 2-group weights
+python run.py submit                         # CPU: ensemble CSV
+python run.py submit-single v46              # single-model CSV
+```
+
+**C. Train one model** (any ensemble member, or a milestone file):
+
+```bash
+python run.py train v46 300                  # one member, 80% split  -> model_v46_300ep.pth
+python run.py train v46 300 --full           # same member, 100% data -> model_v46_full.pth
+python utils/run_one.py demarche/nba_v38.py 300 32   # a milestone (baseline/v6/v38), 80% split
+```
+
+> The 80% (`_300ep`) and 100% (`_full`) checkpoints are the **same architecture and command**: the
+> only difference is `--full`, which trains on every labelled sequence instead of the 80% split. The
+> honest 2.758 local ADE comes from the 80% models; the 2.954 Kaggle submission uses the `_full`
+> models.
