@@ -107,6 +107,13 @@ export NML_DATA=/path/to/nml-2026          # macOS / Linux
 $env:NML_DATA = "C:\path\to\nml-2026"      # Windows PowerShell
 ```
 
+Then generate the 80/20 split manifests for your machine (they hold absolute paths, so they are
+**not** committed — `make_split.py` recreates the exact same split via its fixed seed):
+
+```bash
+python utils/make_split.py                 # writes train_files.txt + val_files.txt at the repo root
+```
+
 ## Setup
 
 ```bash
