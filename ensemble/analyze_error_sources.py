@@ -16,13 +16,11 @@ Run:
   python ensemble/analyze_error_sources.py --weights model_v60_w8_300ep.pth --tta
 """
 import sys
-from pathlib import Path
+import importlib.util
 
 import torch
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1]))  # repo root, for `model`
-from model.architecture import NBAv46Model, Trainer
-from _config import WEIGHTS, ROOT
+from _config import WEIGHTS, MODELS as MODELS_DIR, ROOT
 DEVICE = 'cuda' if torch.cuda.is_available() else 'cpu'
 USE_TTA = '--tta' in sys.argv
 
@@ -35,11 +33,14 @@ def _arg(flag, default):
 WEIGHT_NAME = _arg('--weights', 'model_v46_300ep.pth')
 
 
-def load_model(weight_name):
-    model = NBAv46Model().to(DEVICE)
+def load_model(py_name, cls_name, weight_name):
+    spec = importlib.util.spec_from_file_location(py_name, MODELS_DIR / f'{py_name}.py')
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    model = getattr(mod, cls_name)().to(DEVICE)
     model.load_state_dict(torch.load(WEIGHTS / weight_name, weights_only=True))
     model.train(False)
-    return model
+    return mod, model
 
 
 def forward_tta(model, X, mu_d, sigma_d):
@@ -67,8 +68,12 @@ def forward_tta(model, X, mu_d, sigma_d):
 
 
 def main():
-    model = load_model(WEIGHT_NAME)
-    trainer = Trainer(None, None, device=DEVICE)
+    mod, model = load_model('nba_v46', 'NBAv46Model', WEIGHT_NAME)
+
+    # the model file lives in ensemble/models/, so point its split lists at the repo root
+    mod.TRAIN_TXT = ROOT / 'train_files.txt'
+    mod.VAL_TXT = ROOT / 'val_files.txt'
+    trainer = mod.Trainer(None, None, device=DEVICE)
     mu = trainer.mu.to(DEVICE)
     sigma = trainer.sigma.to(DEVICE)
 

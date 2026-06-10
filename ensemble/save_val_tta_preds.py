@@ -3,23 +3,17 @@ Run each of the 6 ensemble members on the val split with 4-flip TTA and cache th
 per-model predictions + ground truth, so the 2-group weights can later be fit on CPU
 without re-running GPU inference.
 
-All 6 members share one architecture (model/architecture.py); they differ only by which
-checkpoint is loaded.
-
 Outputs (under val_preds/):
   Y_real.pt   - [N_windows, 12, 11, 2] ground truth in feet
   <label>.pt  - [N_windows, 12, 11, 2] TTA-averaged predictions in feet
 
 Run: python ensemble/save_val_tta_preds.py
 """
-import sys
-from pathlib import Path
-
 import torch
+from pathlib import Path
+import importlib.util
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1]))  # repo root, for `model`
-from model.architecture import NBAv46Model
-from _config import WEIGHTS, TRAIN_TXT, VAL_TXT, VAL_DIR as OUT_DIR
+from _config import WEIGHTS, TRAIN_TXT, VAL_TXT, MODELS as MODELS_DIR, VAL_DIR as OUT_DIR
 
 
 def _default_device() -> str:
@@ -41,14 +35,14 @@ def _empty_cache():
         torch.cuda.empty_cache()
 
 
-# (label, checkpoint). All 6 members are NBAv46Model.
+# (label, source_model_file, model_class, weights_filename). All 6 members are NBAv46Model.
 MODELS = [
-    ('v60_w8',     'model_v60_w8_300ep.pth'),
-    ('v60_w5_s1',  'model_v60_w5_s1_300ep.pth'),
-    ('v60_w8_s2',  'model_v60_w8_s2_300ep.pth'),
-    ('v46_s3',     'model_v46_s3_300ep.pth'),
-    ('v46',        'model_v46_300ep.pth'),
-    ('v46_s7',     'model_v46_s7_300ep.pth'),
+    ('v60_w8',     'nba_v46', 'NBAv46Model', 'model_v60_w8_300ep.pth'),
+    ('v60_w5_s1',  'nba_v46', 'NBAv46Model', 'model_v60_w5_s1_300ep.pth'),
+    ('v60_w8_s2',  'nba_v46', 'NBAv46Model', 'model_v60_w8_s2_300ep.pth'),
+    ('v46_s3',     'nba_v46', 'NBAv46Model', 'model_v46_s3_300ep.pth'),
+    ('v46',        'nba_v46', 'NBAv46Model', 'model_v46_300ep.pth'),
+    ('v46_s7',     'nba_v46', 'NBAv46Model', 'model_v46_s7_300ep.pth'),
 ]
 
 
@@ -61,8 +55,12 @@ def compute_normalization_from_files(file_list):
     return cat.mean(dim=(0, 1)), cat.std(dim=(0, 1))
 
 
-def load_one(weights_fname):
-    m = NBAv46Model().to(DEVICE)
+def load_one(model_file, model_class, weights_fname):
+    spec = importlib.util.spec_from_file_location(model_file, MODELS_DIR / f'{model_file}.py')
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    cls = getattr(mod, model_class)
+    m = cls().to(DEVICE)
     m.load_state_dict(torch.load(WEIGHTS / weights_fname, weights_only=True, map_location=DEVICE))
     m.train(False)
     return m
@@ -130,7 +128,7 @@ def main():
     torch.save(Y_full, OUT_DIR / 'Y_real.pt')
     print(f'Saved Y_real.pt  shape={tuple(Y_full.shape)}')
 
-    for label, wf in MODELS:
+    for label, mf, mc, wf in MODELS:
         out_path = OUT_DIR / f'{label}.pt'
         if out_path.exists():
             print(f'  skip {label} (already saved)')
@@ -140,7 +138,7 @@ def main():
             print(f'  MISSING weights for {label}: {wf} — skipping')
             continue
         print(f'  predicting {label}...')
-        model = load_one(wf)
+        model = load_one(mf, mc, wf)
         preds_batches = []
         for X in X_batches:
             pn = predict_tta_norm(model, X)

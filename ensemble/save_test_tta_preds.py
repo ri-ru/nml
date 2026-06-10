@@ -2,23 +2,20 @@
 Generate per-model test-set TTA predictions for the 6 ensemble members and save each as
 both a tensor (.pt for ensembling) and a Kaggle CSV.
 
-All 6 members share one architecture (model/architecture.py); they differ only by checkpoint.
-Run after save_val_tta_preds.py — the 2-group weights fit on the val preds apply to these.
+Run after save_val_tta_preds.py — uses the same 6 models, so the 2-group weights fit on the
+val preds can be applied to these test preds for the submission.
 
 Outputs:
-  test_preds/<label>.pt              - [N_test, 12, 11, 2] in feet
+  test_preds/<label>.pt        - [N_test, 12, 11, 2] in feet
   solutions/solution_tta_<label>.csv - Kaggle-format per-model solution
 """
 import os
-import sys
-from pathlib import Path
-
 import torch
 import pandas as pd
+from pathlib import Path
+import importlib.util
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1]))  # repo root, for `model`
-from model.architecture import NBAv46Model
-from _config import TRAIN, TEST, WEIGHTS, TEST_DIR as OUT_DIR, SOL_DIR
+from _config import TRAIN, TEST, WEIGHTS, MODELS as MODELS_DIR, TEST_DIR as OUT_DIR, SOL_DIR
 
 
 def _default_device() -> str:
@@ -33,14 +30,14 @@ DEVICE = _default_device()
 CONTEXT = 8
 HORIZON = 12
 
-# (label, checkpoint). All 6 members are NBAv46Model.
+# All 6 members are NBAv46Model.
 MODELS = [
-    ('v60_w8',     'model_v60_w8_300ep.pth'),
-    ('v60_w5_s1',  'model_v60_w5_s1_300ep.pth'),
-    ('v60_w8_s2',  'model_v60_w8_s2_300ep.pth'),
-    ('v46_s3',     'model_v46_s3_300ep.pth'),
-    ('v46',        'model_v46_300ep.pth'),
-    ('v46_s7',     'model_v46_s7_300ep.pth'),
+    ('v60_w8',     'nba_v46', 'NBAv46Model', 'model_v60_w8_300ep.pth'),
+    ('v60_w5_s1',  'nba_v46', 'NBAv46Model', 'model_v60_w5_s1_300ep.pth'),
+    ('v60_w8_s2',  'nba_v46', 'NBAv46Model', 'model_v60_w8_s2_300ep.pth'),
+    ('v46_s3',     'nba_v46', 'NBAv46Model', 'model_v46_s3_300ep.pth'),
+    ('v46',        'nba_v46', 'NBAv46Model', 'model_v46_300ep.pth'),
+    ('v46_s7',     'nba_v46', 'NBAv46Model', 'model_v46_s7_300ep.pth'),
 ]
 
 
@@ -58,8 +55,12 @@ def compute_normalization(data_path):
     return cat.mean(dim=(0, 1)), cat.std(dim=(0, 1))
 
 
-def load_one(weights_fname):
-    m = NBAv46Model().to(DEVICE)
+def load_one(model_file, model_class, weights_fname):
+    spec = importlib.util.spec_from_file_location(model_file, MODELS_DIR / f'{model_file}.py')
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    cls = getattr(mod, model_class)
+    m = cls().to(DEVICE)
     m.load_state_dict(torch.load(WEIGHTS / weights_fname, weights_only=True, map_location=DEVICE))
     m.train(False)
     return m
@@ -110,7 +111,7 @@ def main():
     cols = ['id'] + [f'entity_{i}_time_{t}_{axis}'
                      for t in range(HORIZON) for i in range(11) for axis in ['x', 'y']]
 
-    for label, wf in MODELS:
+    for label, mf, mc, wf in MODELS:
         out_pt = OUT_DIR / f'{label}.pt'
         out_csv = SOL_DIR / f'solution_tta_{label}.csv'
         if out_pt.exists():
@@ -121,7 +122,7 @@ def main():
             print(f'  MISSING weights for {label}: {wf} — skipping')
             continue
         print(f'  predicting {label}...')
-        model = load_one(wf)
+        model = load_one(mf, mc, wf)
         all_preds = []
         rows = []
         for idx, (ctx, _id) in enumerate(zip(test_ctx, test_ids)):

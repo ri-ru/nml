@@ -1,10 +1,8 @@
-"""Ensemble member v60_w8_s2 — ball specialist, ball loss x8, seed 2.
-    python core/run_one.py ensemble/models/nba_v60_w8_s2.py 300 32   -> model_v60_w8_s2_300ep.pth
-"""
+"""v60_w8_s2: ball-weighted (8x) seed variant for ball-specialist ensemble diversity."""
 import sys
 from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[2]))  # repo root, for `model`
-from model.variants import build_member  # noqa: E402
+sys.path.insert(0, str(Path(__file__).parent))
+from nba_v60_base import build_trainer_class
 
-Trainer = build_member(seed=2, ball_w=8.0)
+Trainer = build_trainer_class(8.0, 'model_v60_w8_s2', seed=2)
