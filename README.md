@@ -30,7 +30,7 @@ outputs/     weights/ (trained checkpoints , no 80/20 split) + solutions/ (the s
 ### `demarche/`: how we got here... 
 
 | Step | File | What's new |  
-|---|---|---|---|
+|---|---|---|
 | 0 Baseline | `nba_baseline.py` | provided non-graph GRU, each entity independent (MSE) | 
 | 1 Graph | `nba_v6.py` | graph attention + ball-relative features | 
 | 2 Gaussian | `nba_v38.py` | Gaussian NLL (predict a distribution) + kNN social features | 
