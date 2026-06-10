@@ -21,6 +21,8 @@ A CUDA GPU is needed for training and prediction; the ensemble weight-fitting is
 Everything runs through one launcher, `run.py`, which prints each underlying command before it
 runs it. `python run.py` with no args lists every subcommand.
 
+**In order to reproduce this, please add the dataset into the directory! In the root directory. Or it will not run.**
+
 **A. Fastest: rebuild both submissions from the committed `_full` weights** 
 
 ```bash
