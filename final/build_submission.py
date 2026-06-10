@@ -10,10 +10,10 @@ Pipeline (no training):
   3. apply the 2-group ensemble weights in ./ensemble_weights.json
         - the BALL (entity 0) uses `ball_weights`
         - every PLAYER (entities 1..10) uses `player_weights`
-  4. write ./solution.csv (Kaggle format, ids sorted).
+  4. write ../solutions/solution_ensemble_6model.csv (Kaggle format, ids sorted).
 
-The committed solution.csv is the submitted artifact; this script reproduces it up to the
-precision of the published weights in ensemble_weights.json.
+The committed solutions/solution_ensemble_6model.csv is the submitted artifact; this script
+reproduces it up to the precision of the published weights in ensemble_weights.json.
 
 Run:
     export NML_DATA=/path/to/nml-2026          # folder with train/train/*.pt and test/test/*.pt
@@ -121,7 +121,8 @@ def main():
 
     cols = [f"entity_{i}_time_{t}_{a}" for t in range(HORIZON) for i in range(NE) for a in ["x", "y"]]
     rows = [[ids[i]] + out[i].reshape(-1).tolist() for i in range(Ntest)]
-    csv = HERE / "solution.csv"
+    csv = HERE.parent / "solutions" / "solution_ensemble_6model.csv"
+    csv.parent.mkdir(exist_ok=True)
     pd.DataFrame(rows, columns=["id"] + cols).set_index("id").sort_index().to_csv(csv)
     print(f"wrote {csv}")
 

@@ -18,6 +18,18 @@ ROOT = ENSEMBLE.parent
 
 ARCH_DIR = ROOT / "demarche"      # single architecture source: demarche/nba_v46.py (no copies)
 WEIGHTS = ENSEMBLE / "weights"    # *.pth checkpoints
+
+# The 6 ensemble members ARE the one demarche/nba_v46.py architecture, trained differently.
+# label -> (ball_w, seed). ball_w == 1.0 is a plain generalist; > 1.0 is a ball specialist.
+# This registry replaces per-member files: train any one with `python ensemble/train_member.py <label>`.
+MEMBERS = {
+    "v60_w8":    (8.0, 0),   # ball specialists
+    "v60_w5_s1": (5.0, 1),
+    "v60_w8_s2": (8.0, 2),
+    "v46_s3":    (1.0, 3),   # player generalists
+    "v46":       (1.0, 0),
+    "v46_s7":    (1.0, 7),
+}
 VAL_DIR = ENSEMBLE / "val_preds"  # cached per-model val TTA tensors (gitignored)
 TEST_DIR = ENSEMBLE / "test_preds"  # cached per-model test TTA tensors (gitignored)
 SOL_DIR = ENSEMBLE / "solutions"  # submission CSVs

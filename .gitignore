@@ -24,3 +24,6 @@ Thumbs.db
 # Cached per-model TTA prediction tensors (regenerable from weights via save_*_tta_preds.py)
 ensemble/val_preds/
 ensemble/test_preds/
+
+# Validated-pipeline scratch output (regenerable; the two SUBMITTED CSVs live in solutions/)
+ensemble/solutions/

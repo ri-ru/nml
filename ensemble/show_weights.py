@@ -2,9 +2,8 @@
 import numpy as np, torch
 from scipy.optimize import minimize
 
-from _config import VAL_DIR as VAL
-POOL = ['v60_w8', 'v60_w5_s1', 'v60_w8_s2',   # ball specialists
-        'v46_s3', 'v46', 'v46_s7']            # player generalists
+from _config import VAL_DIR as VAL, MEMBERS
+POOL = list(MEMBERS)   # the 6 members, from the single registry in _config
 Y = torch.load(VAL/'Y_real.pt').numpy()
 labs=[l for l in POOL if (VAL/f'{l}.pt').exists()]
 P=np.stack([torch.load(VAL/f'{l}.pt').numpy() for l in labs]); M=len(labs)

@@ -70,14 +70,14 @@ def forward_tta(model, X, mu_d, sigma_d):
 def main():
     mod, model = load_model('nba_v46', 'NBAv46Model', WEIGHT_NAME)
 
-    # the model file lives in ensemble/models/, so point its split lists at the repo root
+    # ensure the architecture's split lists point at the repo root
     mod.TRAIN_TXT = ROOT / 'train_files.txt'
     mod.VAL_TXT = ROOT / 'val_files.txt'
     trainer = mod.Trainer(None, None, device=DEVICE)
     mu = trainer.mu.to(DEVICE)
     sigma = trainer.sigma.to(DEVICE)
 
-    sys.path.insert(0, str(ROOT / 'core'))
+    sys.path.insert(0, str(ROOT / 'utils'))
     import evaluate
     val_dl = evaluate.make_val_dl(trainer, batch_size=64)
 

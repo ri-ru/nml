@@ -17,21 +17,23 @@ cross-validation gives local ADE **2.758**.
 ## Repository structure
 
 ```
-core/        Shared infrastructure used by every model.
+utils/       Shared infrastructure (split / train / score).
 demarche/    The construction path + the ONE architecture: demarche/nba_v46.py.
 ensemble/    The 80/20 validated pipeline (honest local CV -> local ADE 2.758).
 final/       The final submission (Kaggle ADE 2.954).
+solutions/   The two submitted CSVs (6-model ensemble + single v46).
 ```
 
 The architecture is defined **once**, in `demarche/nba_v46.py`. The 6 ensemble members are not copies
-of it — they are 3-line configs (seed + ball-weight) that import it, and `final/` loads it from
-`demarche/` too. There is exactly one copy of the network in the whole repo.
+of it — they are entries in a small registry (`ensemble/_config.py` → `MEMBERS`, just seed +
+ball-weight) that all load that one file; `final/` loads it too. There is exactly one copy of the
+network in the whole repo.
 
-### `core/` — shared infrastructure (3 files)
+### `utils/` — shared infrastructure (3 files)
 
 - **`make_split.py`** — makes the 80/20 train/val split once (fixed seed 42); writes
   `train_files.txt` + `val_files.txt` so every model uses the *same* split.
-- **`run_one.py`** — the training entry point: `python core/run_one.py <model.py> <epochs> <batch>`.
+- **`run_one.py`** — the training entry point: `python utils/run_one.py <model.py> <epochs> <batch>`.
   Dynamically imports the model's `Trainer`, trains, saves an epoch-tagged checkpoint, evaluates.
 - **`evaluate.py`** — local scorer: de-normalises to court feet and computes the MSE (same metric as
   Kaggle), using a fixed 3-windows-per-sequence sampler.
@@ -40,7 +42,7 @@ of it — they are 3-line configs (seed + ball-weight) that import it, and `fina
 
 `baseline`, `v6`, `v38` are self-contained files (genuinely *different* earlier networks). `v46` is
 **the** architecture — every later component (ensemble members, final) imports it. `v60` is `v46`
-with a ball-weighted loss. Each is runnable via `core/run_one.py` with its trained weight. Local ADE
+with a ball-weighted loss. Each is runnable via `utils/run_one.py` with its trained weight. Local ADE
 is on the 80/20 val split.
 
 | Step | File | What's new | Local ADE |
@@ -49,7 +51,7 @@ is on the 80/20 val split.
 | 1 Graph | `nba_v6.py` | **graph attention** + ball-relative features (the graph is born) | 4.36 |
 | 2 Gaussian | `nba_v38.py` | Gaussian NLL (predict a distribution) + kNN social features | 3.44 |
 | 3 Mixture | `nba_v46.py` | **mixture-of-2-Gaussians head** + timestep-weighted NLL, 300 ep — **the canonical model** | 2.86 |
-| 4 Ball-weighting | `nba_v60_base.py`, `nba_v60_w8.py` | up-weight the ball ×8 in the loss (train ball specialists) | — |
+| 4 Ball-weighting | `nba_v60_base.py` | the ball-weighted loss + trainer factory; ball specialists are trained via `ensemble/train_member.py` | — |
 
 The five components a grader probes, all in `demarche/nba_v46.py`:
 **I/O** `NBADataset` (X=8 ctx, y=12 horizon) · **architecture** `NBAv46Model` (2× GRU+attention →
@@ -64,12 +66,11 @@ Members trained on 80 % of the data; the 2-group **ball | players** weights fit 
 (~6× any player). So we fit *two* weight vectors — one for the ball, one shared across players — and
 the optimiser routes ball-weighted models to the ball and generalists to the players.
 
+- `_config.py` — paths + the **`MEMBERS` registry** (the 6 members = label → seed, ball-weight).
+- `train_member.py` — train one member by name: `python ensemble/train_member.py v46_s3 300`.
 - `save_val_tta_preds.py` / `save_test_tta_preds.py` — cache the 6 members' 4-flip TTA predictions.
-- `ball_player_ensemble.py` — fit the 2-group weights and write the submission CSV.
-- `show_weights.py` — print the fitted ball/player weight vectors.
-- `models/` — the 6 members as 3-line configs (seed + ball-weight) that import the architecture from
-  `demarche/`; `weights/` — their 80 %-split checkpoints. (The `v46` member is the `demarche/nba_v46.py`
-  milestone itself.)
+- `ball_player_ensemble.py` — fit the 2-group weights; `show_weights.py` prints them.
+- `weights/` — the 6 members' 80 %-split checkpoints.
 
 ### `final/` — the final submission
 
@@ -86,7 +87,13 @@ data, combined by the 2-group weights. All the same architecture, loaded from `d
 | `v46_s7`    | player generalist (seed 7)  | 0.000 | 0.387 |
 
 `build_submission.py` loads the 6 checkpoints → 4-flip TTA on the test set → applies the weights from
-`ensemble_weights.json` → writes `solution.csv`.
+`ensemble_weights.json` → writes `solutions/solution_ensemble_6model.csv`.
+
+### `solutions/` — what we submit
+
+The two CSVs submitted to Kaggle:
+- `solution_ensemble_6model.csv` — the 6-model ensemble (ADE **2.954**).
+- `solution_v46_300.csv` — a single v46 trained 300 epochs (4-flip TTA, no ensemble).
 
 ---
 
@@ -111,15 +118,16 @@ A CUDA GPU is needed for training and prediction; the ensemble weight-fitting is
 ## Reproduce
 
 ```bash
-# 1. The final 2.954 submission (only final/ + the dataset are needed):
-python final/build_submission.py                       # -> final/solution.csv
+# 1. The final 2.954 submission:
+python final/build_submission.py            # -> solutions/solution_ensemble_6model.csv
 
 # 2. The validated 2.758 local result (from scratch):
-python core/make_split.py                              # regenerate train/val manifests
-python ensemble/save_val_tta_preds.py                 # GPU: cache val predictions
-python ensemble/save_test_tta_preds.py                # GPU: cache test predictions
-python ensemble/ball_player_ensemble.py               # CPU: fit 2-group weights -> CSV
+python utils/make_split.py                  # regenerate train/val manifests
+python ensemble/save_val_tta_preds.py       # GPU: cache val predictions
+python ensemble/save_test_tta_preds.py      # GPU: cache test predictions
+python ensemble/ball_player_ensemble.py     # CPU: fit 2-group weights
 
-# 3. Train any milestone model:
-python core/run_one.py demarche/nba_v46.py 300 32     # <model.py> <epochs> <batch>
+# 3. Train a milestone or an ensemble member:
+python utils/run_one.py demarche/nba_v46.py 300 32   # a milestone (baseline/v6/v38/v46)
+python ensemble/train_member.py v46_s3 300           # an ensemble member (by name)
 ```

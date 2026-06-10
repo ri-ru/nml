@@ -13,7 +13,7 @@ import torch
 from pathlib import Path
 import importlib.util
 
-from _config import WEIGHTS, TRAIN_TXT, VAL_TXT, ARCH_DIR as MODELS_DIR, VAL_DIR as OUT_DIR
+from _config import WEIGHTS, TRAIN_TXT, VAL_TXT, ARCH_DIR as MODELS_DIR, VAL_DIR as OUT_DIR, MEMBERS
 
 
 def _default_device() -> str:
@@ -35,15 +35,9 @@ def _empty_cache():
         torch.cuda.empty_cache()
 
 
-# (label, source_model_file, model_class, weights_filename). All 6 members are NBAv46Model.
-MODELS = [
-    ('v60_w8',     'nba_v46', 'NBAv46Model', 'model_v60_w8_300ep.pth'),
-    ('v60_w5_s1',  'nba_v46', 'NBAv46Model', 'model_v60_w5_s1_300ep.pth'),
-    ('v60_w8_s2',  'nba_v46', 'NBAv46Model', 'model_v60_w8_s2_300ep.pth'),
-    ('v46_s3',     'nba_v46', 'NBAv46Model', 'model_v46_s3_300ep.pth'),
-    ('v46',        'nba_v46', 'NBAv46Model', 'model_v46_300ep.pth'),
-    ('v46_s7',     'nba_v46', 'NBAv46Model', 'model_v46_s7_300ep.pth'),
-]
+# The members come from the single registry in _config.MEMBERS. All are NBAv46Model
+# (loaded from demarche/nba_v46.py); only the checkpoint differs.
+MODELS = [(label, 'nba_v46', 'NBAv46Model', f'model_{label}_300ep.pth') for label in MEMBERS]
 
 
 def compute_normalization_from_files(file_list):

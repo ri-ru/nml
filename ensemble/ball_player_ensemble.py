@@ -12,10 +12,9 @@ import pandas as pd
 import torch
 from scipy.optimize import minimize
 
-from _config import VAL_DIR as VAL, TEST_DIR as TEST, SOL_DIR as SOL
+from _config import VAL_DIR as VAL, TEST_DIR as TEST, SOL_DIR as SOL, MEMBERS
 HOR, NE = 12, 11
-POOL = ['v60_w8', 'v60_w5_s1', 'v60_w8_s2',   # ball specialists
-        'v46_s3', 'v46', 'v46_s7']            # player generalists
+POOL = list(MEMBERS)   # the 6 members, from the single registry in _config
 
 Y = torch.load(VAL/'Y_real.pt').numpy()
 labs = [l for l in POOL if (VAL/f'{l}.pt').exists() and (TEST/f'{l}.pt').exists()]

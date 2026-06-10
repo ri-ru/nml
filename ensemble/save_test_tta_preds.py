@@ -15,7 +15,7 @@ import pandas as pd
 from pathlib import Path
 import importlib.util
 
-from _config import TRAIN, TEST, WEIGHTS, ARCH_DIR as MODELS_DIR, TEST_DIR as OUT_DIR, SOL_DIR
+from _config import TRAIN, TEST, WEIGHTS, ARCH_DIR as MODELS_DIR, TEST_DIR as OUT_DIR, SOL_DIR, MEMBERS
 
 
 def _default_device() -> str:
@@ -31,14 +31,9 @@ CONTEXT = 8
 HORIZON = 12
 
 # All 6 members are NBAv46Model.
-MODELS = [
-    ('v60_w8',     'nba_v46', 'NBAv46Model', 'model_v60_w8_300ep.pth'),
-    ('v60_w5_s1',  'nba_v46', 'NBAv46Model', 'model_v60_w5_s1_300ep.pth'),
-    ('v60_w8_s2',  'nba_v46', 'NBAv46Model', 'model_v60_w8_s2_300ep.pth'),
-    ('v46_s3',     'nba_v46', 'NBAv46Model', 'model_v46_s3_300ep.pth'),
-    ('v46',        'nba_v46', 'NBAv46Model', 'model_v46_300ep.pth'),
-    ('v46_s7',     'nba_v46', 'NBAv46Model', 'model_v46_s7_300ep.pth'),
-]
+# The members come from the single registry in _config.MEMBERS. All are NBAv46Model
+# (loaded from demarche/nba_v46.py); only the checkpoint differs.
+MODELS = [(label, 'nba_v46', 'NBAv46Model', f'model_{label}_300ep.pth') for label in MEMBERS]
 
 
 def _empty_cache():

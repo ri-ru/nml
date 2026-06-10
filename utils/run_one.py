@@ -1,4 +1,4 @@
-"""Run training + evaluation for one model file: python core/run_one.py <model.py> [epochs] [batch]."""
+"""Run training + evaluation for one model file: python utils/run_one.py <model.py> [epochs] [batch]."""
 import importlib.util
 import os
 import sys
