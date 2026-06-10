@@ -5,11 +5,11 @@ Given **8 context frames** of an NBA possession, predict the next **12 positions
 lower is better, averaged uniformly over entities, timesteps, and axes (the ADE metric).
 
 **Method.** A single **graph-attention network** (spatio-temporal GAT + GRU + mixture-of-Gaussians
-head), trained six ways under one architecture and combined by an **error-analysis-driven, 2-group
+head), trained six ways under one architecture and then combined by an **error-analysis-driven, 2-group
 ensemble** that automatically specialises models to the ball vs. the players.
 
 **Result.** Kaggle ADE **2.954** (a 6-model, single-architecture ensemble: 3 ball specialists + 3
-player generalists, members retrained on 100 % of the labelled data). Honest 80/20 cross-validation
+player generalists, members retrained on 100 % of the labelled data). The honest 80/20 cross-validation
 gives local ADE **2.758**.
 
 ---
@@ -42,7 +42,7 @@ network in the whole repo.
 ### `demarche/`: how we got here (one file per milestone)
 
 `baseline`, `v6`, `v38` are self-contained files (genuinely *different* earlier networks). `v46` is
-**the** architecture: every later component (ensemble members, final) imports it. `v60` is `v46`
+the architecture: every later component (ensemble members, final) imports it. `v60` is `v46`
 with a ball-weighted loss. Each is runnable via `utils/run_one.py` with its trained weight. Local ADE
 is on the 80/20 val split.
 
@@ -63,14 +63,14 @@ kNN `_social_features` · **temporal** per-node `GRUCell` + autoregressive rollo
 ### `demarche/ensemble/`: the 80/20 validated pipeline
 
 Members trained on 80 % of the data; the 2-group **ball | players** weights fit on the held-out
-20 %. The motivating finding from our error analysis: the **ball alone is ~39 % of the total error**
+20 %. The finding from our error analysis: the **ball alone is ~39 % of the total error**
 (~6× any player). So we fit *two* weight vectors (one for the ball, one shared across players), and
 the optimiser routes ball-weighted models to the ball and generalists to the players.
 
 Three scripts, one job each (plus the shared config):
 
 - `_config.py`: paths + the **`MEMBERS` registry** (the 6 members = label → seed, ball-weight).
-- `train_member.py`: **(1) train.** Train one member by name. Each member has **two** checkpoints,
+- `train_member.py`: **(1) train.** Train one member by name. Each member has two checkpoints,
   differing only in the data seen: the 80% split (to fit weights honestly) and the 100% `--full`
   model (what the submission loads):
   ```bash
@@ -85,11 +85,11 @@ Three scripts, one job each (plus the shared config):
 
 ### `final/`: the two final Kaggle submissions
 
-We submitted **two** entries, one script each (both load 100 %-data `_full` checkpoints and run 4-flip
+We submitted two entries, one script each (both load 100 %-data `_full` checkpoints and run 4-flip
 TTA; all the same architecture, loaded from `demarche/nba_v46.py`):
 
 - **`build_ensemble_6model.py`**: the 6-model ensemble (3 ball specialists `v60_*` + 3 player
-  generalists `v46*`), combined by the 2-group weights. **Kaggle ADE 2.954.**
+  generalists `v46*`), combined by the 2-group weights. Results in **Kaggle ADE 2.954.**
 - **`build_single_model.py [label]`**: a single model, no ensembling (default `v46`). Modular: works
   for any member, e.g. `python final/build_single_model.py v60_w8`.
 
@@ -116,7 +116,7 @@ from `ensemble_weights.json` → writes `outputs/solutions/solution_ensemble_6mo
 
 ## Data
 
-The dataset is **not** committed (it's large). Tell the code where it is in **either** way: the
+The dataset is not committed (because of its size). Tell the code where it is in either way: the
 target is the folder that contains `train/train/*.pt` and `test/test/*.pt` (kagglehub layout):
 
 ```bash
@@ -181,7 +181,7 @@ python run.py train v46 300 --full           # same member, 100% data -> model_v
 python utils/run_one.py demarche/nba_v38.py 300 32   # a milestone (baseline/v6/v38), 80% split
 ```
 
-> The 80% (`_300ep`) and 100% (`_full`) checkpoints are the **same architecture and command**: the
+> The 80% (`_300ep`) and 100% (`_full`) checkpoints are the same architecture and command: the
 > only difference is `--full`, which trains on every labelled sequence instead of the 80% split. The
 > honest 2.758 local ADE comes from the 80% models; the 2.954 Kaggle submission uses the `_full`
 > models.
