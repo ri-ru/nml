@@ -27,7 +27,6 @@ for _d in (VAL_DIR, TEST_DIR, SOL_DIR):
 # train/val split files live at the repo root
 TRAIN_TXT = ROOT / "train_files.txt"
 VAL_TXT = ROOT / "val_files.txt"
-TRAIN_TXT_FULL = ROOT / "train_files_full.txt"
 
 # Dataset root — must be set via the NML_DATA env var (see module docstring).
 if "NML_DATA" not in os.environ:
