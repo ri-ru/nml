@@ -297,17 +297,18 @@ class NBAv46Model(nn.Module):
 
 
 class Trainer:
-    def __init__(self, train_path, val_path, device='cuda', epochs=35, batch_size=32, **kwargs):
+    def __init__(self, train_path, val_path, device='cuda', epochs=35, batch_size=32, full=False, **kwargs):
         self.device = device
         self.epochs = epochs
         self.batch_size = batch_size
         self.model = None
 
-        if TRAIN_TXT.exists() and VAL_TXT.exists():
+        # full=True trains on 100% of the labelled data (val == train, only for loss monitoring) —
+        # used for the submission checkpoints. Otherwise use the fixed 80/20 manifests when present.
+        if not full and TRAIN_TXT.exists() and VAL_TXT.exists():
             train_files = TRAIN_TXT.read_text().splitlines()
             val_files   = VAL_TXT.read_text().splitlines()
         else:
-            import os
             train_files = [str(p) for p in Path(train_path).glob('*.pt')]
             val_files   = [str(p) for p in Path(val_path).glob('*.pt')]
 

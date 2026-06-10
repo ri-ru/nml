@@ -6,11 +6,13 @@ Models can load these instead of scanning a directory to get a clean split.
 import os, random
 from pathlib import Path
 
-# Dataset root — must be set via NML_DATA (folder containing train/train/*.pt).
-if 'NML_DATA' not in os.environ:
-    raise SystemExit('Set NML_DATA to the dataset root, e.g.  export NML_DATA=/path/to/nml-2026')
-TRAIN = str(Path(os.environ['NML_DATA']) / 'train' / 'train')
-OUT   = Path(__file__).resolve().parent.parent   # repo root: writes train_files.txt / val_files.txt
+# Dataset root: NML_DATA env var, else the conventional ./data/nml-2026 in the repo.
+OUT  = Path(__file__).resolve().parent.parent   # repo root: writes train_files.txt / val_files.txt
+DATA = Path(os.environ.get('NML_DATA') or OUT / 'data' / 'nml-2026')
+if not (DATA / 'train' / 'train').exists():
+    raise SystemExit(f'Dataset not found at {DATA}. Set NML_DATA to the dataset root or place it '
+                     'at ./data/nml-2026 (needs train/train/*.pt and test/test/*.pt).')
+TRAIN = str(DATA / 'train' / 'train')
 
 files = sorted([os.path.join(TRAIN, f) for f in os.listdir(TRAIN) if f.endswith('.pt')],
                key=lambda p: int(Path(p).stem))

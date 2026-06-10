@@ -16,8 +16,8 @@ The committed outputs/solutions/solution_ensemble_6model.csv is the submitted ar
 reproduces it up to the precision of the published weights in ensemble_weights.json.
 
 Run:
-    export NML_DATA=/path/to/nml-2026          # folder with train/train/*.pt and test/test/*.pt
-    python final/build_submission.py
+    export NML_DATA=/path/to/nml-2026          # or place the dataset at ./data/nml-2026
+    python final/build_ensemble_6model.py
 """
 import os
 import json
@@ -34,12 +34,13 @@ WEIGHTS_DIR = HERE.parent / "outputs" / "weights"
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 CONTEXT, HORIZON, NE = 8, 12, 11
 
-if "NML_DATA" not in os.environ:
+# Dataset root: NML_DATA env var, else the conventional ./data/nml-2026 in the repo.
+DATA = Path(os.environ.get("NML_DATA") or HERE.parent / "data" / "nml-2026")
+if not (DATA / "train" / "train").exists():
     raise SystemExit(
-        "Set NML_DATA to the dataset root (the folder containing train/train/*.pt and "
-        "test/test/*.pt), e.g.  export NML_DATA=/path/to/nml-2026"
+        f"Dataset not found at {DATA}. Set NML_DATA to the dataset root (a folder with "
+        "train/train/*.pt and test/test/*.pt) or place it at ./data/nml-2026."
     )
-DATA = Path(os.environ["NML_DATA"])
 TRAIN = str(DATA / "train" / "train")   # normalization stats (matches how _full models were trained)
 TEST = str(DATA / "test" / "test")
 

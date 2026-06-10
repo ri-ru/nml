@@ -40,12 +40,12 @@ for _d in (VAL_DIR, TEST_DIR, SOL_DIR):
 TRAIN_TXT = ROOT / "train_files.txt"
 VAL_TXT = ROOT / "val_files.txt"
 
-# Dataset root — must be set via the NML_DATA env var (see module docstring).
-if "NML_DATA" not in os.environ:
+# Dataset root: NML_DATA env var, else the conventional ./data/nml-2026 in the repo (see docstring).
+DATA = Path(os.environ.get("NML_DATA") or ROOT / "data" / "nml-2026")
+if not (DATA / "train" / "train").exists():
     raise SystemExit(
-        "Set NML_DATA to the dataset root (folder with train/train/*.pt and test/test/*.pt), "
-        "e.g.  export NML_DATA=/path/to/nml-2026"
+        f"Dataset not found at {DATA}. Set NML_DATA to the dataset root (folder with "
+        "train/train/*.pt and test/test/*.pt) or place it at ./data/nml-2026."
     )
-DATA = Path(os.environ["NML_DATA"])
 TRAIN = str(DATA / "train" / "train")
 TEST = str(DATA / "test" / "test")

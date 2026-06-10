@@ -17,10 +17,11 @@ cross-validation gives local ADE **2.758**.
 ## Repository structure
 
 ```
+run.py       One launcher for everything (train / ensemble / both submissions). Start here.
 utils/       Shared infrastructure (split / train / score).
 demarche/    The construction path + the ONE architecture (demarche/nba_v46.py);
              the 80/20 validated ensemble pipeline lives in demarche/ensemble/.
-final/       The final submission (Kaggle ADE 2.954).
+final/       The two final Kaggle submissions (6-model ensemble = ADE 2.954; single model).
 outputs/     weights/ (every trained checkpoint) + solutions/ (the submitted CSVs).
 ```
 
@@ -67,15 +68,26 @@ Members trained on 80 % of the data; the 2-group **ball | players** weights fit 
 the optimiser routes ball-weighted models to the ball and generalists to the players.
 
 - `_config.py` — paths + the **`MEMBERS` registry** (the 6 members = label → seed, ball-weight).
-- `train_member.py` — train one member by name: `python demarche/ensemble/train_member.py v46_s3 300`.
+- `train_member.py` — train one member by name. Each member has **two** checkpoints, differing only
+  in the data seen: the 80% split (to fit weights honestly) and the 100% `--full` model (what the
+  submission loads):
+  ```bash
+  python demarche/ensemble/train_member.py v46_s3 300          # 80% split -> model_v46_s3_300ep.pth
+  python demarche/ensemble/train_member.py v46_s3 300 --full   # 100% data -> model_v46_s3_full.pth
+  ```
 - `save_val_tta_preds.py` / `save_test_tta_preds.py` — cache the 6 members' 4-flip TTA predictions.
 - `ball_player_ensemble.py` — fit the 2-group weights; `show_weights.py` prints them.
 - checkpoints for all members land in `outputs/weights/` (shared with every other model).
 
-### `final/` — the final submission
+### `final/` — the two final Kaggle submissions
 
-The 6 members (3 ball specialists `v60_*` + 3 player generalists `v46*`), retrained on 100 % of the
-data, combined by the 2-group weights. All the same architecture, loaded from `demarche/nba_v46.py`.
+We submitted **two** entries, one script each (both load 100 %-data `_full` checkpoints and run 4-flip
+TTA; all the same architecture, loaded from `demarche/nba_v46.py`):
+
+- **`build_ensemble_6model.py`** — the 6-model ensemble (3 ball specialists `v60_*` + 3 player
+  generalists `v46*`), combined by the 2-group weights. **Kaggle ADE 2.954.**
+- **`build_single_model.py [label]`** — a single model, no ensembling (default `v46`). Modular: works
+  for any member, e.g. `python final/build_single_model.py v60_w8`.
 
 | Model | Role | Ball w | Player w |
 |---|---|---:|---:|
@@ -86,27 +98,30 @@ data, combined by the 2-group weights. All the same architecture, loaded from `d
 | `v46`       | player generalist (baseline)| 0.000 | 0.328 |
 | `v46_s7`    | player generalist (seed 7)  | 0.000 | 0.387 |
 
-`build_submission.py` loads the 6 checkpoints → 4-flip TTA on the test set → applies the weights from
-`ensemble_weights.json` → writes `outputs/solutions/solution_ensemble_6model.csv`.
+`build_ensemble_6model.py` loads the 6 checkpoints → 4-flip TTA on the test set → applies the weights
+from `ensemble_weights.json` → writes `outputs/solutions/solution_ensemble_6model.csv`.
 
 ### `outputs/` — weights & submissions
 
 `outputs/weights/` holds every trained checkpoint; the two CSVs submitted to Kaggle live in
 `outputs/solutions/`:
 - `solution_ensemble_6model.csv` — the 6-model ensemble (ADE **2.954**).
-- `solution_v46_300.csv` — a single v46 trained 300 epochs (4-flip TTA, no ensemble).
+- `solution_v46_full.csv` — a single v46 (100 % data, 4-flip TTA, no ensemble).
 
 ---
 
 ## Data
 
-The dataset is **not** committed. Point the code at it via an environment variable — the folder that
-contains `train/train/*.pt` and `test/test/*.pt` (kagglehub competition layout):
+The dataset is **not** committed (it's large). Tell the code where it is in **either** way — the
+target is the folder that contains `train/train/*.pt` and `test/test/*.pt` (kagglehub layout):
 
 ```bash
-export NML_DATA=/path/to/nml-2026          # macOS / Linux
+export NML_DATA=/path/to/nml-2026          # macOS / Linux  (option 1: env var)
 $env:NML_DATA = "C:\path\to\nml-2026"      # Windows PowerShell
 ```
+
+…or just drop/symlink the dataset at **`./data/nml-2026`** in the repo (the gitignored default location
+the code falls back to when `NML_DATA` is unset). No env var needed.
 
 Then generate the 80/20 split manifests for your machine (they hold absolute paths, so they are
 **not** committed — `make_split.py` recreates the exact same split via its fixed seed):
@@ -125,17 +140,43 @@ A CUDA GPU is needed for training and prediction; the ensemble weight-fitting is
 
 ## Reproduce
 
+Everything runs through one launcher, **`run.py`**, which prints each underlying command before it runs
+it (so nothing is hidden). `python run.py` with no args lists every subcommand.
+
+**A. Fastest — rebuild both submissions from the committed `_full` weights** (no training; the 6
+`_full` checkpoints are already in `outputs/weights/`):
+
 ```bash
-# 1. The final 2.954 submission:
-python final/build_submission.py            # -> outputs/solutions/solution_ensemble_6model.csv
-
-# 2. The validated 2.758 local result (from scratch):
-python utils/make_split.py                  # regenerate train/val manifests
-python demarche/ensemble/save_val_tta_preds.py       # GPU: cache val predictions
-python demarche/ensemble/save_test_tta_preds.py      # GPU: cache test predictions
-python demarche/ensemble/ball_player_ensemble.py     # CPU: fit 2-group weights
-
-# 3. Train a milestone or an ensemble member:
-python utils/run_one.py demarche/nba_v46.py 300 32   # a milestone (baseline/v6/v38/v46)
-python demarche/ensemble/train_member.py v46_s3 300           # an ensemble member (by name)
+python run.py submit               # 6-model ensemble  -> outputs/solutions/solution_ensemble_6model.csv
+python run.py submit-single v46    # single model      -> outputs/solutions/solution_v46_full.csv
 ```
+
+**B. Everything from scratch** — retrain all 6 members twice (an 80% model to fit the weights honestly
++ a 100% `--full` model for the submission), re-fit the weights, rebuild the CSVs. One command:
+
+```bash
+python run.py reproduce            # GPU, hours: split -> train-all (80% + full) -> fit-weights -> submit
+```
+
+…which is exactly this, if you'd rather run the steps yourself:
+
+```bash
+python run.py split                          # fixed-seed 80/20 manifests for THIS machine
+python run.py train-all                      # GPU: all 6 members, 80% split   -> model_<m>_300ep.pth
+python run.py train-all --full               # GPU: all 6 members, 100% data   -> model_<m>_full.pth
+python run.py fit-weights                    # GPU+CPU: cache val/test preds, fit 2-group weights
+python run.py submit                         # CPU: ensemble CSV
+python run.py submit-single v46              # single-model CSV
+```
+
+**C. Train one model** (any ensemble member, or a milestone file):
+
+```bash
+python run.py train v46 300                  # one member, 80% split  -> model_v46_300ep.pth
+python run.py train v46 300 --full           # same member, 100% data -> model_v46_full.pth
+python utils/run_one.py demarche/nba_v38.py 300 32   # a milestone (baseline/v6/v38), 80% split
+```
+
+> The 80% (`_300ep`) and 100% (`_full`) checkpoints are the **same architecture and command** — the only
+> difference is `--full`, which trains on every labelled sequence instead of the 80% split. The honest
+> 2.758 local ADE comes from the 80% models; the 2.954 Kaggle submission uses the `_full` models.

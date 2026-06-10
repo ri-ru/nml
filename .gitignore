@@ -18,6 +18,9 @@ __pycache__/
 .DS_Store
 Thumbs.db
 
+# Dataset — big, not committed. Set NML_DATA, or drop/symlink the dataset here as ./data/nml-2026.
+data/
+
 # Pytest
 .pytest_cache/
 

@@ -7,11 +7,13 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent))
 from evaluate import evaluate_model, make_val_dl
 
-# Dataset root — must be set via NML_DATA. Both point at the train dir; the 80/20
-# split is applied inside each model's Trainer via train_files.txt / val_files.txt.
-if 'NML_DATA' not in os.environ:
-    raise SystemExit('Set NML_DATA to the dataset root, e.g.  export NML_DATA=/path/to/nml-2026')
-TRAIN = str(Path(os.environ['NML_DATA']) / 'train' / 'train')
+# Dataset root: NML_DATA env var, else the conventional ./data/nml-2026 in the repo. Both point at
+# the train dir; the 80/20 split is applied inside each model's Trainer via train_files.txt/val_files.txt.
+_DATA = Path(os.environ.get('NML_DATA') or Path(__file__).resolve().parent.parent / 'data' / 'nml-2026')
+if not (_DATA / 'train' / 'train').exists():
+    raise SystemExit(f'Dataset not found at {_DATA}. Set NML_DATA to the dataset root or place it '
+                     'at ./data/nml-2026 (needs train/train/*.pt and test/test/*.pt).')
+TRAIN = str(_DATA / 'train' / 'train')
 VAL   = TRAIN
 DEVICE = 'cuda' if __import__('torch').cuda.is_available() else 'cpu'
 

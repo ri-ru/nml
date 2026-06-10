@@ -33,7 +33,7 @@ HORIZON = 12
 # All 6 members are NBAv46Model.
 # The members come from the single registry in _config.MEMBERS. All are NBAv46Model
 # (loaded from demarche/nba_v46.py); only the checkpoint differs.
-MODELS = [(label, 'nba_v46', 'NBAv46Model', f'model_{label}_300ep.pth') for label in MEMBERS]
+MODELS = [(label, 'nba_v46', 'NBAv46Model', f'model_{label}_full.pth') for label in MEMBERS]
 
 
 def _empty_cache():
