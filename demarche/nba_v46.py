@@ -1,7 +1,6 @@
-"""v46: v44 arch (MoG K=2 + K=2 social + timestep-weighted NLL) × 300 epochs, T_max=300.
-Hypothesis: proper 300-epoch LR schedule beats v44×250ep (2.8963).
-v45 showed T_max=300 helps ~0.6% over running past T_max=250 for the v42 arch.
-Architecture identical to v44.
+"""v46 version. best version for solo. 
+MoG K=2 + K=2 social + timestep-weighted NLL
+Trained for 300 epochs w/T_max = 300. 
 """
 import math
 import random
