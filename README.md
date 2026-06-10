@@ -6,9 +6,60 @@ We used a single graph-attention network (spatio-temporal GAT + GRU + mixture-of
 
 Our result on kaggle is 2.954 (for now....) for the 6-model, single-architecture ensemble: 3 ball specialists + 3 player generalists, members retrained on 100 % of the labelled data).  
 
+
+
+
+## Setup
+
+```bash
+pip install -r requirements.txt            # torch, numpy, pandas, scipy, tqdm
+```
+A CUDA GPU is needed for training and prediction; the ensemble weight-fitting is CPU-only.
+
+## Reproduce
+
+Everything runs through one launcher, `run.py`, which prints each underlying command before it
+runs it. `python run.py` with no args lists every subcommand.
+
+**A. Fastest: rebuild both submissions from the committed `_full` weights** 
+
+```bash
+python run.py submit               # 6-model ensemble  -> outputs/solutions/solution_ensemble_6model.csv
+python run.py submit-single v46    # single model      -> outputs/solutions/solution_v46_full.csv
+```
+
+**B. Everything from scratch(careful for gpu)**: retrain all 6 members twice (an 80% model to fit the weights honestly
++ a 100% `--full` model for the submission), re-fit the weights, rebuild the CSVs. One command:
+
+```bash
+python run.py reproduce            # GPU, hours: split -> train-all (80% + full) -> fit-weights -> submit
+```
+
+…which is exactly this, if you'd rather run the steps yourself:
+
+```bash
+python run.py split                          # fixed-seed 80/20 manifests for THIS machine
+python run.py train-all                      # GPU: all 6 members, 80% split   -> model_<m>_300ep.pth
+python run.py train-all --full               # GPU: all 6 members, 100% data   -> model_<m>_full.pth
+python run.py fit-weights                    # GPU+CPU: cache val/test preds, fit 2-group weights
+python run.py submit                         # CPU: ensemble CSV
+python run.py submit-single v46              # single-model CSV
+```
+
+**C. Train one model** (any ensemble member, or a milestone file):
+
+```bash
+python run.py train v46 300                  # one member, 80% split  -> model_v46_300ep.pth
+python run.py train v46 300 --full           # same member, 100% data -> model_v46_full.pth
+python utils/run_one.py demarche/nba_v38.py 300 32   # a milestone (baseline/v6/v38), 80% split
+```
+ 
+
+
+
 ---
 
-## Repo structure
+## Repo structure (for the curious)
 
 ```
 run.py       One launcher for everything (train / ensemble / both submissions). 
@@ -71,50 +122,4 @@ the optimiser routes ball-weighted models to the ball and generalists to the pla
 - `solution_v46_full.csv`: a single v46 (100 % data, 4-flip TTA, no ensemble).
 
 ---
- 
-
-## Setup
-
-```bash
-pip install -r requirements.txt            # torch, numpy, pandas, scipy, tqdm
-```
-A CUDA GPU is needed for training and prediction; the ensemble weight-fitting is CPU-only.
-
-## Reproduce
-
-Everything runs through one launcher, `run.py`, which prints each underlying command before it
-runs it. `python run.py` with no args lists every subcommand.
-
-**A. Fastest: rebuild both submissions from the committed `_full` weights** 
-
-```bash
-python run.py submit               # 6-model ensemble  -> outputs/solutions/solution_ensemble_6model.csv
-python run.py submit-single v46    # single model      -> outputs/solutions/solution_v46_full.csv
-```
-
-**B. Everything from scratch(careful for gpu)**: retrain all 6 members twice (an 80% model to fit the weights honestly
-+ a 100% `--full` model for the submission), re-fit the weights, rebuild the CSVs. One command:
-
-```bash
-python run.py reproduce            # GPU, hours: split -> train-all (80% + full) -> fit-weights -> submit
-```
-
-…which is exactly this, if you'd rather run the steps yourself:
-
-```bash
-python run.py split                          # fixed-seed 80/20 manifests for THIS machine
-python run.py train-all                      # GPU: all 6 members, 80% split   -> model_<m>_300ep.pth
-python run.py train-all --full               # GPU: all 6 members, 100% data   -> model_<m>_full.pth
-python run.py fit-weights                    # GPU+CPU: cache val/test preds, fit 2-group weights
-python run.py submit                         # CPU: ensemble CSV
-python run.py submit-single v46              # single-model CSV
-```
-
-**C. Train one model** (any ensemble member, or a milestone file):
-
-```bash
-python run.py train v46 300                  # one member, 80% split  -> model_v46_300ep.pth
-python run.py train v46 300 --full           # same member, 100% data -> model_v46_full.pth
-python utils/run_one.py demarche/nba_v38.py 300 32   # a milestone (baseline/v6/v38), 80% split
-```
  
