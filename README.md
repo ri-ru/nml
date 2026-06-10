@@ -18,14 +18,14 @@ cross-validation gives local ADE **2.758**.
 
 ```
 utils/       Shared infrastructure (split / train / score).
-demarche/    The construction path + the ONE architecture: demarche/nba_v46.py.
-ensemble/    The 80/20 validated pipeline (honest local CV -> local ADE 2.758).
+demarche/    The construction path + the ONE architecture (demarche/nba_v46.py);
+             the 80/20 validated ensemble pipeline lives in demarche/ensemble/.
 final/       The final submission (Kaggle ADE 2.954).
-solutions/   The two submitted CSVs (6-model ensemble + single v46).
+outputs/     weights/ (every trained checkpoint) + solutions/ (the submitted CSVs).
 ```
 
 The architecture is defined **once**, in `demarche/nba_v46.py`. The 6 ensemble members are not copies
-of it — they are entries in a small registry (`ensemble/_config.py` → `MEMBERS`, just seed +
+of it — they are entries in a small registry (`demarche/ensemble/_config.py` → `MEMBERS`, just seed +
 ball-weight) that all load that one file; `final/` loads it too. There is exactly one copy of the
 network in the whole repo.
 
@@ -51,7 +51,7 @@ is on the 80/20 val split.
 | 1 Graph | `nba_v6.py` | **graph attention** + ball-relative features (the graph is born) | 4.36 |
 | 2 Gaussian | `nba_v38.py` | Gaussian NLL (predict a distribution) + kNN social features | 3.44 |
 | 3 Mixture | `nba_v46.py` | **mixture-of-2-Gaussians head** + timestep-weighted NLL, 300 ep — **the canonical model** | 2.86 |
-| 4 Ball-weighting | `nba_v60_base.py` | the ball-weighted loss + trainer factory; ball specialists are trained via `ensemble/train_member.py` | — |
+| 4 Ball-weighting | `nba_v60_base.py` | the ball-weighted loss + trainer factory; ball specialists are trained via `demarche/ensemble/train_member.py` | — |
 
 The five components a grader probes, all in `demarche/nba_v46.py`:
 **I/O** `NBADataset` (X=8 ctx, y=12 horizon) · **architecture** `NBAv46Model` (2× GRU+attention →
@@ -59,7 +59,7 @@ MoG head) · **graph** `TypeAwareDistanceBiasedAttention` (distance + type-pair 
 kNN `_social_features` · **temporal** per-node `GRUCell` + autoregressive rollout · **objective**
 `MoGNLLLoss`.
 
-### `ensemble/` — the 80/20 validated pipeline
+### `demarche/ensemble/` — the 80/20 validated pipeline
 
 Members trained on 80 % of the data; the 2-group **ball | players** weights fit on the held-out
 20 %. The key finding (`analyze_error_sources.py`): the **ball alone is ~39 % of the total error**
@@ -67,10 +67,10 @@ Members trained on 80 % of the data; the 2-group **ball | players** weights fit 
 the optimiser routes ball-weighted models to the ball and generalists to the players.
 
 - `_config.py` — paths + the **`MEMBERS` registry** (the 6 members = label → seed, ball-weight).
-- `train_member.py` — train one member by name: `python ensemble/train_member.py v46_s3 300`.
+- `train_member.py` — train one member by name: `python demarche/ensemble/train_member.py v46_s3 300`.
 - `save_val_tta_preds.py` / `save_test_tta_preds.py` — cache the 6 members' 4-flip TTA predictions.
 - `ball_player_ensemble.py` — fit the 2-group weights; `show_weights.py` prints them.
-- `weights/` — the 6 members' 80 %-split checkpoints.
+- checkpoints for all members land in `outputs/weights/` (shared with every other model).
 
 ### `final/` — the final submission
 
@@ -87,11 +87,12 @@ data, combined by the 2-group weights. All the same architecture, loaded from `d
 | `v46_s7`    | player generalist (seed 7)  | 0.000 | 0.387 |
 
 `build_submission.py` loads the 6 checkpoints → 4-flip TTA on the test set → applies the weights from
-`ensemble_weights.json` → writes `solutions/solution_ensemble_6model.csv`.
+`ensemble_weights.json` → writes `outputs/solutions/solution_ensemble_6model.csv`.
 
-### `solutions/` — what we submit
+### `outputs/` — weights & submissions
 
-The two CSVs submitted to Kaggle:
+`outputs/weights/` holds every trained checkpoint; the two CSVs submitted to Kaggle live in
+`outputs/solutions/`:
 - `solution_ensemble_6model.csv` — the 6-model ensemble (ADE **2.954**).
 - `solution_v46_300.csv` — a single v46 trained 300 epochs (4-flip TTA, no ensemble).
 
@@ -126,15 +127,15 @@ A CUDA GPU is needed for training and prediction; the ensemble weight-fitting is
 
 ```bash
 # 1. The final 2.954 submission:
-python final/build_submission.py            # -> solutions/solution_ensemble_6model.csv
+python final/build_submission.py            # -> outputs/solutions/solution_ensemble_6model.csv
 
 # 2. The validated 2.758 local result (from scratch):
 python utils/make_split.py                  # regenerate train/val manifests
-python ensemble/save_val_tta_preds.py       # GPU: cache val predictions
-python ensemble/save_test_tta_preds.py      # GPU: cache test predictions
-python ensemble/ball_player_ensemble.py     # CPU: fit 2-group weights
+python demarche/ensemble/save_val_tta_preds.py       # GPU: cache val predictions
+python demarche/ensemble/save_test_tta_preds.py      # GPU: cache test predictions
+python demarche/ensemble/ball_player_ensemble.py     # CPU: fit 2-group weights
 
 # 3. Train a milestone or an ensemble member:
 python utils/run_one.py demarche/nba_v46.py 300 32   # a milestone (baseline/v6/v38/v46)
-python ensemble/train_member.py v46_s3 300           # an ensemble member (by name)
+python demarche/ensemble/train_member.py v46_s3 300           # an ensemble member (by name)
 ```

@@ -35,9 +35,9 @@ def run(model_path: str, epochs: int = 30, batch_size: int = 32) -> float:
 
     # Save epoch-tagged copy — never overwrites previous checkpoints
     import torch
-    weights_dir = path.parent / 'weights'
+    weights_dir = Path(__file__).resolve().parent.parent / 'outputs' / 'weights'
     weights_dir.mkdir(parents=True, exist_ok=True)
-    # e.g. models/weights/model_v43_250ep.pth
+    # e.g. outputs/weights/model_v46_300ep.pth
     version = path.stem.replace('nba_', '')  # nba_v43 -> v43
     tagged_path = weights_dir / f'model_{version}_{epochs}ep.pth'
     torch.save(trainer.model.state_dict(), tagged_path)

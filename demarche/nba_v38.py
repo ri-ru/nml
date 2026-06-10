@@ -15,7 +15,7 @@ from torch.utils.data import Dataset, DataLoader, Sampler
 from tqdm import tqdm
 
 _DIR = Path(__file__).parent
-WEIGHTS_DIR = _DIR / 'weights'
+WEIGHTS_DIR = _DIR.parent / 'outputs' / 'weights'
 WEIGHTS_DIR.mkdir(parents=True, exist_ok=True)
 
 TRAIN_TXT = _DIR.parent / 'train_files.txt'

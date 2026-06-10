@@ -1,6 +1,6 @@
 """Canonical paths for the ensemble pipeline.
 
-Run scripts from inside ``ensemble/`` (or as ``python ensemble/<script>.py``).
+Run scripts from inside ``demarche/ensemble/`` (or as ``python demarche/ensemble/<script>.py``).
 
 Point this at the dataset once, e.g. on the machine that has the data::
 
@@ -13,15 +13,15 @@ Point this at the dataset once, e.g. on the machine that has the data::
 import os
 from pathlib import Path
 
-ENSEMBLE = Path(__file__).resolve().parent
-ROOT = ENSEMBLE.parent
+ENSEMBLE = Path(__file__).resolve().parent     # demarche/ensemble
+ROOT = ENSEMBLE.parent.parent                  # repo root
 
-ARCH_DIR = ROOT / "demarche"      # single architecture source: demarche/nba_v46.py (no copies)
-WEIGHTS = ENSEMBLE / "weights"    # *.pth checkpoints
+ARCH_DIR = ROOT / "demarche"            # single architecture source: demarche/nba_v46.py (no copies)
+WEIGHTS = ROOT / "outputs" / "weights"  # all *.pth checkpoints live under outputs/
 
 # The 6 ensemble members ARE the one demarche/nba_v46.py architecture, trained differently.
 # label -> (ball_w, seed). ball_w == 1.0 is a plain generalist; > 1.0 is a ball specialist.
-# This registry replaces per-member files: train any one with `python ensemble/train_member.py <label>`.
+# This registry replaces per-member files: train any one with `python demarche/ensemble/train_member.py <label>`.
 MEMBERS = {
     "v60_w8":    (8.0, 0),   # ball specialists
     "v60_w5_s1": (5.0, 1),
@@ -32,9 +32,9 @@ MEMBERS = {
 }
 VAL_DIR = ENSEMBLE / "val_preds"  # cached per-model val TTA tensors (gitignored)
 TEST_DIR = ENSEMBLE / "test_preds"  # cached per-model test TTA tensors (gitignored)
-SOL_DIR = ENSEMBLE / "solutions"  # submission CSVs
+SOL_DIR = ROOT / "outputs" / "solutions"  # submission CSVs live under outputs/
 for _d in (VAL_DIR, TEST_DIR, SOL_DIR):
-    _d.mkdir(exist_ok=True)
+    _d.mkdir(parents=True, exist_ok=True)
 
 # train/val split files live at the repo root
 TRAIN_TXT = ROOT / "train_files.txt"

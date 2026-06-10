@@ -20,7 +20,7 @@ from torch.utils.data import Dataset, DataLoader, Sampler
 from tqdm import tqdm
 
 _DIR = Path(__file__).parent
-WEIGHTS_DIR = _DIR / 'weights'
+WEIGHTS_DIR = _DIR.parent / 'outputs' / 'weights'
 WEIGHTS_DIR.mkdir(parents=True, exist_ok=True)
 
 TEAM_EMB_DIM = 8  # embedding size for (ball / team_a / team_b) node types

@@ -6,7 +6,7 @@ import os
 import pandas as pd
 
 _DIR = Path(__file__).parent
-WEIGHTS_DIR = _DIR / 'weights'
+WEIGHTS_DIR = _DIR.parent / 'outputs' / 'weights'
 SOLUTIONS_DIR = _DIR / 'solutions'
 WEIGHTS_DIR.mkdir(parents=True, exist_ok=True)
 SOLUTIONS_DIR.mkdir(parents=True, exist_ok=True)

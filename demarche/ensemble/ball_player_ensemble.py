@@ -5,7 +5,7 @@ ball-specialist routing that won us the leaderboard while cutting params 11->2 t
 local->Kaggle overfit gap.
 
 Pool = the 6 final members: 3 ball specialists (v60) + 3 player generalists (v46), single
-architecture. Writes solution_ball_player_2grp.csv + reports.
+architecture. Writes outputs/solutions/solution_ball_player_2grp.csv + reports.
 """
 import numpy as np
 import pandas as pd

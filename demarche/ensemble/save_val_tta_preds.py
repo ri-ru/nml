@@ -7,7 +7,7 @@ Outputs (under val_preds/):
   Y_real.pt   - [N_windows, 12, 11, 2] ground truth in feet
   <label>.pt  - [N_windows, 12, 11, 2] TTA-averaged predictions in feet
 
-Run: python ensemble/save_val_tta_preds.py
+Run: python demarche/ensemble/save_val_tta_preds.py
 """
 import torch
 from pathlib import Path

@@ -22,11 +22,12 @@ Thumbs.db
 .pytest_cache/
 
 # Cached per-model TTA prediction tensors (regenerable from weights via save_*_tta_preds.py)
-ensemble/val_preds/
-ensemble/test_preds/
+demarche/ensemble/val_preds/
+demarche/ensemble/test_preds/
 
-# Validated-pipeline scratch output (regenerable; the two SUBMITTED CSVs live in solutions/)
-ensemble/solutions/
+# Regenerable scratch CSVs (the two SUBMITTED CSVs in outputs/solutions/ are committed)
+outputs/solutions/solution_tta_*.csv
+outputs/solutions/solution_ball_player_2grp.csv
 
 # 80/20 split manifests — generated per machine by utils/make_split.py (hold absolute paths,
 # so they must NOT be committed). Run `python utils/make_split.py` once after setting NML_DATA.

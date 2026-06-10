@@ -5,14 +5,14 @@ ball-weighted loss + 3 player generalists at different seeds). The architecture 
 from the one canonical file, ../demarche/nba_v46.py (no copy in this folder).
 
 Pipeline (no training):
-  1. load the 6 100%-data (_full) checkpoints from ./weights;
+  1. load the 6 100%-data (_full) checkpoints from ../outputs/weights;
   2. run 4-flip TTA inference on every test sequence (last 8 frames -> next 12 positions);
   3. apply the 2-group ensemble weights in ./ensemble_weights.json
         - the BALL (entity 0) uses `ball_weights`
         - every PLAYER (entities 1..10) uses `player_weights`
-  4. write ../solutions/solution_ensemble_6model.csv (Kaggle format, ids sorted).
+  4. write ../outputs/solutions/solution_ensemble_6model.csv (Kaggle format, ids sorted).
 
-The committed solutions/solution_ensemble_6model.csv is the submitted artifact; this script
+The committed outputs/solutions/solution_ensemble_6model.csv is the submitted artifact; this script
 reproduces it up to the precision of the published weights in ensemble_weights.json.
 
 Run:
@@ -30,7 +30,7 @@ import pandas as pd
 
 HERE = Path(__file__).resolve().parent
 ARCH_DIR = HERE.parent / "demarche"   # single architecture source: demarche/nba_v46.py (no copy)
-WEIGHTS_DIR = HERE / "weights"
+WEIGHTS_DIR = HERE.parent / "outputs" / "weights"
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 CONTEXT, HORIZON, NE = 8, 12, 11
 
@@ -121,8 +121,8 @@ def main():
 
     cols = [f"entity_{i}_time_{t}_{a}" for t in range(HORIZON) for i in range(NE) for a in ["x", "y"]]
     rows = [[ids[i]] + out[i].reshape(-1).tolist() for i in range(Ntest)]
-    csv = HERE.parent / "solutions" / "solution_ensemble_6model.csv"
-    csv.parent.mkdir(exist_ok=True)
+    csv = HERE.parent / "outputs" / "solutions" / "solution_ensemble_6model.csv"
+    csv.parent.mkdir(parents=True, exist_ok=True)
     pd.DataFrame(rows, columns=["id"] + cols).set_index("id").sort_index().to_csv(csv)
     print(f"wrote {csv}")
 

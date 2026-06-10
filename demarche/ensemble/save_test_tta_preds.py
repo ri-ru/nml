@@ -7,7 +7,7 @@ val preds can be applied to these test preds for the submission.
 
 Outputs:
   test_preds/<label>.pt        - [N_test, 12, 11, 2] in feet
-  solutions/solution_tta_<label>.csv - Kaggle-format per-model solution
+  outputs/solutions/solution_tta_<label>.csv - Kaggle-format per-model solution
 """
 import os
 import torch
