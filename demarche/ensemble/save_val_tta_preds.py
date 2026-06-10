@@ -1,13 +1,12 @@
 """
 Run each of the 6 ensemble members on the val split with 4-flip TTA and cache the
-per-model predictions + ground truth, so the 2-group weights can later be fit on CPU
-without re-running GPU inference.
+per-model predictions. 
 
+This is so that the 2 group weights can be fit on a CPU, w/o GPU inference. 
 Outputs (under val_preds/):
-  Y_real.pt   - [N_windows, 12, 11, 2] ground truth in feet
-  <label>.pt  - [N_windows, 12, 11, 2] TTA-averaged predictions in feet
+Y_real.pt is  [N_windows, 12, 11, 2] gt in feet
+<label>.pt is [N_windows, 12, 11, 2] TTA-averaged predictions in feet
 
-Run: python demarche/ensemble/save_val_tta_preds.py
 """
 import torch
 from pathlib import Path
@@ -35,8 +34,7 @@ def _empty_cache():
         torch.cuda.empty_cache()
 
 
-# The members come from the single registry in _config.MEMBERS. All are NBAv46Model
-# (loaded from demarche/nba_v46.py); only the checkpoint differs.
+#  _config.MEMBERS. 
 MODELS = [(label, 'nba_v46', 'NBAv46Model', f'model_{label}_300ep.pth') for label in MEMBERS]
 
 
@@ -61,7 +59,9 @@ def load_one(model_file, model_class, weights_fname):
 
 
 def predict_tta_norm(model, X_norm):
-    """X_norm: [B, T_ctx, N, F]. Returns normalized [T_out, B*N, 2] averaged over 4 flips."""
+    """X_norm: [B, T_ctx, N, F]. 
+    
+    Returns normalized [T_out, B*N, 2] avged over 4 flips."""
     preds = []
     for fx, fy in [(False, False), (True, False), (False, True), (True, True)]:
         x = X_norm.clone()
@@ -114,7 +114,7 @@ def main():
         X_batches.append(X)
         Y_real_batches.append(Y_real)
 
-    # Save Y_real once (shape [N, 12, 11, 2] in feet).
+    # Save Y_real   [N, 12, 11, 2]  
     Y_full = torch.cat(
         [Y.reshape(HORIZON, -1, 11, 2).permute(1, 0, 2, 3) for Y in Y_real_batches],
         dim=0,

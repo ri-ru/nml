@@ -1,11 +1,11 @@
-"""Build the 2-group ensemble: fit ONE constrained weight vector for the BALL (entity 0) and ONE
-shared vector for ALL players (entities 1-10), by least-squares on the honest 80% validation
-predictions. These two vectors ARE the ensemble — paste them into final/ensemble_weights.json
-(the final submission applies them to the 100%-data test predictions).
+"""Builds the 2-group ensemble.
+This will fit one constrained weight vector for the ball (entity 0) 
+and one shared vector for all players (1-10 entities)
 
-Regularized middle ground between a global blend (1 vector, underfits the ball) and full per-entity
-(11 vectors, overfits the players): keeps the ball-specialist routing while cutting params 11->2,
-which shrinks the local->Kaggle overfit gap.
+w/ least squares on the 80% validation predictions.
+
+important: 80% val predictions arent commited and must be regenerated. 
+(the final submission applies them to the 100%-data test predictions).
 
 Reads the cached val predictions written by save_val_tta_preds.py (val_preds/<label>.pt + Y_real.pt).
 """
@@ -15,7 +15,7 @@ from scipy.optimize import minimize
 
 from _config import VAL_DIR as VAL, MEMBERS
 HOR, NE = 12, 11
-POOL = list(MEMBERS)   # the 6 members, from the single registry in _config
+POOL = list(MEMBERS)  #from config 
 
 Y = torch.load(VAL / 'Y_real.pt').numpy()
 labs = [l for l in POOL if (VAL / f'{l}.pt').exists()]
@@ -32,7 +32,7 @@ def fit(Pe, Ye):
     return res.x
 
 
-# ball group = entity 0 ; player group = entities 1..10 (pooled)
+# ball group = entity 0 ; player group = entities 1..10  
 wb = fit(Pv[:, :, :, 0, :].reshape(M, -1), Y[:, :, 0, :].reshape(-1))
 wp = fit(Pv[:, :, :, 1:, :].reshape(M, -1), Y[:, :, 1:, :].reshape(-1))
 
@@ -46,7 +46,7 @@ ball = float(np.mean((out[:, :, 0, :] - Y[:, :, 0, :]) ** 2))
 print(f'2-group val MSE: overall={overall:.4f}  ball={ball:.3f}  '
       f'-> proj Kaggle ~{overall * 1.079:.3f}-{overall * 1.083:.3f}')
 
-# the fitted weights — paste these into final/ensemble_weights.json (pool order = the printed order)
+# fitted weights , for the .json in outputs
 print(f"\n{'model':<14}{'BALL w':>9}{'PLAYER w':>10}")
 print('-' * 33)
 for i in range(M):
