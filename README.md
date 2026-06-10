@@ -1,7 +1,7 @@
 # NBA Multi-Agent Trajectory Prediction (EE-452, NML 2026)
 
-Given **8 context frames** of an NBA possession, predict the next **12 positions** of all
-**11 entities** (10 players + the ball). Scored by mean-squared error in court coordinates (feet),
+In this repo, we use an adapted version of the NBA highlight dataset introduced in SocialVAE (Xu et al., ECCV 2022, https://arxiv.org/abs/2203.08207). Given **8 context frames** of an NBA possession, the goal is to predict the next **12 positions** of all
+**11 entities** (10 players + the ball) on the court. Scored by mean-squared error in court coordinates (feet),
 lower is better, averaged uniformly over entities, timesteps, and axes (the ADE metric).
 
 **Method.** A single **graph-attention network** (spatio-temporal GAT + GRU + mixture-of-Gaussians
@@ -35,14 +35,14 @@ network in the whole repo.
 - **`make_split.py`**: makes the 80/20 train/val split once (fixed seed 42); writes
   `train_files.txt` + `val_files.txt` so every model uses the *same* split.
 - **`run_one.py`**: the training entry point: `python utils/run_one.py <model.py> <epochs> <batch>`.
-  Dynamically imports the model's `Trainer`, trains, saves an epoch-tagged checkpoint, evaluates.
+  Imports the model's `Trainer`, trains, saves an checkpoint with epoch tagged, and evaluates.
 - **`evaluate.py`**: local scorer: de-normalises to court feet and computes the MSE (same metric as
   Kaggle), using a fixed 3-windows-per-sequence sampler.
 
 ### `demarche/`: how we got here (one file per milestone)
 
-`baseline`, `v6`, `v38` are self-contained files (genuinely *different* earlier networks). `v46` is
-the architecture: every later component (ensemble members, final) imports it. `v60` is `v46`
+`baseline`, `v6`, `v38` are self-contained files (different earlier networks). `v46` is
+the final architecture: every later component (ensemble members, final) imports it. `v60` is `v46`
 with a ball-weighted loss. Each is runnable via `utils/run_one.py` with its trained weight. Local ADE
 is on the 80/20 val split.
 
