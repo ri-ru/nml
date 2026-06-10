@@ -13,7 +13,7 @@ import torch
 from pathlib import Path
 import importlib.util
 
-from _config import WEIGHTS, TRAIN_TXT, VAL_TXT, MODELS as MODELS_DIR, VAL_DIR as OUT_DIR
+from _config import WEIGHTS, TRAIN_TXT, VAL_TXT, ARCH_DIR as MODELS_DIR, VAL_DIR as OUT_DIR
 
 
 def _default_device() -> str:

@@ -20,7 +20,7 @@ import importlib.util
 
 import torch
 
-from _config import WEIGHTS, MODELS as MODELS_DIR, ROOT
+from _config import WEIGHTS, ARCH_DIR as MODELS_DIR, ROOT
 DEVICE = 'cuda' if torch.cuda.is_available() else 'cpu'
 USE_TTA = '--tta' in sys.argv
 

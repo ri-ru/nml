@@ -16,7 +16,7 @@ from pathlib import Path
 ENSEMBLE = Path(__file__).resolve().parent
 ROOT = ENSEMBLE.parent
 
-MODELS = ENSEMBLE / "models"      # the model .py files (architecture definitions)
+ARCH_DIR = ROOT / "demarche"      # single architecture source: demarche/nba_v46.py (no copies)
 WEIGHTS = ENSEMBLE / "weights"    # *.pth checkpoints
 VAL_DIR = ENSEMBLE / "val_preds"  # cached per-model val TTA tensors (gitignored)
 TEST_DIR = ENSEMBLE / "test_preds"  # cached per-model test TTA tensors (gitignored)

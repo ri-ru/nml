@@ -1,10 +1,10 @@
-"""Build the FINAL 6-model Kaggle submission — self-contained (Kaggle ADE 2.954).
+"""Build the FINAL 6-model Kaggle submission (Kaggle ADE 2.954).
 
 Single architecture: all 6 members are NBAv46Model (3 ball specialists trained with a
-ball-weighted loss + 3 player generalists at different seeds), so only one model file
-(models/nba_v46.py) is needed.
+ball-weighted loss + 3 player generalists at different seeds). The architecture is loaded
+from the one canonical file, ../demarche/nba_v46.py (no copy in this folder).
 
-Pipeline (no training, no dependency on ../ensemble or any other folder):
+Pipeline (no training):
   1. load the 6 100%-data (_full) checkpoints from ./weights;
   2. run 4-flip TTA inference on every test sequence (last 8 frames -> next 12 positions);
   3. apply the 2-group ensemble weights in ./ensemble_weights.json
@@ -29,7 +29,7 @@ import torch
 import pandas as pd
 
 HERE = Path(__file__).resolve().parent
-MODELS_DIR = HERE / "models"
+ARCH_DIR = HERE.parent / "demarche"   # single architecture source: demarche/nba_v46.py (no copy)
 WEIGHTS_DIR = HERE / "weights"
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 CONTEXT, HORIZON, NE = 8, 12, 11
@@ -55,8 +55,8 @@ def compute_normalization(data_path):
 
 
 def load_model(weights_file):
-    """All 6 members share the NBAv46Model architecture (models/nba_v46.py)."""
-    spec = importlib.util.spec_from_file_location("nba_v46", MODELS_DIR / "nba_v46.py")
+    """All 6 members share the NBAv46Model architecture (demarche/nba_v46.py)."""
+    spec = importlib.util.spec_from_file_location("nba_v46", ARCH_DIR / "nba_v46.py")
     mod = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(mod)
     net = mod.NBAv46Model().to(DEVICE)

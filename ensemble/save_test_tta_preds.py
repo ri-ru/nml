@@ -15,7 +15,7 @@ import pandas as pd
 from pathlib import Path
 import importlib.util
 
-from _config import TRAIN, TEST, WEIGHTS, MODELS as MODELS_DIR, TEST_DIR as OUT_DIR, SOL_DIR
+from _config import TRAIN, TEST, WEIGHTS, ARCH_DIR as MODELS_DIR, TEST_DIR as OUT_DIR, SOL_DIR
 
 
 def _default_device() -> str:

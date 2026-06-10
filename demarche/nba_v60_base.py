@@ -60,7 +60,7 @@ class BallWeightedMoGNLLLoss:
         return total / t_weights.sum()
 
 
-def build_trainer_class(ball_w: float, save_stem: str, seed: int = 0):
+def build_trainer_class(ball_w: float, save_stem: str, seed: int = 0, weights_dir=None):
     """Return a Trainer subclass of v46's Trainer using the ball-weighted loss.
     seed varies weight init + sampler order for ensemble-diversity seed variants."""
 
@@ -94,7 +94,7 @@ def build_trainer_class(ball_w: float, save_stem: str, seed: int = 0):
                 val_sampler.set_epoch(epoch)
                 scheduler.step()
 
-            torch.save(model.state_dict(), WEIGHTS_DIR / f'{save_stem}.pth')
+            torch.save(model.state_dict(), (weights_dir or WEIGHTS_DIR) / f'{save_stem}.pth')
             self.model = model
 
     return _BallWeightedTrainer
