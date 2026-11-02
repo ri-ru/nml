@@ -1,16 +1,17 @@
-"""Launcher for all of your reproductibility needs, dear graders! 
-drop the dataset into the repo root to do this. (nml-2026)
+"""NBA trajectory forecasting: training and prediction launcher.
 
+Set NML_DATA to the dataset directory, or place it at ./nml-2026.
 
-Commends: 
-    python run.py split                      # redoes the fixed 80/20 split  
-    python run.py train v46 300              # train one ensemble member on 80% split
-    python run.py train v46 300 --full       # train one ensemble member on 100% 
-    python run.py train-all --full           # train all 6 members (add nothing for the 80% split)
-    python run.py fit-weights                # cache val preds+ fit the 2-group ensemble weights
-    python run.py submit                     # makes the final submission 1: the 6-model ensemble CSV
-    python run.py submit-single v46          # makes the final submission 1: a single-model CSV (default v46, because this is our best model
-    python run.py reproduce                  # the entire pipeline from scratch (GPU!!!)
+Commands:
+    python run.py split
+    python run.py train v46 300 [--full]
+    python run.py train-all [--full]
+    python run.py fit-weights
+    python run.py submit
+    python run.py submit-single v46
+    python run.py reproduce
+
+See README.md and NML_FINAL.md for data layout and pipeline details.
 """
 
 
